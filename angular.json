@@ -133,6 +133,41 @@
           }
         }
       }
+    },
+    "ngx-neo-frontend": {
+      "root": "projects/ngx-neo-frontend",
+      "sourceRoot": "projects/ngx-neo-frontend/src",
+      "projectType": "library",
+      "prefix": "neo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-neo-frontend/tsconfig.lib.json",
+            "project": "projects/ngx-neo-frontend/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-neo-frontend/src/test.ts",
+            "tsConfig": "projects/ngx-neo-frontend/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-neo-frontend/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-neo-frontend/tsconfig.lib.json",
+              "projects/ngx-neo-frontend/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "neo-frontend"

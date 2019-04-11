@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-neo-frontend": [
+        "dist/ngx-neo-frontend"
+      ],
+      "ngx-neo-frontend/*": [
+        "dist/ngx-neo-frontend/*"
+      ]
+    }
   }
 }
