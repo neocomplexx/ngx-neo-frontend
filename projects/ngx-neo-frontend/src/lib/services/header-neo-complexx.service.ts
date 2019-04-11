@@ -17,8 +17,8 @@ import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 
 export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
 
-    private currentUserWeb: any;
-    private userEntity: any;
+    protected currentUserWeb: any;
+    protected userEntity: any;
 
     public userTypeId: number;
     public userType: string;
@@ -114,6 +114,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
             this.userTypeId = 0;
         }
     }
+
     public async initializeActualUser(): Promise<void> {
         this.getItemFromLocalStorage();
         this.userLogged = await this.usersServiceBackend.getUsersUsernameUSERNAME(this.currentUserWeb.userName);
@@ -143,7 +144,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         this.back();
     }
 
-    public EstaLogueado(): boolean {
+    public IsLogged(): boolean {
         return (this.userLogged && this.userLogged.id > 0);
     }
 
