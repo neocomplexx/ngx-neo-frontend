@@ -12,14 +12,10 @@ import { CordovaService } from './cordova/cordova.service';
 import { ExceptionManagerService } from './exception-manager/exception-manager.service';
 import { AuthenticationService } from '../helpers/auth/authentication.service';
 import { UsersServiceBackend } from './backend/users.service.backend';
+import { HeaderService } from '@neocomplexx/ngx-neo-components';
+import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 
-@Injectable({
-    providedIn: 'root'
-})
-export abstract class HeaderNeoComplexxService implements ITabChangeController, OnDestroy {
-
-    private _sideShow = new BehaviorSubject(false);
-    public sideShow = this._sideShow.asObservable();
+export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
 
     private currentUserWeb: any;
     private userEntity: any;
@@ -46,9 +42,11 @@ export abstract class HeaderNeoComplexxService implements ITabChangeController, 
     constructor(protected router: Router, protected location: Location, protected ngxNeoModalService: NgxNeoModalService,
         protected signalRService: PushService,
         protected authenticationService: AuthenticationService,
+        mobileSidebarService: MobileSidebarService,
         protected usersServiceBackend: UsersServiceBackend, protected modalService: NgbModal,
         protected breadCrumbService: BreadcrumbService, protected cordovaService: CordovaService,
         protected exceptionService: ExceptionManagerService) {
+        super(mobileSidebarService);
         this.userType = '';
         this.userLogged = new UserDTO();
 
@@ -81,14 +79,6 @@ export abstract class HeaderNeoComplexxService implements ITabChangeController, 
         } else {
             window.alert('El sistema no se encuentra disponible en este momento, intente nuevamente más tarde.');
         }
-    }
-
-    public sideNavHide() {
-        this._sideShow.next(false);
-    }
-
-    public sideNavShow() {
-        this._sideShow.next(true);
     }
 
     private setComponentSelectedName(url: string): void {
