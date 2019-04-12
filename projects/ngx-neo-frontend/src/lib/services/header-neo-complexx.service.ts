@@ -148,7 +148,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         return (this.userLogged && this.userLogged.id > 0);
     }
 
-    public async Loggedout(): Promise<void> {
+    public async Logout(): Promise<void> {
         await this.authenticationService.logout();
         this.dispose();
         if (this.cordovaService.isIOSApp) {
@@ -156,6 +156,14 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         } else {
             this.router.navigate(['/login']);
         }
+    }
+
+    public getUserName() {
+        return this.userLogged.fullName;
+    }
+
+    public isAdmin() {
+        return this.userType === 'administrator';
     }
 
     public back(): void {
