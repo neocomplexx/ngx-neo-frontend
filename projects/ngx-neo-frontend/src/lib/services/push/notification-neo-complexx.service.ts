@@ -9,24 +9,22 @@ import { ServiceChangeDTO } from '../../models/DTO/serviceChange.DTO';
 import { NotificationState } from '../../models/DTO/notificationState.ENUM';
 import { NewNotificationDTO } from '../../models/DTO/newNotification.DTO';
 import { NotificationServiceBackend } from '../backend/notification.ServiceBackend';
+import { NotificationService } from '@neocomplexx/ngx-neo-components';
 
 @Injectable({
     providedIn: 'root'
 })
-export class NotificationService {
-
-    private _getAllNotificationsEvent = new Subject<void>();
-    private _newNotificationEvent = new Subject<NotificationDTO>();
+export class NotificationNeoComplexxService extends NotificationService {
 
     public notifications: NotificationDTO[] = new Array<NotificationDTO>();
-    public notificationsNotSeen = 0;
 
     public usersAdministrative: Array<UserDTO>;
 
     public notificationMaxPriority: NotificationPriority = NotificationPriority.Low;
 
-    constructor(private notificationServiceBackend: NotificationServiceBackend,
-                private usersServiceBackend: UsersServiceBackend, public pushService: PushService) {
+    constructor(protected notificationServiceBackend: NotificationServiceBackend,
+        protected usersServiceBackend: UsersServiceBackend, protected pushService: PushService) {
+        super();
 
         this.pushService.registerPushFrom<NotificationDTO>('NewNotification', (notification) => {
             const notificationDTO = new NotificationDTO();
@@ -69,7 +67,7 @@ export class NotificationService {
             if (element.priority == NotificationPriority.High) {
                 this.notificationMaxPriority = NotificationPriority.High;
                 break;
-            // tslint:disable-next-line:triple-equals
+                // tslint:disable-next-line:triple-equals
             } else if (element.priority == NotificationPriority.Medium) {
                 this.notificationMaxPriority = NotificationPriority.Medium;
             }
