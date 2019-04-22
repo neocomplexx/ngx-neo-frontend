@@ -1,23 +1,24 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { NotificationDTO } from './notification.DTO';
+ import { RolePermissionState } from './rolePermissionState.ENUM';
+import { PermissionDTO } from './permission.DTO';
 
 
-export class NewNotificationDTO implements IEntityDTO {
+export class RolePermissionDTO implements IEntityDTO {
 
-   usersName: Array<string>;
-   notification: NotificationDTO;
+   permission: PermissionDTO;
+   state: RolePermissionState;
    id: number = 0;
    cacheStamp: number = 0;
 
    constructor() {
-      this.notification = new NotificationDTO();
+      this.permission = new PermissionDTO();
    }
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
-      if (jsonObj['usersName'] != null) this.usersName = jsonObj['usersName'];
-      if (jsonObj['notification'] != null) this.notification.PrepareDTO(jsonObj['notification']);
+      if (jsonObj['permission'] != null) this.permission.PrepareDTO(jsonObj['permission']);
+      if (jsonObj['state'] != null) this.state = jsonObj['state'] as RolePermissionState;
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

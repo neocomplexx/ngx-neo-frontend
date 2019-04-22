@@ -1,5 +1,7 @@
 import { IEntityDTO } from './entity.DTO';
-import { NotificationDTO } from './notification.DTO';
+import { NamedBlobDTO } from './namedBlob.DTO';
+ import { NotificationDTO } from './notification.DTO';
+
 
 export class NotificationDataDTO implements IEntityDTO {
 

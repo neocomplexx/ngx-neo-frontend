@@ -11,9 +11,9 @@ import { PushService } from './push/signalr.push.service';
 import { CordovaService } from './cordova/cordova.service';
 import { ExceptionManagerService } from './exception-manager/exception-manager.service';
 import { AuthenticationService } from '../helpers/auth/authentication.service';
-import { UsersServiceBackend } from './backend/users.service.backend';
 import { HeaderService } from '@neocomplexx/ngx-neo-components';
 import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
+import { UsersServiceBackend } from './backend';
 
 export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
 

@@ -1,23 +1,21 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { NotificationDTO } from './notification.DTO';
+ import { PermissionDTO } from './permission.DTO';
 
 
-export class NewNotificationDTO implements IEntityDTO {
+export class UpdatePermissionsDTO implements IEntityDTO {
 
-   usersName: Array<string>;
-   notification: NotificationDTO;
+   permissions: Array<PermissionDTO>;
    id: number = 0;
    cacheStamp: number = 0;
 
    constructor() {
-      this.notification = new NotificationDTO();
+      this.permissions = new Array<PermissionDTO>();
    }
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
-      if (jsonObj['usersName'] != null) this.usersName = jsonObj['usersName'];
-      if (jsonObj['notification'] != null) this.notification.PrepareDTO(jsonObj['notification']);
+      if (jsonObj['permissions'] != null) for (const item of jsonObj['permissions']) { const itemDTO = new PermissionDTO(); itemDTO.PrepareDTO(item); this.permissions.push(itemDTO); }
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

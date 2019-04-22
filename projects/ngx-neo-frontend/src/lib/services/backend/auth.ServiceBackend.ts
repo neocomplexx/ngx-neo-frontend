@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
-import { AuthRequestDTO } from '../../models/DTO/authRequest.DTO';
-import { AuthResponseDTO } from '../../models/DTO/authResponse.DTO';
-import { AuthChangePasswordRequestDTO } from '../../models/DTO/authChangePasswordRequest.DTO';
+import { AuthRequestDTO } from '../../models';
+import { AuthResponseDTO } from '../../models';
+import { AuthChangePasswordRequestDTO } from '../../models';
 import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend.module';
 
 @Injectable({

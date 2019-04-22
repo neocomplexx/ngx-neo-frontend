@@ -1,5 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
-import { UserState } from './userState.ENUM';
+import { NamedBlobDTO } from './namedBlob.DTO';
+ import { UserState } from './userState.ENUM';
 
 
 export class AuthNewUserRequestDTO implements IEntityDTO {

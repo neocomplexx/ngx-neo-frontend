@@ -1,23 +1,20 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { NotificationDTO } from './notification.DTO';
+ 
+export class NameDetailDTO implements IEntityDTO {
 
-
-export class NewNotificationDTO implements IEntityDTO {
-
-   usersName: Array<string>;
-   notification: NotificationDTO;
+   name: string = '';
+   detail: string = '';
    id: number = 0;
    cacheStamp: number = 0;
 
    constructor() {
-      this.notification = new NotificationDTO();
    }
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
-      if (jsonObj['usersName'] != null) this.usersName = jsonObj['usersName'];
-      if (jsonObj['notification'] != null) this.notification.PrepareDTO(jsonObj['notification']);
+      if (jsonObj['name'] != null) this.name = jsonObj['name'];
+      if (jsonObj['detail'] != null) this.detail = jsonObj['detail'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

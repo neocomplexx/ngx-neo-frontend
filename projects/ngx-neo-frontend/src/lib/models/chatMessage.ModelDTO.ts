@@ -1,5 +1,7 @@
+import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { ChatMessageDTO } from './DTO/chatMessage.DTO';
+
 
 export class ChatMessageModelDTO extends EntityModelDTO<ChatMessageDTO> {
 
@@ -9,7 +11,7 @@ export class ChatMessageModelDTO extends EntityModelDTO<ChatMessageDTO> {
    }
    public setEntityDTO(entityDTO: ChatMessageDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) { return; }
+      if (entityDTO == null) return;
    }
 
    public isNewEntity(): boolean {

@@ -1,5 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
-import { TypeSocial } from './typeSocial.ENUM';
+ import { TypeSocial } from './typeSocial.ENUM';
+
 
 export class AuthChangePasswordRequestDTO implements IEntityDTO {
 

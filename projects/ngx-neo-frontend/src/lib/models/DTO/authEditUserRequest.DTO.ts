@@ -1,5 +1,4 @@
 import { IEntityDTO } from './entity.DTO';
-
  
 export class AuthEditUserRequestDTO implements IEntityDTO {
 

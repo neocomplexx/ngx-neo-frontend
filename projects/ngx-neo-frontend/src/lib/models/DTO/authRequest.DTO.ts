@@ -1,5 +1,7 @@
 import { IEntityDTO } from './entity.DTO';
-import { TypeSocial } from './typeSocial.ENUM';
+import { NamedBlobDTO } from './namedBlob.DTO';
+ import { TypeSocial } from './typeSocial.ENUM';
+
 
 export class AuthRequestDTO implements IEntityDTO {
 

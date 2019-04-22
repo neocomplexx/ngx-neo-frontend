@@ -1,5 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
-
+import { NamedBlobDTO } from './namedBlob.DTO';
+ 
 export class AuthResponseDTO implements IEntityDTO {
 
    id: number = 0;

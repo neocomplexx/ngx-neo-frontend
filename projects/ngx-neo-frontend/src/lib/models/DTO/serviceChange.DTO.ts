@@ -1,5 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
-import { ActionType } from './actionType.ENUM';
+import { NamedBlobDTO } from './namedBlob.DTO';
+ import { ActionType } from './actionType.ENUM';
 
 
 export class ServiceChangeDTO implements IEntityDTO {

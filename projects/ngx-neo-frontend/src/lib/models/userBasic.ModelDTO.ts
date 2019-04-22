@@ -1,16 +1,16 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
-import { UserDTO } from './DTO/user.DTO';
+import { UserBasicDTO } from './DTO/userBasic.DTO';
 import { UserState } from './DTO/userState.ENUM';
 
 
-export class UserModelDTO extends EntityModelDTO<UserDTO> {
+export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
 
 
-   public constructor(protected entityDTO: UserDTO) {
+   public constructor(protected entityDTO: UserBasicDTO) {
       super(entityDTO);
    }
-   public setEntityDTO(entityDTO: UserDTO) {
+   public setEntityDTO(entityDTO: UserBasicDTO) {
       super.setEntityDTO(entityDTO);
       if (entityDTO == null) return;
    }
@@ -20,12 +20,6 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    }
    public dispose(): void {
    }
-
-   get Role(): Object { return this.entityDTO.role; }
-   set Role(value: Object) { this.notifyChangeDTO('role', value); }
-
-   get IdUserOwner(): number { return this.entityDTO.idUserOwner; }
-   set IdUserOwner(value: number) { this.notifyChangeDTO('idUserOwner', value); }
 
    get UserName(): string { return this.entityDTO.userName; }
    set UserName(value: string) { this.notifyChangeDTO('userName', value); }

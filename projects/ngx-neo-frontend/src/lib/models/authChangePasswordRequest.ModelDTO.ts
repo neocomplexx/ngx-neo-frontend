@@ -1,21 +1,24 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
-import { AuthRequestDTO } from './DTO/authRequest.DTO';
+import { AuthChangePasswordRequestDTO } from './DTO/authChangePasswordRequest.DTO';
 import { TypeSocial } from './DTO/typeSocial.ENUM';
 
 
-export class AuthRequestModelDTO extends EntityModelDTO<AuthRequestDTO> {
+export class AuthChangePasswordRequestModelDTO extends EntityModelDTO<AuthChangePasswordRequestDTO> {
 
 
-   public constructor(protected entityDTO: AuthRequestDTO) {
+   public constructor(protected entityDTO: AuthChangePasswordRequestDTO) {
       super(entityDTO);
    }
-   public setEntityDTO(entityDTO: AuthRequestDTO) {
+   public setEntityDTO(entityDTO: AuthChangePasswordRequestDTO) {
       super.setEntityDTO(entityDTO);
       if (entityDTO == null) return;
    }
    public dispose(): void {
    }
+
+   get OldPassword(): string { return this.entityDTO.oldPassword; }
+   set OldPassword(value: string) { this.notifyChangeDTO('oldPassword', value); }
 
    get UserName(): string { return this.entityDTO.userName; }
    set UserName(value: string) { this.notifyChangeDTO('userName', value); }

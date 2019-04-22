@@ -3,13 +3,13 @@ import { Subject } from 'rxjs';
 import { NotificationDTO } from '../../models/DTO/notification.DTO';
 import { UserDTO } from '../../models/DTO/User.DTO';
 import { NotificationPriority } from '../../models/DTO/notificationPriority.ENUM';
-import { UsersServiceBackend } from '../backend/users.service.backend';
 import { PushService } from './signalr.push.service';
 import { ServiceChangeDTO } from '../../models/DTO/serviceChange.DTO';
 import { NotificationState } from '../../models/DTO/notificationState.ENUM';
 import { NewNotificationDTO } from '../../models/DTO/newNotification.DTO';
 import { NotificationServiceBackend } from '../backend/notification.ServiceBackend';
 import { NotificationService } from '@neocomplexx/ngx-neo-components';
+import { UsersServiceBackend } from '../backend';
 
 @Injectable({
     providedIn: 'root'
