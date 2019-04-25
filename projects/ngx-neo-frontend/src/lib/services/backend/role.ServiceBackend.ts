@@ -1,18 +1,18 @@
 import { Injectable, Inject } from '@angular/core';
+import { NamedBlobDTO } from '../../models';
+import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend.module';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { NamedBlobDTO } from '../../models';
-import { FrontEndConfig, FrontEndConfigService } from '../../ngx-neo-frontend.module';
-import { ExceptionManagerService } from '../exception-manager';
-import { RoleDTO } from '../../models/DTO/role.DTO';
+import { RoleDTO } from '../../models';
 
 @Injectable({
  providedIn: 'root'
 })
 export class RoleServiceBackend {
 
-   constructor (@Inject(FrontEndConfigService) private Constants: FrontEndConfig,
-   protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
+   constructor (@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
+      protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
 
    public async getUsuariosrolesIdPDF(id: number, namedBlob: NamedBlobDTO = null): Promise<Blob> {
       return this.exceptionManager.executeAsync(async () => {
@@ -81,7 +81,7 @@ export class RoleServiceBackend {
    public async getUsuariosrolesId(id: number): Promise<RoleDTO> {
       return this.exceptionManager.executeAsync(async () => {
       const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/' + id).toPromise();
-      if (!res) { return null };
+      if (!res) { return null; }
       const resDTO = new RoleDTO();
       resDTO.PrepareDTO(res);
       return resDTO;

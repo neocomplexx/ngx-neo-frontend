@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { IEntityDTO } from './DTO/entity.DTO';
+import { IEntityDTO } from './';
 import { DatePipe } from '@angular/common';
 
 export interface IEntityModelDTO {

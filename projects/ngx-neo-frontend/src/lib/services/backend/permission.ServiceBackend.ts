@@ -1,19 +1,20 @@
 import { Injectable, Inject } from '@angular/core';
+import { NamedBlobDTO } from '../../models';
+import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend.module';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { ModulePermissionsDTO } from '../../models/DTO/modulePermissions.DTO';
-import { PermissionDTO } from '../../models/DTO/permission.DTO';
-import { UpdatePermissionsDTO } from '../../models/DTO/updatePermissions.DTO';
-import { ExceptionManagerService } from '../exception-manager';
-import { FrontEndConfig, FrontEndConfigService } from '../../ngx-neo-frontend.module';
+import { ModulePermissionsDTO } from '../../models';
+import { PermissionDTO } from '../../models';
+import { UpdatePermissionsDTO } from '../../models';
 
 @Injectable({
  providedIn: 'root'
 })
 export class PermissionServiceBackend {
 
-   constructor (@Inject(FrontEndConfigService) private Constants: FrontEndConfig,
-   protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
+   constructor (@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
+      protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
 
    public async insertPermissionsLoadpermissions(permissionDTO: PermissionDTO): Promise<Array<PermissionDTO>> {
       return this.exceptionManager.executeAsync(async () => {

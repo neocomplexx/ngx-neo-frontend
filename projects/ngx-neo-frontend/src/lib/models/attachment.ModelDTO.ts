@@ -1,6 +1,6 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
-import { AttachmentDTO } from './';
+import { AttachmentDTO } from './DTO/attachment.DTO';
 
 
 export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {

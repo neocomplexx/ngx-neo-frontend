@@ -1,6 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { UserDTO } from './user.DTO';
+import { UserDTO } from './user.DTO';
 import { AttachmentDTO } from './attachment.DTO';
 
 

@@ -1,6 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- 
+
 export class MetricSnapshotDTO implements IEntityDTO {
 
    timeStamp: Date;

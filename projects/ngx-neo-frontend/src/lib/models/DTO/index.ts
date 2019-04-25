@@ -31,4 +31,3 @@ export * from './updatePermissions.DTO';
 export * from './User.DTO';
 export * from './userBasic.DTO';
 export * from './userState.ENUM';
-

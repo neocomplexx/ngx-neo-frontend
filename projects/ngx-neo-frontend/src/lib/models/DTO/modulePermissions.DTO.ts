@@ -1,6 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { PermissionDTO } from './permission.DTO';
+import { PermissionDTO } from './permission.DTO';
 
 
 export class ModulePermissionsDTO implements IEntityDTO {

@@ -1,6 +1,6 @@
-import { IEntityDTO } from './';
+import { IEntityDTO } from './entity.DTO';
+import { NamedBlobDTO } from './namedBlob.DTO';
 
- 
 export class AttachmentDTO implements IEntityDTO {
 
    name: string = '';

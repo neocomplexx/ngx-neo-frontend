@@ -1,14 +1,15 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend",
-  "version": "7.0.5",
+  "version": "7.0.7",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
     "@neocomplexx/ngx-neo-components": "^7.0.8",
+    "@neocomplexx/ngx-neo-completer": "^7.0.0",
     "@neocomplexx/ngx-neo-loader": "^7.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@neocomplexx/ngx-neo-modal": "^7.0.1",
     "@neocomplexx/ngx-neo-directives": "^7.0.9",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
     "@aspnet/signalr": "^1.1.2",
     "@angular/cdk": "^7.3.7",
     "ng5-breadcrumb": "^0.0.6"

@@ -3,7 +3,8 @@ import { EntityModelDTO } from './entity.ModelDTO';
 import { MessageDTO } from './DTO/message.DTO';
 import { UserDTO } from './DTO/user.DTO';
 import { UserModelDTO } from './user.ModelDTO';
-import { AttachmentDTO } from './';
+import { AttachmentDTO } from './DTO/attachment.DTO';
+import { AttachmentModelDTO } from './attachment.ModelDTO';
 
 
 export class MessageModelDTO extends EntityModelDTO<MessageDTO> {

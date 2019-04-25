@@ -1,6 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { NotificationPriority } from './notificationPriority.ENUM';
+import { NotificationPriority } from './notificationPriority.ENUM';
 import { NotificationType } from './notificationType.ENUM';
 import { NotificationState } from './notificationState.ENUM';
 

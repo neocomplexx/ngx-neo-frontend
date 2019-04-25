@@ -1,6 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
- import { RoleState } from './roleState.ENUM';
+import { RoleState } from './roleState.ENUM';
 import { RolePermissionDTO } from './rolePermission.DTO';
 
 

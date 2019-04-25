@@ -1,5 +1,6 @@
 import { IEntityDTO } from './entity.DTO';
- 
+import { NamedBlobDTO } from './namedBlob.DTO';
+
 export class AuthEditUserRequestDTO implements IEntityDTO {
 
    firstName: string = '';

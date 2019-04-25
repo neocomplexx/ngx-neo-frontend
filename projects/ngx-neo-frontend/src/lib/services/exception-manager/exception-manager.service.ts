@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TimeoutError } from 'rxjs';
 import { AppError } from './app-error';
-import { b64DecodeUnicode } from '../../helpers/functions';
+import { b64DecodeUnicode } from '@neocomplexx/ngx-neo-components';
 
 @Injectable({
   providedIn: 'root'
