@@ -18,3 +18,4 @@ export * from './lib/components/menu';
 export * from './lib/services/command/command-factory.service';
 export * from './lib/services/entity';
 export * from './lib/services/search';
+export * from './lib/directives/scrolleable.directive';

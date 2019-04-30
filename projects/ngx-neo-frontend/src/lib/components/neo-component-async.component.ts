@@ -4,7 +4,7 @@ import { HeaderNeoComplexxService } from '../services/header-neo-complexx.servic
 
 export abstract class NeoModalAsync implements OnInit, OnDestroy {
 
-    constructor(protected headerService: HeaderNeoComplexxService) {}
+    constructor(protected headerService: HeaderNeoComplexxService) { }
 
     abstract async ngOnInitAsync(): Promise<any>;
 
@@ -24,7 +24,10 @@ export abstract class NeoModalAsync implements OnInit, OnDestroy {
 
 export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync implements OnInit, AfterViewInit, OnDestroy {
 
-    protected scrollSavedActivated = false;
+    private _scrollSavedActivated = false;
+
+    get scrollSavedActivated(): boolean { return this._scrollSavedActivated; }
+    set scrollSavedActivated(value: boolean) { this._scrollSavedActivated = value; this.headerService.scrollSavedActivated = value; }
 
     protected initComponent: () => Promise<void>;
 
@@ -50,9 +53,12 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
                 await this.ngOnInit();
             }
             timer(1000).subscribe((e) => {
-              this.headerService.loadComplete.next();
+                this.headerService.loadComplete.next();
             });
         }));
+
+        this.headerService.next = async () => { await this.next(); };
+        this.headerService.scrollSavedActivated = this.scrollSavedActivated;
     }
 
 
@@ -63,16 +69,21 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
         // las cargas de datos en background que hacemos en los ngOnInit
         this.ngOnInitAsync()
             .then((finished) => {
-                if (this.scrollSavedActivated) {
+                if (this.headerService.scrollSavedActivated) {
                     let scrollTop = 0;
                     const scrolls = JSON.parse(localStorage.getItem('scroll'));
                     if (scrolls) {
                         scrollTop = +scrolls[this.constructor.name];
                     }
                     timer(20).subscribe((e) => {
-                        window.scrollTo(0, scrollTop);
+                        this.headerService.scrollToPosition(0, scrollTop);
+                    });
+                } else {
+                    timer(20).subscribe((e) => {
+                        this.headerService.scrollToZero();
                     });
                 }
+
             })
             .catch((error) => {
                 // Elevamos la excepción solo si es unauthorized
@@ -90,27 +101,7 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
 
     ngAfterViewInit(): void {
         //  console.log('scrol top ngAfterViewInit on' + this.constructor.name);
-        window.scrollTo(0, 0);
-
-        const e = document.getElementsByClassName('tab-content')[0];
-        if (e !== undefined) {
-            e.addEventListener('scroll', async (event) => {
-                const element = event.target;
-                if (element['scrollHeight'] - element['scrollTop'] === element['clientHeight']) {
-                    await this.next();
-                }
-            });
-        } else {
-            const f = document.getElementsByClassName('overflow-scroll')[0];
-            if (f !== undefined) {
-                f.addEventListener('scroll', async (event) => {
-                    const element = event.target;
-                    if (element['scrollHeight'] - element['scrollTop'] === element['clientHeight']) {
-                        await this.next();
-                    }
-                });
-            }
-        }
+        this.headerService.scrollToZero();
     }
 
     public async next() {
@@ -139,20 +130,8 @@ export abstract class NeoComponentAsync extends NeoComponentAsyncWithoutScroll {
 
     constructor(protected headerService: HeaderNeoComplexxService) {
         super(headerService);
+        this.headerService.currentElement = this.constructor.name;
     }
 
-    @HostListener('window:scroll', ['$event']) public async windowScrolled(event: Event) {
-        const element: any = (<Document>event.target).scrollingElement;
-
-        if (this.scrollSavedActivated && element['scrollTop'] > 0) {
-            const scrolls = JSON.parse(localStorage.getItem('scroll')) || { screens: new Map() };
-            scrolls[this.constructor.name] = element['scrollTop'];
-            localStorage.setItem('scroll', JSON.stringify(scrolls));
-        }
-
-        if (element['scrollHeight'] - element['scrollTop'] === element['clientHeight']) {
-            await this.next();
-        }
-    }
 }
 

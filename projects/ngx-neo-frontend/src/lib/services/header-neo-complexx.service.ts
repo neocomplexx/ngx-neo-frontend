@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, ElementRef } from '@angular/core';
 import { ITabChangeController } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
@@ -38,6 +38,13 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     loadComplete = new Subject<any>();
 
     private subscriptions = new Subscription();
+
+    /** auto scroll section */
+    public scrolleableComponent: ElementRef;
+    public scrollSavedActivated = false;
+    public currentElement: string;
+
+    public next: () => Promise<void> = async () => { console.log('next'); };
 
     constructor(protected router: Router, protected location: Location, protected ngxNeoModalService: NgxNeoModalService,
         protected signalRService: PushService,
@@ -197,7 +204,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
                 localStorage.setItem('scroll', JSON.stringify(scrolls));
             }
         }
-        window.scrollTo(0, 0);
+       this.scrollToZero();
     }
 
     /**
@@ -224,6 +231,16 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public HandleErrorMessage(error, frendlyErrorMessage?: string | null) {
         this.exceptionService.HandleErrorMessage(error, frendlyErrorMessage);
+    }
+
+    public scrollToPosition(x: number, y: number) {
+        if (this.scrolleableComponent) {
+            this.scrolleableComponent.nativeElement.scrollTo(x, y);
+        }
+    }
+
+    public scrollToZero() {
+        this.scrollToPosition(0, 0);
     }
 
     ngOnDestroy() {
