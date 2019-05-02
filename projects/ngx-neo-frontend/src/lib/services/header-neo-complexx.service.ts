@@ -60,9 +60,13 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         this.getItemFromLocalStorage();
 
         this.location.subscribe(x => {
+          if (this.mobileSidebarService.isOpen) {
+            this.mobileSidebarService.showSidebar.next(false);
+          } else {
             if (x.pop) {
                 this.removeScrollSaved();
             }
+          }
         });
 
         router.events.subscribe((url: NavigationEnd) => {
