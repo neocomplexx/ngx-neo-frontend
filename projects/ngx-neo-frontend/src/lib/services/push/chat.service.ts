@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ChatMessageModelDTO } from '../../models/chatMessage.ModelDTO';
-import { UserDTO } from '../../models/DTO/User.DTO';
+import { UserDTO } from '../../models/DTO/user.DTO';
 import { ChatMessageDTO } from '../../models/DTO/chatMessage.DTO';
 import { PushService } from './signalr.push.service';
 
