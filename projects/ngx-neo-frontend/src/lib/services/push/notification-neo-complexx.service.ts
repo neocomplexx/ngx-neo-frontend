@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NotificationDTO } from '../../models/DTO/notification.DTO';
-import { UserDTO } from '../../models/DTO/User.DTO';
+import { UserDTO } from '../../models/DTO/user.DTO';
 import { NotificationPriority } from '../../models/DTO/notificationPriority.ENUM';
 import { PushService } from './signalr.push.service';
 import { ServiceChangeDTO } from '../../models/DTO/serviceChange.DTO';
