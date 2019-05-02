@@ -6,7 +6,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { NgxNeoModalService, AlertButton } from '@neocomplexx/ngx-neo-modal';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserDTO } from '../models/DTO/User.DTO';
+import { UserDTO } from '../models/DTO/user.DTO';
 import { PushService } from './push/signalr.push.service';
 import { CordovaService } from './cordova/cordova.service';
 import { ExceptionManagerService } from './exception-manager/exception-manager.service';
