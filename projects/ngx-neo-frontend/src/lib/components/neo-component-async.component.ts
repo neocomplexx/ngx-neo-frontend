@@ -30,12 +30,14 @@ export abstract class NeoModalAsync implements OnInit, OnDestroy {
 
 }
 
-export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync implements OnInit, OnDestroy {
+export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit, OnDestroy {
 
     private subscriptions: Subscription;
 
     protected initComponent: () => Promise<void>;
     protected hashName: string;
+
+    protected scrollDelay: number;
 
     private _scrollSavedActivated = false;
     get scrollSavedActivated(): boolean { return this._scrollSavedActivated; }
@@ -91,11 +93,11 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
                     if (scrolls) {
                         scrollTop = +scrolls[this.hashName];
                     }
-                    timer(20).subscribe((e) => {
+                    timer(this.scrollDelay).subscribe((e) => {
                         this.headerService.scrollToPosition(0, scrollTop);
                     });
                 } else {
-                    timer(20).subscribe((e) => {
+                    timer(this.scrollDelay).subscribe((e) => {
                         this.headerService.scrollToZero();
                     });
                 }
@@ -137,13 +139,5 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
             return undefined;
         }
     }
-}
-
-export abstract class NeoComponentAsync extends NeoComponentAsyncWithoutScroll {
-
-    constructor(protected headerService: HeaderNeoComplexxService) {
-        super(headerService);
-    }
-
 }
 
