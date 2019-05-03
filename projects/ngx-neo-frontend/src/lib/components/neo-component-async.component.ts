@@ -1,6 +1,7 @@
 import { OnInit, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 import { HeaderNeoComplexxService } from '../services/header-neo-complexx.service';
+import { stringHash } from '@neocomplexx/ngx-neo-components';
 
 export abstract class NeoModalAsync implements OnInit, OnDestroy {
 
@@ -9,7 +10,14 @@ export abstract class NeoModalAsync implements OnInit, OnDestroy {
     abstract async ngOnInitAsync(): Promise<any>;
 
     ngOnInit() {
-        localStorage.setItem('NeoComponentAsync', this.constructor.name);
+        let stringHashComponent = '';
+        // tslint:disable-next-line:forin
+        for (const key in this) {
+            stringHashComponent += key;
+        }
+        const hashName = stringHash(stringHashComponent).toString();
+
+        localStorage.setItem('NeoComponentAsync', hashName);
         this.ngOnInitAsync()
             .catch((error) => {
                 // Elevamos la excepción solo si es unauthorized
@@ -22,16 +30,16 @@ export abstract class NeoModalAsync implements OnInit, OnDestroy {
 
 }
 
-export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync implements OnInit, AfterViewInit, OnDestroy {
-
-    private _scrollSavedActivated = false;
-
-    get scrollSavedActivated(): boolean { return this._scrollSavedActivated; }
-    set scrollSavedActivated(value: boolean) { this._scrollSavedActivated = value; this.headerService.scrollSavedActivated = value; }
-
-    protected initComponent: () => Promise<void>;
+export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync implements OnInit, OnDestroy {
 
     private subscriptions: Subscription;
+
+    protected initComponent: () => Promise<void>;
+    protected hashName: string;
+
+    private _scrollSavedActivated = false;
+    get scrollSavedActivated(): boolean { return this._scrollSavedActivated; }
+    set scrollSavedActivated(value: boolean) { this._scrollSavedActivated = value; this.headerService.scrollSavedActivated = value; }
 
     constructor(protected headerService: HeaderNeoComplexxService) {
         super(headerService);
@@ -58,22 +66,30 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
         }));
 
         this.headerService.next = async () => { await this.next(); };
-        this.headerService.scrollSavedActivated = this.scrollSavedActivated;
+        this.headerService.scrollSavedActivated = this._scrollSavedActivated;
+
+        let stringHashComponent = '';
+        // tslint:disable-next-line:forin
+        for (const key in this) {
+            stringHashComponent += key;
+        }
+        this.hashName = stringHash(stringHashComponent).toString();
+
+        localStorage.setItem('NeoComponentAsync', this.hashName);
+        this.headerService.currentElement = this.hashName;
     }
 
 
     ngOnInit() {
-        localStorage.setItem('NeoComponentAsync', this.constructor.name);
-
         // El ngOnInit debe ser sincronico por ello tenemos nuestro propio metodo asincroníco para trabajar
         // las cargas de datos en background que hacemos en los ngOnInit
         this.ngOnInitAsync()
             .then((finished) => {
-                if (this.headerService.scrollSavedActivated) {
+                if (this._scrollSavedActivated) {
                     let scrollTop = 0;
                     const scrolls = JSON.parse(localStorage.getItem('scroll'));
                     if (scrolls) {
-                        scrollTop = +scrolls[this.constructor.name];
+                        scrollTop = +scrolls[this.hashName];
                     }
                     timer(20).subscribe((e) => {
                         this.headerService.scrollToPosition(0, scrollTop);
@@ -98,14 +114,11 @@ export abstract class NeoComponentAsyncWithoutScroll extends NeoModalAsync imple
 
     ngOnDestroy() { }
 
-
-    ngAfterViewInit(): void {
-        //  console.log('scrol top ngAfterViewInit on' + this.constructor.name);
-        this.headerService.scrollToZero();
-    }
+    // ngAfterViewInit(): void {
+    //     this.headerService.scrollToZero();
+    // }
 
     public async next() {
-        // console.log('scrolling... next page on ' + this.constructor.name);
     }
 
     protected stringToDate(value: string): Date {
@@ -130,7 +143,6 @@ export abstract class NeoComponentAsync extends NeoComponentAsyncWithoutScroll {
 
     constructor(protected headerService: HeaderNeoComplexxService) {
         super(headerService);
-        this.headerService.currentElement = this.constructor.name;
     }
 
 }

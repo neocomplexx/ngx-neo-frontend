@@ -1,12 +1,10 @@
-import { Injectable, Injector, ErrorHandler, NgZone } from '@angular/core';
+import { Injectable, Injector, ErrorHandler, NgZone, Inject } from '@angular/core';
 import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../helpers/auth/authentication.service';
 import { CordovaService } from '../cordova/cordova.service';
 import { HeaderNeoComplexxService } from '../header-neo-complexx.service';
 
-
-@Injectable()
 export class UnauthorizedErrorHandler implements ErrorHandler {
 
   public originalAlert: any;
@@ -16,11 +14,11 @@ export class UnauthorizedErrorHandler implements ErrorHandler {
   private headerService: HeaderNeoComplexxService;
   private zone: NgZone;
 
-  constructor(public injector: Injector) {
+  constructor(@Inject(Injector) private injector: Injector) {
   }
 
   async handleError(error: any): Promise<void> {
-    console.error(error);
+    // console.error(error);
 
     if (!this.headerService) { this.headerService = this.injector.get(HeaderNeoComplexxService); }
     if (!this.zone) { this.zone = this.injector.get(NgZone); }
