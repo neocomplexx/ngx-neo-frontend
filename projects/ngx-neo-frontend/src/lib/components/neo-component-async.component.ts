@@ -37,7 +37,7 @@ export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit,
     protected initComponent: () => Promise<void>;
     protected hashName: string;
 
-    protected scrollDelay: number;
+    protected scrollDelay: number = 20;
 
     private _scrollSavedActivated = false;
     get scrollSavedActivated(): boolean { return this._scrollSavedActivated; }
@@ -83,25 +83,16 @@ export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit,
 
 
     ngOnInit() {
+        if (!this.scrollDelay || this.scrollDelay === 0) {
+            this.scrollToSaved();
+        }
         // El ngOnInit debe ser sincronico por ello tenemos nuestro propio metodo asincroníco para trabajar
         // las cargas de datos en background que hacemos en los ngOnInit
         this.ngOnInitAsync()
             .then((finished) => {
-                if (this._scrollSavedActivated) {
-                    let scrollTop = 0;
-                    const scrolls = JSON.parse(localStorage.getItem('scroll'));
-                    if (scrolls) {
-                        scrollTop = +scrolls[this.hashName];
-                    }
-                    timer(this.scrollDelay).subscribe((e) => {
-                        this.headerService.scrollToPosition(0, scrollTop);
-                    });
-                } else {
-                    timer(this.scrollDelay).subscribe((e) => {
-                        this.headerService.scrollToZero();
-                    });
+                if (this.scrollDelay > 0) {
+                    this.scrollToSaved();
                 }
-
             })
             .catch((error) => {
                 // Elevamos la excepción solo si es unauthorized
@@ -110,7 +101,25 @@ export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit,
             });
     }
 
+    private scrollToSaved() {
+        if (this._scrollSavedActivated) {
+            let scrollTop = 0;
+            const scrolls = JSON.parse(localStorage.getItem('scroll'));
+            if (scrolls) {
+                scrollTop = +scrolls[this.hashName];
+            }
+            timer(this.scrollDelay).subscribe((e) => {
+                this.headerService.scrollToPosition(0, scrollTop);
+            });
+        } else {
+            timer(this.scrollDelay).subscribe((e) => {
+                this.headerService.scrollToZero();
+            });
+        }
+    }
+
     private destroy() {
+        this.headerService.beforeBack = undefined;
         this.subscriptions.unsubscribe();
     }
 

@@ -3,7 +3,7 @@ import { EntityModelDTO } from './entity.ModelDTO';
 import { UserDTO } from './DTO/user.DTO';
 import { UserState } from './DTO/userState.ENUM';
 import { RoleDTO } from './DTO';
-import { RoleModelDTO } from '.';
+import { RoleModelDTO } from './role.ModelDTO';
 
 
 export class UserModelDTO extends EntityModelDTO<UserDTO> {
