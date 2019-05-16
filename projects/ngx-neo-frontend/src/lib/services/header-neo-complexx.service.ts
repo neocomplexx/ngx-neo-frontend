@@ -177,12 +177,21 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         return this.userType === 'administrator';
     }
 
-    public back(): void {
+    public async back(): Promise<void> {
 
         if (this.modalService.hasOpenModals()) {
             this.modalService.dismissAll();
             return;
         }
+
+        if (this.changed.value) {
+            const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
+              '', 'Ahora podrá guardarlos...');
+            if (result.ButtonResponse != AlertButton.Accept) {
+              return;
+            }
+        }
+      
 
         const ruta = this.router.url;
 
