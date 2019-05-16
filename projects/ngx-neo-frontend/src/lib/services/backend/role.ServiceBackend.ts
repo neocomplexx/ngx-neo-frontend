@@ -54,6 +54,20 @@ export class RoleServiceBackend {
       });
    }
 
+   public async getUsuariosrolesBasic(): Promise<Array<RoleDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+      const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/basic').toPromise();
+      const resJson = res['data'];
+      const resDTO = new Array<RoleDTO>();
+      for (const item of resJson) {
+         const itemDTO = new RoleDTO()
+         itemDTO.PrepareDTO(item);
+         resDTO.push(itemDTO);
+      }
+      return resDTO;
+      });
+   }
+
    public async insertUsuariosroles(roleDTO: RoleDTO): Promise<RoleDTO> {
       return this.exceptionManager.executeAsync(async () => {
       const res = await this.http.post(this.Constants.apiURL + '/usuariosroles/', roleDTO).toPromise();

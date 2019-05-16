@@ -2,10 +2,14 @@ import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { UserDTO } from './DTO/user.DTO';
 import { UserState } from './DTO/userState.ENUM';
+import { RoleDTO } from './DTO';
+import { RoleModelDTO } from '.';
 
 
 export class UserModelDTO extends EntityModelDTO<UserDTO> {
 
+   private _RoleModel: RoleModelDTO;
+   private roleSubscribe: Subscription;
 
    public constructor(protected entityDTO: UserDTO) {
       super(entityDTO);
@@ -13,16 +17,21 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    public setEntityDTO(entityDTO: UserDTO) {
       super.setEntityDTO(entityDTO);
       if (entityDTO == null) return;
+      this._RoleModel = new RoleModelDTO(this.entityDTO.role);
+      this.roleSubscribe = this._RoleModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
    public dispose(): void {
+      this._RoleModel.dispose();
+      this.roleSubscribe.unsubscribe();
    }
 
-   get Role(): Object { return this.entityDTO.role; }
-   set Role(value: Object) { this.notifyChangeDTO('role', value); }
+   get RoleModel(): RoleModelDTO { return this._RoleModel; }
+   get Role(): RoleDTO { return this.entityDTO.role; }
+   set Role(value: RoleDTO) { this.notifyChangeDTO('role', value); }
 
    get IdUserOwner(): number { return this.entityDTO.idUserOwner; }
    set IdUserOwner(value: number) { this.notifyChangeDTO('idUserOwner', value); }

@@ -1,11 +1,12 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
 import { UserState } from './userState.ENUM';
+import { RoleDTO } from './role.DTO';
 
 
 export class UserDTO implements IEntityDTO {
 
-   role: Object;
+   role: RoleDTO;
    idUserOwner: number = 0;
    userName: string = '';
    firstName: string = '';
@@ -18,11 +19,12 @@ export class UserDTO implements IEntityDTO {
    cacheStamp: number = 0;
 
    constructor() {
+      this.role = new RoleDTO();
    }
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
-      if (jsonObj['role'] != null) this.role = jsonObj['role'];
+      if (jsonObj['role'] != null) this.role.PrepareDTO(jsonObj['role']);
       if (jsonObj['idUserOwner'] != null) this.idUserOwner = jsonObj['idUserOwner'];
       if (jsonObj['userName'] != null) this.userName = jsonObj['userName'];
       if (jsonObj['firstName'] != null) this.firstName = jsonObj['firstName'];

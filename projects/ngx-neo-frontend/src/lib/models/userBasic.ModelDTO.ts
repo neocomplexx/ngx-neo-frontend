@@ -33,6 +33,9 @@ export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
    get FullName(): string { return this.entityDTO.fullName; }
    set FullName(value: string) { this.notifyChangeDTO('fullName', value); }
 
+   get RoleName(): string { return this.entityDTO.roleName; }
+   set RoleName(value: string) { this.notifyChangeDTO('roleName', value); }
+
    get Email(): string { return this.entityDTO.email; }
    set Email(value: string) { this.notifyChangeDTO('email', value); }
 
