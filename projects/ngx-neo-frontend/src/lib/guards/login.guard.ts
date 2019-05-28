@@ -14,7 +14,7 @@ export class LoginGuard implements CanActivate {
   constructor(private headerService: HeaderNeoComplexxService, private router: Router) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.IsLogged) {
+    if (this.headerService.IsLogged()) {
         return false;
     } else {
       return true;

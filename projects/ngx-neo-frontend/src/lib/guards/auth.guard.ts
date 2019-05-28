@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
   constructor(private headerService: HeaderNeoComplexxService, private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.IsLogged) {
+    if (this.headerService.IsLogged()) {
       return true;
     } else {
       return this.router.parseUrl('/login');
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.IsLogged) {
+    if (this.headerService.IsLogged()) {
       return true;
     } else {
       return this.router.parseUrl('/login');
