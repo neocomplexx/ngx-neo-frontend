@@ -189,9 +189,10 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
               '', 'Ahora podrá guardarlos...');
             if (result.ButtonResponse != AlertButton.Accept) {
               return;
+            } else {
+                this.notifyChange(false);
             }
         }
-      
 
         const ruta = this.router.url;
 
