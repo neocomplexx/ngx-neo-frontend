@@ -1,6 +1,16 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend",
-  "version": "7.0.22",
+  "version": "7.0.23",
+  "scripts": {
+    "build": "cd ../../node_modules/.bin/ && tsc -p ../../projects/ngx-neo-frontend/schematics/tsconfig.schematics.json && cd ../../projects/ngx-neo-frontend",
+    "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/ngx-neo-frontend/",
+    "copy:files": "cp --parents -p schematics/*/files/** ../../dist/ngx-neo-frontend/",
+    "copy:assets": "cp --parents -p schematics/*/assets/** ../../dist/ngx-neo-frontend/",
+    "copy:cordova": "cp --parents -p schematics/*/cordova/** ../../dist/ngx-neo-frontend/",
+    "copy:styles": "cp --parents -p schematics/*/styles/** ../../dist/ngx-neo-frontend/",
+    "copy:collection": "cp schematics/collection.json ../../dist/ngx-neo-frontend/schematics/collection.json",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:assets && npm run copy:cordova && npm run copy:styles && npm run copy:collection"
+  },
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
@@ -13,5 +23,6 @@
     "@aspnet/signalr": "^1.1.2",
     "@angular/cdk": "^7.3.7",
     "ng5-breadcrumb": "^0.0.6"
-  }
+  },
+  "schematics": "./schematics/collection.json"
 }
