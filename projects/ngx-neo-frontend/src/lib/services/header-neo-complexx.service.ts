@@ -120,7 +120,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         if (this.currentUserWeb) {
             this.userLogged.id = this.currentUserWeb.id;
         }
-        if (this.currentUserWeb) {
+        if (this.currentUserWeb && this.currentUserWeb.role) {
             this.userType = this.currentUserWeb.userType; // === 'administrative' || currentUserWeb.userType === 'administrator');
             this.userTypeId = this.currentUserWeb.userTypeId;
             this.userRole = this.currentUserWeb.role.name;
