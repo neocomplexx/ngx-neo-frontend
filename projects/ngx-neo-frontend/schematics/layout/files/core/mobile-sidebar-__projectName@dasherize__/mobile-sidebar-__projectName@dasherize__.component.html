@@ -6,10 +6,10 @@
     <a class="list-group-item list-group-item-action">Option 1</a>
   </div>
   <div class="list-group border-top">
-    <ng-container *ngIf="esUsuarioAdministrador">
-      <a class="list-group-item" [routerLink]="['/admin/configuracion']"
+    <ng-container *ngIf="estaLogueado && esUsuarioAdministrador">
+      <a class="list-group-item" (click)="navigate($event, '/admin/configuracion')"
         routerLinkActive="router-link-active">Configuraci&oacute;n</a>
     </ng-container>
-    <a class="list-group-item list-group-item-action">Logout</a>
+    <a class="list-group-item list-group-item-action" [command]="logOutCmd">Cerrar Sesi&oacute;n</a>
   </div>
 </neo-mobile-sidebar>

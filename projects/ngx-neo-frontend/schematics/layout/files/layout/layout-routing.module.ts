@@ -13,7 +13,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'notificaciones',
+        path: 'notifications',
         loadChildren: './notificaciones/notificaciones.module#NotificacionesModule',
       },
       {
@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: './cliente/cliente.module#ClienteModule',
-        data: { expectedType: ['professional', 'user'] },
+        data: { expectedTypes: ['professional', 'user'] },
         canActivate: [UserTypeGuard],
       },
     ]

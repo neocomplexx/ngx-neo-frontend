@@ -30,6 +30,9 @@
     "schematics/**/*"
   ],
   "exclude": [
-    "schematics/*/files/**/*"
+    "schematics/*/files/**/*",
+    "schematics/*/assets/**/*",
+    "schematics/*/cordova/**/*",
+    "schematics/*/styles/**/*"
   ]
 }

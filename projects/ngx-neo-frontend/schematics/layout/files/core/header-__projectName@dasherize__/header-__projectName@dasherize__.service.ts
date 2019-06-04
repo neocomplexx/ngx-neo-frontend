@@ -21,6 +21,15 @@ export class Header<%=classify(projectName)%>Service extends HeaderNeoComplexxSe
         exceptionService: ExceptionManagerService) {
         super(router, location, ngxNeoModalService, signalRService, authenticationService, mobileSidebarService,
             usersServiceBackend, modalService, breadCrumbService, cordovaService, exceptionService);
+
+            this.router.events.subscribe((ev: any) => {
+                if (this.router.url === '' || this.router.url === '/user' ||
+                  this.router.url === '/admin' || this.router.url === '/') {
+                  this.hideReturn$.next(true);
+                } else {
+                  this.hideReturn$.next(false);
+                }
+              });
     }
 
     public async getUserEntityById(): Promise <void> {
