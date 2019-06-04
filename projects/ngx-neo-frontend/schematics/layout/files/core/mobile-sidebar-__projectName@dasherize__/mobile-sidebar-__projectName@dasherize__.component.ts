@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
