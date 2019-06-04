@@ -1,0 +1,15 @@
+<div class="neo-layout">
+  <app-header-<%=dasherize(projectName)%>></app-header-<%=dasherize(projectName)%>>
+  <app-mobile-sidebar-<%=dasherize(projectName)%>></app-mobile-sidebar-<%=dasherize(projectName)%>>
+  <neo-pull-to-refresh [scrolledElement]="scrolledElement"></neo-pull-to-refresh>
+  <div class="d-flex flex-row align-items-stretch h-100">
+    <div class="d-none d-lg-flex overflow-auto sidebar-container">
+      <app-sidebar-<%=dasherize(projectName)%>></app-sidebar-<%=dasherize(projectName)%>>
+    </div>
+    <div class="flex-grow-1 h-100 overflow-auto pt-3" #scrolledElement>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <neo-undo></neo-undo>
+  <app-footer-<%=dasherize(projectName)%>></app-footer-<%=dasherize(projectName)%>>
+</div>

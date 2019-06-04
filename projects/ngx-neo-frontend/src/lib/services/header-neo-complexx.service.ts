@@ -60,13 +60,13 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         this.getItemFromLocalStorage();
 
         this.location.subscribe(x => {
-          if (this.mobileSidebarService.isOpen) {
-            this.mobileSidebarService.showSidebar.next(false);
-          } else {
-            if (x.pop) {
-                this.removeScrollSaved();
+            if (this.mobileSidebarService.isOpen) {
+                this.mobileSidebarService.showSidebar.next(false);
+            } else {
+                if (x.pop) {
+                    this.removeScrollSaved();
+                }
             }
-          }
         });
 
         router.events.subscribe((url: NavigationEnd) => {
@@ -117,6 +117,9 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     private getItemFromLocalStorage(): void {
         this.currentUserWeb = JSON.parse(localStorage.getItem('currentUserWeb'));
+        if (this.currentUserWeb) {
+            this.userLogged.id = this.currentUserWeb.id;
+        }
         if (this.currentUserWeb) {
             this.userType = this.currentUserWeb.userType; // === 'administrative' || currentUserWeb.userType === 'administrator');
             this.userTypeId = this.currentUserWeb.userTypeId;
@@ -186,9 +189,9 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
         if (this.changed.value) {
             const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
-              '', 'Ahora podrá guardarlos...');
+                '', 'Ahora podrá guardarlos...');
             if (result.ButtonResponse != AlertButton.Accept) {
-              return;
+                return;
             } else {
                 this.notifyChange(false);
             }
@@ -218,7 +221,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
                 localStorage.setItem('scroll', JSON.stringify(scrolls));
             }
         }
-       this.scrollToZero();
+        this.scrollToZero();
     }
 
     /**

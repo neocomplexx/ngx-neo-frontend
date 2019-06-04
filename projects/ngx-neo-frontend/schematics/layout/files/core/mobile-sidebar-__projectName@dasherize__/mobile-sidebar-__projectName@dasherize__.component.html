@@ -1,0 +1,15 @@
+<neo-mobile-sidebar *ngIf="isMobile">
+  <label class="image-item ">
+    <img src="assets/img/logo-lg.png" />
+  </label>
+  <div class="list-group border-top">
+    <a class="list-group-item list-group-item-action">Option 1</a>
+  </div>
+  <div class="list-group border-top">
+    <ng-container *ngIf="esUsuarioAdministrador">
+      <a class="list-group-item" [routerLink]="['/admin/configuracion']"
+        routerLinkActive="router-link-active">Configuraci&oacute;n</a>
+    </ng-container>
+    <a class="list-group-item list-group-item-action">Logout</a>
+  </div>
+</neo-mobile-sidebar>

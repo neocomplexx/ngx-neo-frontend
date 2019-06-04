@@ -1,0 +1,22 @@
+{
+    "grupos": [
+        {
+            "col": 0,
+            "nombreGrupo": "Menu de opciones",
+            "opciones": [
+                {
+                    "nombreOpcion": "Usuarios",
+                    "route": "./configuracion-usuario",
+                    "disabled": "",
+                    "param": ""
+                },
+                {
+                    "nombreOpcion": "Rol",
+                    "route": "./configuracion-rol",
+                    "disabled": "",
+                    "param": ""
+                }
+            ]
+        }
+    ]
+}

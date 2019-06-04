@@ -1,0 +1,15 @@
+<ngb-tabset #tabs [tabSelectedId]="tabSelected" [tabChangeController]="headerService">
+    <ngb-tab title="Consulta" id="consulta">
+      <ng-template ngbTabContent>
+          <app-configuracion-usuario-consulta [tabSelectedId]="tabSelected" [idUsuario]="idUsuario"> 
+          </app-configuracion-usuario-consulta>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Generaci&oacute;n" id="generacion">
+      <ng-template ngbTabContent>
+          <app-configuracion-usuario-generacion [tabSelectedId]="tabSelected" [idUsuario]="idUsuario"> 
+          </app-configuracion-usuario-generacion>
+      </ng-template>
+    </ngb-tab>
+    
+</ngb-tabset>

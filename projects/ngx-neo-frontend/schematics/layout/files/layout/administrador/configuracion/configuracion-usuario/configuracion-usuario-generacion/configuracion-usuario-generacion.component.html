@@ -1,0 +1,91 @@
+<!-- Nota: para que aparezcan las barritas a los costados controlando el ingreso obligatorio de datos, hay que hacer
+     el bindeo de variables
+ -->
+<div class="overflow-scroll spaced-container">
+    <form #formulario="ngForm">
+         <div class="row">
+            <div class="col-12 col-lg-3">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="activochkbox" [checked]="usuarioActivo"
+                        (change)="toggleActivo()">
+                    <label class="custom-control-label" for="activochkbox">Activo</label>
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col-6 form-group">
+                <label> Usuario </label>
+                <input #usuario type="text" id="usuario" name="usuario" class="form-control" placeholder="Username"
+                    [maxLength]='20' [minLength]='4' [(ngModel)]="usuarioGeneracionModel.UserName"
+                    [disabled]="usuarioCargado" [neoAutofocus]="true" [onReturn]="selectRol" required>
+            </div>
+            <div class="col-6 form-group">
+                <label>Rol</label>
+                <select #selectRol [(ngModel)]="usuarioGeneracionModel.IdRole" class="form-control" id="selectRol"
+                    name="selectRol" [onReturn]="['inpUsuario', 'nombre']" [onReturn]="nombre">
+                    <option *ngFor="let role of roles" [ngValue]="role.Id"> {{role.Name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" *ngIf="isRoleNeedUserOwner()">
+            <div class="col-12 form-group">
+                <label>Productor responsable</label>
+                <neo-completer [inputId]="'inpUsuario'" [inputName]="'inpUsuario'" name="completer-usuarios"
+                    class="completer-limit" [(ngModel)]="usuarioSearchString" #inpUsuario [datasource]="userSearch"
+                    [inputClass]="'form-control form-control-sm'" [openOnFocus]="true"
+                    (selected)="onUserOwnerSelected($event)" [minSearchLength]="1"
+                    [placeholder]="'Usuario Responsable...'" [autoHighlight]="true" [fillHighlighted]="false"
+                    [clearUnselected]="true" [textNoResults]=null [onReturn]="['nombre']">
+                </neo-completer>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 form-group">
+                <label> Nombre </label>
+                <input #nombre type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre"
+                    [(ngModel)]="usuarioGeneracionModel.FirstName" [maxLength]='50' [onReturn]="apellido" required>
+            </div>
+            <div class="col-6 form-group">
+                <label> Apellido </label>
+                <input #apellido type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido"
+                    [(ngModel)]="usuarioGeneracionModel.LastName" [maxLength]='50' required>
+            </div>
+        </div>
+        <div class="row" *ngIf="idUsuario.getValue()===0">
+            <div class="col-6 form-group" [class.has-success]="usuarioGeneracionModel.validacionContraseniaCorrecta"
+                [class.has-danger]="usuarioGeneracionModel.validacionContraseniaIncorrecta">
+                <label> Contraseña </label>
+                <input #contrasenia type="password" id="contrasenia" name="contrasenia" class="form-control"
+                    [minLength]='4' [maxLength]='20'
+                    [class.form-control-success]="usuarioGeneracionModel.validacionContraseniaCorrecta"
+                    [class.form-control-danger]="usuarioGeneracionModel.validacionContraseniaIncorrecta"
+                    placeholder="Contraseña" [(ngModel)]="usuarioGeneracionModel.Password"
+                    [disabled]="idUsuario.getValue()!==0" required [onReturn]="repContrasenia">
+            </div>
+            <div class="col-6 form-group" [class.has-success]="usuarioGeneracionModel.validacionContraseniaCorrecta"
+                [class.has-danger]="usuarioGeneracionModel.validacionContraseniaIncorrecta">
+                <label> Repetir contraseña </label>
+                <input #repContrasenia type="password" id="repContrasenia" name="repContrasenia" class="form-control"
+                    [minLength]='4' [maxLength]='20'
+                    [class.form-control-success]="usuarioGeneracionModel.validacionContraseniaCorrecta"
+                    [class.form-control-danger]="usuarioGeneracionModel.validacionContraseniaIncorrecta"
+                    placeholder="Contraseña" [(ngModel)]="usuarioGeneracionModel.repetirContrasenia"
+                    [disabled]="idUsuario.getValue()!==0" required [onReturn]="generarUsuario">
+            </div>
+        </div>
+        <div class="row align-items-end">
+            <div class="col text-right" *ngIf="idUsuario.getValue()===0">
+                <button #generarUsuario id="generarUsuario" name="generarUsuario" type="submit" class="btn btn-primary"
+                    [command]="generarCmd">Generar usuario</button>
+            </div>
+            <div class="col text-right" *ngIf="idUsuario.getValue()!==0">
+                <div class="btn-group" role="group">
+                    <button #cancelar id="cancelar" name="cancelar" class="btn btn-secondary"
+                        [command]="cancelarCmd">Cancelar</button>
+                    <button #editarUsuario id="editarUsuario" name="editarUsuario" type="submit" class="btn btn-primary"
+                        [command]="editarCmd">Editar usuario</button>
+                </div>
+            </div>
+        </div><!-- -->
+    </form>
+</div>

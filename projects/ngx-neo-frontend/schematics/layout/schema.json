@@ -1,0 +1,92 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "ncgBase",
+    "title": "Creates a simple schematic.",
+    "type": "object",
+    "properties": {
+        "project": {
+            "type": "string",
+            "description": "The name of the project.",
+            "$default": {
+                "$source": "projectName"
+            }
+        },
+        "projectName": {
+            "type": "string",
+            "description": "Project name",
+            "default": "Neo",
+            "x-prompt": "Project name. String with no spaces"
+        },
+        "flat": {
+            "type": "boolean",
+            "description": "Flag to indicate if a directory is created.",
+            "default": true,
+            "x-prompt": "Use base project directory?"
+        },
+        "path": {
+            "type": "string",
+            "format": "path",
+            "description": "The path to create the simple schematic within.",
+            "visible": false
+        },
+        "name": {
+            "description": "Specifies the name of the subfolder (if not flat).",
+            "type": "string",
+            "default": "Core",
+            "x-prompt": "Directory name (used if flat is set to false)"
+        },
+        "spec": {
+            "type": "boolean",
+            "description": "Specifies if a spec file is generated.",
+            "default": true,
+            "x-prompt": "Include spec?"
+        },
+        "title": {
+            "type": "string",
+            "description": "App title",
+            "default": "NeoComplexx",
+            "x-prompt": "App title (will show in browser bar):"
+        },
+        "footerText": {
+            "type": "string",
+            "description": "Footer text",
+            "default": "Neocomplexx Group S.A",
+            "x-prompt": "Footer text:"
+        },
+        "skipPackageJson": {
+            "type": "boolean",
+            "description": "Flag to indicate if dependecies are installed.",
+            "default": false,
+            "x-prompt": "Skip dependencies installation?"
+        },
+        "skipComponents": {
+            "type": "boolean",
+            "description": "Flag to indicate if layout component is created",
+            "default": false,
+            "x-prompt": "Skip componets creation?"
+        },
+        "skipStyles": {
+            "type": "boolean",
+            "description": "Flag to indicate if styles folder is created",
+            "default": false,
+            "x-prompt": "Skip styles folder creation?"
+        },
+        "skipModuleImport": {
+            "type": "boolean",
+            "description": "Flag to indicate if commons modules are imported in appModule",
+            "default": false,
+            "x-prompt": "Skip modules import?"
+        },
+        "skipCordova": {
+            "type": "boolean",
+            "description": "Flag to indicate if cordova folder and index.html are created (it does not create a crodova project)",
+            "default": false,
+            "x-prompt": "Skip cordova folder creation?"
+        }
+    },
+    "required": [
+        "name",
+        "title"
+    ],
+    "additionalProperties": false
+}

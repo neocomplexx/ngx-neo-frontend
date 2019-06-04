@@ -1,13 +1,13 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend",
-  "version": "7.0.23",
+  "version": "7.0.26",
   "scripts": {
-    "build": "cd ../../node_modules/.bin/ && tsc -p ../../projects/ngx-neo-frontend/schematics/tsconfig.schematics.json && cd ../../projects/ngx-neo-frontend",
+    "build": "cd ../../node_modules/.bin/ && tsc -p ../../projects/ngx-neo-frontend/tsconfig.schematics.json && cd ../../projects/ngx-neo-frontend",
     "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/ngx-neo-frontend/",
-    "copy:files": "cp --parents -p schematics/*/files/** ../../dist/ngx-neo-frontend/",
-    "copy:assets": "cp --parents -p schematics/*/assets/** ../../dist/ngx-neo-frontend/",
-    "copy:cordova": "cp --parents -p schematics/*/cordova/** ../../dist/ngx-neo-frontend/",
-    "copy:styles": "cp --parents -p schematics/*/styles/** ../../dist/ngx-neo-frontend/",
+    "copy:files": "cp --parents -p -r schematics/*/files/** ../../dist/ngx-neo-frontend/",
+    "copy:assets": "cp --parents -p -r schematics/*/assets/** ../../dist/ngx-neo-frontend/",
+    "copy:cordova": "cp --parents -p -r schematics/*/cordova/** ../../dist/ngx-neo-frontend/",
+    "copy:styles": "cp --parents -p -r schematics/*/styles/** ../../dist/ngx-neo-frontend/",
     "copy:collection": "cp schematics/collection.json ../../dist/ngx-neo-frontend/schematics/collection.json",
     "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:assets && npm run copy:cordova && npm run copy:styles && npm run copy:collection"
   },

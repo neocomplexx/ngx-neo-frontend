@@ -1,0 +1,20 @@
+<ngb-tabset #tabs [tabSelectedId]="tabSelected" [tabChangeController]="headerService">
+  <ngb-tab title="Consulta" id="consulta">
+    <ng-template ngbTabContent>
+        <app-configuracion-rol-consulta [tabSelectedId]="tabSelected" [idRol]="idRol"> 
+        </app-configuracion-rol-consulta>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Permisos" id="permisos">
+      <ng-template ngbTabContent>
+          <app-configuracion-rol-permisos [tabSelectedId]="tabSelected"> 
+          </app-configuracion-rol-permisos>
+      </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Generaci&oacute;n" id="generacion">
+    <ng-template ngbTabContent>
+        <app-configuracion-rol-generacion [tabSelectedId]="tabSelected" [idRol]="idRol"> 
+        </app-configuracion-rol-generacion>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>

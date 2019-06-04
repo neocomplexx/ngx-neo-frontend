@@ -1,0 +1,46 @@
+<div class="overflow-scroll spaced-container">
+  <div class= "row">
+    <div class="col-6 form-group">
+        <label> Nombre rol </label>
+        <input id="nombreRol" name="nombreRol" type="text" class="form-control" placeholder="Nombre rol" [maxLength]='50'
+               [(ngModel)]="rolGeneracionModel.Name" [onReturn]="[descripcion]" [neoAutofocus]="true">
+    </div>
+    <div class="col-6 form-group">
+        <label> Descripci&oacute;n </label>
+        <input #descripcion id="descripcion" name="descripcion" type="text" class="form-control" placeholder="Descripci&oacute;n" [maxLength]='140'
+                [(ngModel)]="rolGeneracionModel.Description" [onReturn]="checkUserOwner">
+    </div>
+  </div>
+  <div class= "row align-items-end">
+    <div class="col-6 form-group">
+        <td class="text-right">
+          <div class="custom-control custom-checkbox">
+              <input #checkUserOwner type="checkbox" class="custom-control-input" id="i"
+                     [(ngModel)]="rolGeneracionModel.NeedUserOwner" [onReturn]="selectUserType">
+              <label class="custom-control-label" for="i">Depende de un usuario Productor</label>
+          </div>
+        </td>
+    </div>
+    <div class="col-6 form-group">
+      <label>Tipo de Usuario</label>
+      <select #selectUserType [(ngModel)]="rolGeneracionModel.UserType" class="form-control" id="selectUserType" name="selectUserType">
+          <option *ngFor="let userType of usersType" [value]="userType.id">{{userType.name}}</option>
+      </select>
+    </div>
+</div>
+  <div class="form-group">
+    <label><strong>Permisos</strong></label>
+    <ngx-treeview [config]="config" [items]="items" > <!-- (filterChange)="onFilterChange($event)" (selectedChange)="values = $event" -->
+    </ngx-treeview>
+  </div>
+
+  <div class="row">
+    <div class="col form-group text-right">
+        <div class="btn-group" role="group">
+            <button type="submit" class="btn btn-secondary" [command]="cancelarCmd" *ngIf="idRol.getValue()!==0">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [command]="generarCmd" *ngIf="idRol.getValue()===0">Generar rol</button>
+            <button type="submit" class="btn btn-primary" [command]="editarCmd" *ngIf="idRol.getValue()!==0">Editar rol</button>
+        </div>
+    </div>
+  </div>
+</div>

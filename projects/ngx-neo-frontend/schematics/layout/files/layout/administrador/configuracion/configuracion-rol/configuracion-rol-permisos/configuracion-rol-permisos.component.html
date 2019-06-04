@@ -1,0 +1,82 @@
+<div class="overflow-scroll spaced-container">
+<div class="d-none d-lg-block">
+  <table class="table table-sm table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Entidad</th>
+            <th>M&eacute;todo</th>
+            <th>Permiso</th>
+            <th>Ignorar</th>                     
+        </tr>
+        <tr>
+            <th>
+                <div class="input-group">
+                    <input #buscarEnt id="buscarEnt" name="buscarEnt" type="text" class="form-control form-control-sm" [onReturn]="[buscarMet]"  
+                            placeholder="Entidad" [(ngModel)]="buscarEntidad">
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <input #buscarMet id="buscarMet" name="buscarMet" type="text" class="form-control form-control-sm" [onReturn]="[buscarDesc]"  
+                           placeholder="M&eacute;todo" [(ngModel)]="buscarMetodo">
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <input #buscarDesc id="buscarDesc" name="buscarDesc" type="text" class="form-control form-control-sm" 
+                            placeholder="Descripci&oacute;n" [(ngModel)]="buscarDescripcion">
+                </div>
+            </th>
+            <th class="text-center">
+                <input type="checkbox" [(checked)]="ignorarTodos" (change)="comprobarIgnorarTodos()">
+            </th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let permiso of permisos
+                    | textFilter : 'Module' : buscarEntidad
+                    | textFilter: 'Method' : buscarMetodo
+                    | textFilter: 'Description' : buscarDescripcion">
+            <td>{{permiso.Module}}</td>
+            <td>{{permiso.Method}}</td>
+            <td>{{permiso.Description}}</td>
+            <td class="text-center">
+                <input type="checkbox" [(checked)]="permiso.Ignore" (change)="permiso.Ignore = !permiso.Ignore">
+            </td> 
+        </tr>           
+    </tbody>
+</table>
+</div>
+
+<div class="d-lg-none">
+    <ng-container *ngFor="let permiso of permisos; let i = index">
+        <div class="card card-general spaced-container">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <p class="card-title"><strong>{{permiso.Module}}</strong> {{permiso.Method}}</p>
+                    </div>
+                    <div class="col text-right">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="i" [(checked)]="permiso.Ignore" 
+                                    (change)="permiso.Ignore = !permiso.Ignore">
+                            <label class="custom-control-label" for="i">Ignorar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p><strong>Permiso: </strong> {{permiso.Description}}</p>          
+            </div>
+        </div>
+    </ng-container>
+</div>
+
+<div class="row spaced-container">
+    <div class="col form-group text-right">
+        <button class="btn btn-primary btn-sm" [command]="actualizarCmd"> Actualizar </button>
+    </div>
+</div>
+
+
+</div>

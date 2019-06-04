@@ -1,0 +1,13 @@
+<div class="container-fluid overflow-scroll">
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Configuraci&oacute;n</h4>
+      <div class="list-group" *ngFor="let menuGrupo of menus[0].grupos">
+        <button *ngFor="let menuGrupoOpcion of menuGrupo.opciones" id={{menuGrupoOpcion.id}} type="button"
+          class="list-group-item list-group-item-action" [command]="menuGrupoOpcion.comando">
+          {{menuGrupoOpcion.nombre}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+    "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+        "ng-add": {
+            "description": "Add library to the project.",
+            "factory": "./ng-add/index#ngAdd"
+          },
+          "layout": {
+            "description": "Basic dashboard layout based on NeoComplexx components.",
+            "factory": "./layout/index#layout",
+            "schema": "./layout/schema.json"
+          }
+    }
+}
