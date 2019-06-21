@@ -42,7 +42,7 @@ export class UnauthorizedErrorHandler implements ErrorHandler {
       if (!this.router) { this.router = this.injector.get(Router); }
       if (!this.cordovaService) { this.cordovaService = this.injector.get(CordovaService); }
       if (!this.router.url.startsWith('/login') && !this.router.url.startsWith('/ios-landing')) {
-        this.authenticationService.removeInfoLogin();
+        this.headerService.dispose();
         if (this.cordovaService.isIOSApp) {
           this.zone.run(async () => await this.router.navigate(['/ios-landing']));
         } else {
