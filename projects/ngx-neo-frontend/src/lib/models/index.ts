@@ -23,3 +23,4 @@ export * from './nameDetail.ModelDTO';
 export * from './backendConfiguration.ModelDTO';
 export * from './rolePermission.ModelDTO';
 export * from './attachment.ModelDTO';
+export * from './listOfIds.ModelDTO';
