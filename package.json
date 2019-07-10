@@ -1,6 +1,6 @@
 {
   "name": "neo-frontend",
-  "version": "7.0.29",
+  "version": "7.0.30",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

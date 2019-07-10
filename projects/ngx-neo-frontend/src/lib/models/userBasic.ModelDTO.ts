@@ -2,6 +2,7 @@ import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { UserBasicDTO } from './DTO/userBasic.DTO';
 import { UserState } from './DTO/userState.ENUM';
+import { UserTypes } from './DTO/userTypes.ENUM';
 
 
 export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
@@ -33,14 +34,17 @@ export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
    get FullName(): string { return this.entityDTO.fullName; }
    set FullName(value: string) { this.notifyChangeDTO('fullName', value); }
 
-   get RoleName(): string { return this.entityDTO.roleName; }
-   set RoleName(value: string) { this.notifyChangeDTO('roleName', value); }
-
    get Email(): string { return this.entityDTO.email; }
    set Email(value: string) { this.notifyChangeDTO('email', value); }
 
    get State(): string { return UserState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', UserState[value]); }
+
+   get RoleName(): string { return this.entityDTO.roleName; }
+   set RoleName(value: string) { this.notifyChangeDTO('roleName', value); }
+
+   get UserType(): string { return UserTypes[this.entityDTO.userType]; }
+   set UserType(value: string) { this.notifyChangeDTO('userType', UserTypes[value]); }
 
    get Imagen(): string { return this.entityDTO.imagen; }
    set Imagen(value: string) { this.notifyChangeDTO('imagen', value); }
@@ -53,5 +57,9 @@ export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
 
    public static getUserState(): string[] {
       return EntityModelDTO.getEnumArray(UserState);
+   }
+
+   public static getUserTypes(): string[] {
+      return EntityModelDTO.getEnumArray(UserTypes);
    }
 }

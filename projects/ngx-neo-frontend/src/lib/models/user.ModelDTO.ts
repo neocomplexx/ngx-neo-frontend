@@ -1,9 +1,10 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { UserDTO } from './DTO/user.DTO';
-import { UserState } from './DTO/userState.ENUM';
-import { RoleDTO } from './DTO';
+import { RoleDTO } from './DTO/role.DTO';
 import { RoleModelDTO } from './role.ModelDTO';
+import { UserState } from './DTO/userState.ENUM';
+import { UserTypes } from './DTO/userTypes.ENUM';
 
 
 export class UserModelDTO extends EntityModelDTO<UserDTO> {
@@ -30,8 +31,8 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    }
 
    get RoleModel(): RoleModelDTO { return this._RoleModel; }
-   get Role(): RoleDTO { return this.entityDTO.role; }
-   set Role(value: RoleDTO) { this.notifyChangeDTO('role', value); }
+   get Role(): RoleDTO { return this._RoleModel.getEntityDTO(); }
+   set Role(value: RoleDTO) { this.notifyChange(() => { this.entityDTO.role = value; this._RoleModel.setEntityDTO(value) }); }
 
    get IdUserOwner(): number { return this.entityDTO.idUserOwner; }
    set IdUserOwner(value: number) { this.notifyChangeDTO('idUserOwner', value); }
@@ -54,6 +55,12 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    get State(): string { return UserState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', UserState[value]); }
 
+   get RoleName(): string { return this.entityDTO.roleName; }
+   set RoleName(value: string) { this.notifyChangeDTO('roleName', value); }
+
+   get UserType(): string { return UserTypes[this.entityDTO.userType]; }
+   set UserType(value: string) { this.notifyChangeDTO('userType', UserTypes[value]); }
+
    get Imagen(): string { return this.entityDTO.imagen; }
    set Imagen(value: string) { this.notifyChangeDTO('imagen', value); }
 
@@ -65,5 +72,9 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
 
    public static getUserState(): string[] {
       return EntityModelDTO.getEnumArray(UserState);
+   }
+
+   public static getUserTypes(): string[] {
+      return EntityModelDTO.getEnumArray(UserTypes);
    }
 }

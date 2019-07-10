@@ -23,14 +23,14 @@ export class RoleModelDTO extends EntityModelDTO<RoleDTO> {
    public dispose(): void {
    }
 
+   get Permissions(): Array<RolePermissionDTO> { return this.entityDTO.permissions; }
+   set Permissions(value: Array<RolePermissionDTO>) { this.notifyChangeDTO('permissions', value); }
+
    get Name(): string { return this.entityDTO.name; }
    set Name(value: string) { this.notifyChangeDTO('name', value); }
 
    get Description(): string { return this.entityDTO.description; }
    set Description(value: string) { this.notifyChangeDTO('description', value); }
-
-   get Permissions(): Array<RolePermissionDTO> { return this.entityDTO.permissions; }
-   set Permissions(value: Array<RolePermissionDTO>) { this.notifyChangeDTO('permissions', value); }
 
    get State(): string { return RoleState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', RoleState[value]); }

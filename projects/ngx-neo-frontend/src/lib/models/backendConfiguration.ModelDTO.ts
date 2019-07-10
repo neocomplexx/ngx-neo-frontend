@@ -41,6 +41,9 @@ export class BackendConfigurationModelDTO extends EntityModelDTO<BackendConfigur
    get OriginsAllowByCORS(): Array<string> { return this.entityDTO.originsAllowByCORS; }
    set OriginsAllowByCORS(value: Array<string>) { this.notifyChangeDTO('originsAllowByCORS', value); }
 
+   get ShowRequestHeaders(): boolean { return this.entityDTO.showRequestHeaders; }
+   set ShowRequestHeaders(value: boolean) { this.notifyChangeDTO('showRequestHeaders', value); }
+
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }
 

@@ -10,6 +10,7 @@ export class BackendConfigurationDTO implements IEntityDTO {
    apnsServerEnvironmentIsSandbox: boolean;
    originsDeniedByCORS: Array<string>;
    originsAllowByCORS: Array<string>;
+   showRequestHeaders: boolean;
    id: number = 0;
    cacheStamp: number = 0;
 
@@ -25,6 +26,7 @@ export class BackendConfigurationDTO implements IEntityDTO {
       if (jsonObj['apnsServerEnvironmentIsSandbox'] != null) this.apnsServerEnvironmentIsSandbox = jsonObj['apnsServerEnvironmentIsSandbox'];
       if (jsonObj['originsDeniedByCORS'] != null) this.originsDeniedByCORS = jsonObj['originsDeniedByCORS'];
       if (jsonObj['originsAllowByCORS'] != null) this.originsAllowByCORS = jsonObj['originsAllowByCORS'];
+      if (jsonObj['showRequestHeaders'] != null) this.showRequestHeaders = jsonObj['showRequestHeaders'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

@@ -1,5 +1,7 @@
 export * from './entity.ModelDTO';
 export * from './DTO';
+export * from './backendConfiguration.ModelDTO';
+export * from './nameNumberDetail.ModelDTO';
 export * from './authRequest.ModelDTO';
 export * from './authResponse.ModelDTO';
 export * from './authChangePasswordRequest.ModelDTO';
@@ -23,4 +25,3 @@ export * from './nameDetail.ModelDTO';
 export * from './backendConfiguration.ModelDTO';
 export * from './rolePermission.ModelDTO';
 export * from './attachment.ModelDTO';
-export * from './listOfIds.ModelDTO';

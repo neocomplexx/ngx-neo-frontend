@@ -6,9 +6,9 @@ import { RolePermissionDTO } from './rolePermission.DTO';
 
 export class RoleDTO implements IEntityDTO {
 
+   permissions: Array<RolePermissionDTO>;
    name: string = '';
    description: string = '';
-   permissions: Array<RolePermissionDTO>;
    state: RoleState;
    needUserOwner: boolean;
    userType: number = 0;
@@ -21,9 +21,9 @@ export class RoleDTO implements IEntityDTO {
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
+      if (jsonObj['permissions'] != null) for (const item of jsonObj['permissions']) { const itemDTO = new RolePermissionDTO(); itemDTO.PrepareDTO(item); this.permissions.push(itemDTO); }
       if (jsonObj['name'] != null) this.name = jsonObj['name'];
       if (jsonObj['description'] != null) this.description = jsonObj['description'];
-      if (jsonObj['permissions'] != null) for (const item of jsonObj['permissions']) { const itemDTO = new RolePermissionDTO(); itemDTO.PrepareDTO(item); this.permissions.push(itemDTO); }
       if (jsonObj['state'] != null) this.state = jsonObj['state'] as RoleState;
       if (jsonObj['needUserOwner'] != null) this.needUserOwner = jsonObj['needUserOwner'];
       if (jsonObj['userType'] != null) this.userType = jsonObj['userType'];
