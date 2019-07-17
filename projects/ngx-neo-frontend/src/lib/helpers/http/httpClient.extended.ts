@@ -36,9 +36,9 @@ export class HttpClientExtended extends HttpClient {
             }));
     }
 
-    public post(url: string, body: any): Observable<any> {
+    public post(url: string, body: any, options?): Observable<any> {
         const loaderSub = this.showLoader();
-        return super.post(url, body).pipe(
+        return super.post(url, body, options).pipe(
             timeout(60000),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
@@ -53,9 +53,9 @@ export class HttpClientExtended extends HttpClient {
             }));
     }
 
-    public put(url: string, body: any): Observable<any> {
+    public put(url: string, body: any, options?): Observable<any> {
         const loaderSub = this.showLoader();
-        return super.put(url, body).pipe(
+        return super.put(url, body, options).pipe(
             timeout(60000),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
