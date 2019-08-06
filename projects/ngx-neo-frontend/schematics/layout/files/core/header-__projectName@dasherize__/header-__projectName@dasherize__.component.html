@@ -1,4 +1,4 @@
-<neo-header [ngClass]="{'ios-header': isIos()}">
+<neo-header [colapsableSidebar]="false" [ngClass]="{'ios-header': isIos()}">
   <a class="dropdown-item" [routerLink]="['/perfil']" routerLinkActive="router-link-active" >Perfil</a>
   <a class="dropdown-item" (click)="logout()">Logout</a>
 </neo-header>
