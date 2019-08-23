@@ -1,0 +1,12 @@
+<div *ngIf="show" [style.width]="width" [style.top]="top" [style.left]="left" [ngClass]="{'help-box-bottom' : position('bottom'),'help-box-top' : position('top'),
+            'help-box-left' : position('left'),'help-box-right' : position('right')}"
+  class="d-flex flex-column container">
+  <div class="align-self-end">
+    <span (click)="Close()"><i class="fa fa-close"></i></span>
+  </div>
+  <div>
+    <p>
+      {{message}}
+    </p>
+  </div>
+</div>
