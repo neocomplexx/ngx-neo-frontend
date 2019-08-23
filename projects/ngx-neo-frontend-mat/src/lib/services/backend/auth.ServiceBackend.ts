@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
-import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend.module';
+import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend-mat.module';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuthChangePasswordRequestDTO } from '../../models';

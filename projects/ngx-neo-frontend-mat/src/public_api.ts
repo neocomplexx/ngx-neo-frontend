@@ -11,7 +11,7 @@ export * from './lib/services/cordova';
 export * from './lib/services/exception-manager';
 export * from './lib/services/header-neo-complexx.service';
 export * from './lib/services/push';
-export * from './lib/ngx-neo-frontend.module';
+export * from './lib/ngx-neo-frontend-mat.module';
 export * from './lib/components/neo-floating-help/neo-floating-help.component';
 export * from './lib/components/neo-component-async.component';
 export * from './lib/components/menu';
