@@ -24,6 +24,12 @@
       ],
       "ngx-neo-frontend/*": [
         "dist/ngx-neo-frontend/*"
+      ],
+      "ngx-neo-frontend-mat": [
+        "dist/ngx-neo-frontend-mat"
+      ],
+      "ngx-neo-frontend-mat/*": [
+        "dist/ngx-neo-frontend-mat/*"
       ]
     }
   }
