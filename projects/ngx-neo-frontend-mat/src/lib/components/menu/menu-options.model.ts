@@ -1,4 +1,4 @@
-import { ICommand } from '@neocomplexx/ngx-neo-directives';
+import { ICommand } from '@neocomplexx/ngx-neo-directives-mat';
 
 /**
  * Clase que representa una opcion individual del menu

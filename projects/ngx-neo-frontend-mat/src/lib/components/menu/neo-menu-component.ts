@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MenuGroupModel } from './menu-group.model';
 import { BehaviorSubject } from 'rxjs';
 import { MenuOptionsModel } from './menu-options.model';
-import { Command } from '@neocomplexx/ngx-neo-directives';
+import { Command } from '@neocomplexx/ngx-neo-directives-mat';
 
 /**
  * Clase encargada de la creacion de menues para el sistema a partir de un archivo json

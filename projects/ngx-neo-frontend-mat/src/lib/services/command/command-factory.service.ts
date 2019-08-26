@@ -1,7 +1,7 @@
 import { NgxNeoLoaderService } from '@neocomplexx/ngx-neo-loader';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Command, ICommand } from '@neocomplexx/ngx-neo-directives';
+import { Command, ICommand } from '@neocomplexx/ngx-neo-directives-mat';
 
 @Injectable({
     providedIn: 'root'

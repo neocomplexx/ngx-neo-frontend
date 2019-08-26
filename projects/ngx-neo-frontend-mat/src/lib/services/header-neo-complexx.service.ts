@@ -1,9 +1,8 @@
 import { Location } from '@angular/common';
 import { Injectable, OnDestroy, ElementRef } from '@angular/core';
-import { ITabChangeController } from '@neocomplexx/ngx-neo-directives';
+import { ITabChangeController } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
-import { NgxNeoModalService, AlertButton } from '@neocomplexx/ngx-neo-modal';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserDTO } from '../models/DTO/user.DTO';
@@ -46,7 +45,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public next: () => Promise<void> = async () => { console.log('next'); };
 
-    constructor(protected router: Router, protected location: Location, protected ngxNeoModalService: NgxNeoModalService,
+    constructor(protected router: Router, protected location: Location,
         protected signalRService: PushService,
         protected authenticationService: AuthenticationService,
         mobileSidebarService: MobileSidebarService,
@@ -189,13 +188,13 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         }
 
         if (this.changed.value) {
-            const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
+/*             const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
                 '', 'Ahora podrá guardarlos...');
             if (result.ButtonResponse != AlertButton.Accept) {
                 return;
             } else {
                 this.notifyChange(false);
-            }
+            } */
         }
 
         const ruta = this.router.url;
@@ -230,7 +229,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
      * */
     public async canChangeTab(): Promise<boolean> {
         if (this.changed.value) {
-            const result = await this.ngxNeoModalService.decision(
+/*             const result = await this.ngxNeoModalService.decision(
                 'Hay cambios sin guardar, esta seguro de salir y perderlos?', '', 'Ahora podrá guardarlos...'
             );
             if (result.ButtonResponse === AlertButton.Accept) {
@@ -238,7 +237,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
                 return true;
             } else {
                 return false;
-            }
+            } */
         }
         return true;
     }
