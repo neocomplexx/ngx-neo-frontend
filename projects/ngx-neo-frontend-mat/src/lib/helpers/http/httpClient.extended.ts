@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { NgxNeoLoaderService } from '@neocomplexx/ngx-neo-loader';
 import { Observable, throwError } from 'rxjs';
-import { b64DecodeUnicode } from '@neocomplexx/ngx-neo-components';
+import { b64DecodeUnicode } from '@neocomplexx/ngx-neo-components-mat';
 import { CordovaService } from '../../services/cordova/cordova.service';
 
 @Injectable()

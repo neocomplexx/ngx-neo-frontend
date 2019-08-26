@@ -4,14 +4,13 @@ import { ITabChangeController } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { BreadcrumbService } from 'ng5-breadcrumb';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserDTO } from '../models/DTO/user.DTO';
 import { PushService } from './push/signalr.push.service';
 import { CordovaService } from './cordova/cordova.service';
 import { ExceptionManagerService } from './exception-manager/exception-manager.service';
 import { AuthenticationService } from '../helpers/auth/authentication.service';
-import { HeaderService } from '@neocomplexx/ngx-neo-components';
-import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
+import { HeaderService } from '@neocomplexx/ngx-neo-components-mat';
+import { MobileSidebarService } from '@neocomplexx/ngx-neo-components-mat';
 import { UsersServiceBackend } from './backend';
 
 export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
@@ -49,7 +48,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         protected signalRService: PushService,
         protected authenticationService: AuthenticationService,
         mobileSidebarService: MobileSidebarService,
-        protected usersServiceBackend: UsersServiceBackend, protected modalService: NgbModal,
+        protected usersServiceBackend: UsersServiceBackend,
         protected breadCrumbService: BreadcrumbService, protected cordovaService: CordovaService,
         protected exceptionService: ExceptionManagerService) {
         super(mobileSidebarService);
@@ -84,7 +83,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     }
 
     public notifyWithoutConnection(): void {
-        if (this.canShowWithoutConnectionBanner && !this.modalService.hasOpenModals()) {
+        if (this.canShowWithoutConnectionBanner ) {
             this.withoutConnection$.next(true);
         } else {
             window.alert('El sistema no se encuentra disponible en este momento, intente nuevamente más tarde.');
@@ -182,10 +181,10 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public async back(): Promise<void> {
 
-        if (this.modalService.hasOpenModals()) {
+     /*    if (this.modalService.hasOpenModals()) {
             this.modalService.dismissAll();
             return;
-        }
+        } */
 
         if (this.changed.value) {
 /*             const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',

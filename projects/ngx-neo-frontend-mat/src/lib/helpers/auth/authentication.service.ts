@@ -5,7 +5,6 @@ import { AuthResponseDTO } from '../../models/DTO/authResponse.DTO';
 import { PushService } from '../../services/push/signalr.push.service';
 import { ExceptionManagerService } from '../../services/exception-manager/exception-manager.service';
 import { AuthRequestDTO } from '../../models/DTO/authRequest.DTO';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthServiceBackend } from '../../services/backend/auth.ServiceBackend';
 
 @Injectable({
@@ -17,7 +16,7 @@ export class AuthenticationService {
     public loggedEvent: BehaviorSubject<AuthResponseDTO>;
 
     constructor(private pushService: PushService, public router: Router, private authService: AuthServiceBackend,
-        public modalService: NgbModal, private exceptionManager: ExceptionManagerService) {
+        private exceptionManager: ExceptionManagerService) {
         // set token if saved in local storage
         this.authResponseDTO = JSON.parse(localStorage.getItem('currentUserWeb'));
         this.loggedEvent = new BehaviorSubject<AuthResponseDTO>(this.authResponseDTO);
@@ -44,9 +43,9 @@ export class AuthenticationService {
 
     public removeInfoLogin(): void {
         this.pushService.stop();
-        if (this.modalService.hasOpenModals()) {
+      /*   if (this.modalService.hasOpenModals()) {
             this.modalService.dismissAll();
-        }
+        } */
         // clear token remove user from local storage to log user out
         this.authResponseDTO = null;
         localStorage.removeItem('currentUserWeb');

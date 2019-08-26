@@ -8,7 +8,7 @@ import { ServiceChangeDTO } from '../../models/DTO/serviceChange.DTO';
 import { NotificationState } from '../../models/DTO/notificationState.ENUM';
 import { NewNotificationDTO } from '../../models/DTO/newNotification.DTO';
 import { NotificationServiceBackend } from '../backend/notification.ServiceBackend';
-import { NotificationService } from '@neocomplexx/ngx-neo-components';
+import { NotificationService } from '@neocomplexx/ngx-neo-components-mat';
 import { UsersServiceBackend } from '../backend';
 
 @Injectable({

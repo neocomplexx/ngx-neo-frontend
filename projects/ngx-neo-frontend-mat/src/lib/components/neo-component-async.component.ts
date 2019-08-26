@@ -1,7 +1,7 @@
 import { OnInit, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
 import { timer, Subscription } from 'rxjs';
 import { HeaderNeoComplexxService } from '../services/header-neo-complexx.service';
-import { stringHash } from '@neocomplexx/ngx-neo-components';
+import { stringHash } from '@neocomplexx/ngx-neo-components-mat';
 
 export abstract class NeoModalAsync implements OnInit, OnDestroy {
 
