@@ -12,6 +12,8 @@ import { AuthenticationService } from '../helpers/auth/authentication.service';
 import { HeaderService } from '@neocomplexx/ngx-neo-components-mat';
 import { MobileSidebarService } from '@neocomplexx/ngx-neo-components-mat';
 import { UsersServiceBackend } from './backend';
+import { NgxNeoModalMatService, AlertButton } from '@neocomplexx/ngx-neo-modal-mat';
+import { MatDialog } from '@angular/material/dialog';
 
 export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
 
@@ -44,11 +46,11 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public next: () => Promise<void> = async () => { console.log('next'); };
 
-    constructor(protected router: Router, protected location: Location,
+    constructor(protected router: Router, protected location: Location, protected ngxNeoModalService: NgxNeoModalMatService,
         protected signalRService: PushService,
         protected authenticationService: AuthenticationService,
         mobileSidebarService: MobileSidebarService,
-        protected usersServiceBackend: UsersServiceBackend,
+        protected usersServiceBackend: UsersServiceBackend, protected modalService: MatDialog,
         protected breadCrumbService: BreadcrumbService, protected cordovaService: CordovaService,
         protected exceptionService: ExceptionManagerService) {
         super(mobileSidebarService);
@@ -83,7 +85,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     }
 
     public notifyWithoutConnection(): void {
-        if (this.canShowWithoutConnectionBanner ) {
+        if (this.canShowWithoutConnectionBanner) {
             this.withoutConnection$.next(true);
         } else {
             window.alert('El sistema no se encuentra disponible en este momento, intente nuevamente más tarde.');
@@ -181,19 +183,16 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public async back(): Promise<void> {
 
-     /*    if (this.modalService.hasOpenModals()) {
-            this.modalService.dismissAll();
-            return;
-        } */
+        this.modalService.closeAll();
 
         if (this.changed.value) {
-/*             const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
+            const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
                 '', 'Ahora podrá guardarlos...');
             if (result.ButtonResponse != AlertButton.Accept) {
                 return;
             } else {
                 this.notifyChange(false);
-            } */
+            }
         }
 
         const ruta = this.router.url;
@@ -228,7 +227,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
      * */
     public async canChangeTab(): Promise<boolean> {
         if (this.changed.value) {
-/*             const result = await this.ngxNeoModalService.decision(
+            const result = await this.ngxNeoModalService.decision(
                 'Hay cambios sin guardar, esta seguro de salir y perderlos?', '', 'Ahora podrá guardarlos...'
             );
             if (result.ButtonResponse === AlertButton.Accept) {
@@ -236,7 +235,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
                 return true;
             } else {
                 return false;
-            } */
+            }
         }
         return true;
     }

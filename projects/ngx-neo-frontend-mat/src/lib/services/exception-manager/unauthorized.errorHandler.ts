@@ -1,5 +1,6 @@
 import { Injectable, Injector, ErrorHandler, NgZone, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
 import { AuthenticationService } from '../../helpers/auth/authentication.service';
 import { CordovaService } from '../cordova/cordova.service';
 import { HeaderNeoComplexxService } from '../header-neo-complexx.service';
@@ -21,6 +22,7 @@ export class UnauthorizedErrorHandler implements ErrorHandler {
 
     if (!this.headerService) { this.headerService = this.injector.get(HeaderNeoComplexxService); }
     if (!this.zone) { this.zone = this.injector.get(NgZone); }
+    if (!this.originalAlert) { this.originalAlert = this.injector.get(NgxNeoModalMatService).originalAlert; }
 
     if (error.rejection) { // Si el error viene encapsulado en un Promise, el error en si, esta guardado en la variable rejection
       error = error.rejection;

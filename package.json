@@ -44,6 +44,7 @@
     "@neocomplexx/ngx-neo-loader": "^7.0.0",
     "@neocomplexx/ngx-neo-modal": "^7.0.1",
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
+    "@neocomplexx/ngx-neo-modal-mat": "^7.0.1",
     "core-js": "^2.5.4",
     "ng5-breadcrumb": "0.0.6",
     "rxjs": "~6.3.3",
