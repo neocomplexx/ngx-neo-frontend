@@ -31,6 +31,7 @@ export * from './userState.ENUM';
 export * from './userTypes.ENUM';
 export * from './roleState.ENUM';
 export * from './rolePermission.DTO';
+export * from './imageEntity.DTO';
 export * from './attachment.DTO';
 export * from './actionType.ENUM';
 export * from './rolePermissionState.ENUM';

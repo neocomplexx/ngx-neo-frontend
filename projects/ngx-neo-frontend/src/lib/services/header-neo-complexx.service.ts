@@ -253,7 +253,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public scrollToPosition(x: number, y: number) {
         if (this.scrolleableComponent) {
-            this.scrolleableComponent.nativeElement.scrollTo(x, y);
+            this.scrolleableComponent.nativeElement.scrollTop = y;
         }
     }
 
