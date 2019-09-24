@@ -77,7 +77,7 @@ export class UsersServiceBackend {
 
    public async getUsersBasic(onlyAdministratives: boolean = false): Promise<Array<UserBasicDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-      const res = await this.http.get(this.Constants.apiURL + '/users/basic' + '?OnlyAdministratives=' + onlyAdministratives).toPromise();
+      const res = await this.http.get(this.Constants.apiURL + '/users/basic' + '?onlyAdministratives=' + onlyAdministratives).toPromise();
       const resJson = res['data'];
       const resDTO = new Array<UserBasicDTO>();
       for (const item of resJson) {

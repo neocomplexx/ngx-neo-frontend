@@ -26,37 +26,9 @@ export class RoleServiceBackend {
       });
    }
 
-   public async getUsuariosrolesIdEmisionesPDF(id: number): Promise<Array<RoleDTO>> {
-      return this.exceptionManager.executeAsync(async () => {
-      const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/' + id + '/emisionesPDF').toPromise();
-      const resJson = res['data'];
-      const resDTO = new Array<RoleDTO>();
-      for (const item of resJson) {
-         const itemDTO = new RoleDTO()
-         itemDTO.PrepareDTO(item);
-         resDTO.push(itemDTO);
-      }
-      return resDTO;
-      });
-   }
-
    public async getUsuariosroles(): Promise<Array<RoleDTO>> {
       return this.exceptionManager.executeAsync(async () => {
       const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/').toPromise();
-      const resJson = res['data'];
-      const resDTO = new Array<RoleDTO>();
-      for (const item of resJson) {
-         const itemDTO = new RoleDTO()
-         itemDTO.PrepareDTO(item);
-         resDTO.push(itemDTO);
-      }
-      return resDTO;
-      });
-   }
-
-   public async getUsuariosrolesBasic(): Promise<Array<RoleDTO>> {
-      return this.exceptionManager.executeAsync(async () => {
-      const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/basic').toPromise();
       const resJson = res['data'];
       const resDTO = new Array<RoleDTO>();
       for (const item of resJson) {
@@ -98,6 +70,20 @@ export class RoleServiceBackend {
       if (!res) { return null; }
       const resDTO = new RoleDTO();
       resDTO.PrepareDTO(res);
+      return resDTO;
+      });
+   }
+
+   public async getUsuariosrolesBasic(): Promise<Array<RoleDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+      const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/basic').toPromise();
+      const resJson = res['data'];
+      const resDTO = new Array<RoleDTO>();
+      for (const item of resJson) {
+         const itemDTO = new RoleDTO()
+         itemDTO.PrepareDTO(item);
+         resDTO.push(itemDTO);
+      }
       return resDTO;
       });
    }
