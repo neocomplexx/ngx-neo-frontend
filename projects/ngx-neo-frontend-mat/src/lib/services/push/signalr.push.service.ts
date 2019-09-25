@@ -99,6 +99,9 @@ export class PushService {
             newMethod(<TDTO>data);
         });
     }
+    public unregisterPushFrom(methodName: string): void {
+        this.hubConnection.off(methodName);
+    }
 
     public sendMessageToServer(methodName: string, message: any) {
         this.hubConnection.invoke(methodName, message);
