@@ -27,3 +27,4 @@ export * from './serviceChange.ModelDTO';
 export * from './updatePermissions.ModelDTO';
 export * from './user.ModelDTO';
 export * from './userBasic.ModelDTO';
+export * from './listOfIds.ModelDTO';

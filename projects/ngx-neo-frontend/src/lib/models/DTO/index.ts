@@ -36,3 +36,4 @@ export * from './actionType.ENUM';
 export * from './rolePermissionState.ENUM';
 export * from './nameNumberDetail.DTO';
 export * from './imageEntity.DTO';
+export * from './listOfIds.DTO';

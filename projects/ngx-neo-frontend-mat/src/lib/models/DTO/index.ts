@@ -32,6 +32,7 @@ export * from './roleState.ENUM';
 export * from './serviceChange.DTO';
 export * from './typeSocial.ENUM';
 export * from './updatePermissions.DTO';
+export * from './listOfIds.DTO';
 export * from './user.DTO';
 export * from './userBasic.DTO';
 export * from './userState.ENUM';
