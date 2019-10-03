@@ -53,7 +53,7 @@ export class NotificationNeoComplexxService extends NotificationService {
 
         this.notificationPriorityAnalyzer();
 
-        this.usersAdministrative = await this.usersServiceBackend.getUsers(true);
+        // this.usersAdministrative = await this.usersServiceBackend.getUsers(true);
 
         this._getAllNotificationsEvent.next();
     }
