@@ -2,6 +2,8 @@ import { Injectable, NgZone } from '@angular/core';
 import { BehaviorSubject, fromEvent, Observable } from 'rxjs';
 import { NamedBlobDTO } from '../../models/DTO/namedBlob.DTO';
 
+export enum ScreenOrientation { Portrait = 'portrait', Landscape = 'landscape' }
+
 declare var device: any; // For typecript compilation
 
 function _window(): any {
@@ -80,6 +82,19 @@ export class CordovaService {
     this._resume.next(true);
   }
 
+
+  public lockScreen(screenOrientation: ScreenOrientation) {
+    if (this.isCordovaApp) {
+      screen.orientation.lock(screenOrientation);
+    }
+  }
+
+  public unlockScreen() {
+    if (this.isCordovaApp) {
+      screen.orientation.unlock();
+    }
+  }
+
   public download(namedBlob: NamedBlobDTO) {
     const url = URL.createObjectURL(namedBlob.blob);
     (window as any).requestFileSystem(0, 0, (fs) => {
@@ -93,7 +108,7 @@ export class CordovaService {
               fileEntry.toURL(), // You can also use a Cordova-style file uri: cdvfile://localhost/persistent/Downloads/starwars.pdf
               namedBlob.mimeType,
               {
-                error: (error: any) =>  {
+                error: (error: any) => {
                   console.log('Error status: ' + error.status + ' - Error message: ' + error.message);
                 },
                 success: () => {
