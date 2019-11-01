@@ -9,6 +9,7 @@ export class UserDTO implements IEntityDTO {
 
    role: RoleDTO;
    idUserOwner: number = 0;
+   userTypeId: number = 0;
    userName: string = '';
    firstName: string = '';
    lastName: string = '';
@@ -29,6 +30,7 @@ export class UserDTO implements IEntityDTO {
       if (jsonObj == null) return;
       if (jsonObj['role'] != null) this.role.PrepareDTO(jsonObj['role']);
       if (jsonObj['idUserOwner'] != null) this.idUserOwner = jsonObj['idUserOwner'];
+      if (jsonObj['userTypeId'] != null) this.userTypeId = jsonObj['userTypeId'];
       if (jsonObj['userName'] != null) this.userName = jsonObj['userName'];
       if (jsonObj['firstName'] != null) this.firstName = jsonObj['firstName'];
       if (jsonObj['lastName'] != null) this.lastName = jsonObj['lastName'];

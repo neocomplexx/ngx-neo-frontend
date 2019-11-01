@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuthEditUserRequestDTO } from '../../models';
 import { AuthNewUserRequestDTO } from '../../models';
+import { AuthRequestDTO } from '../../models';
+import { AuthResponseDTO } from '../../models';
 import { UserBasicDTO } from '../../models';
 import { UserDTO } from '../../models';
 
@@ -113,6 +115,12 @@ export class UsersServiceBackend {
    public async deleteUsersUSERNAMEBlankPassword(username: string): Promise<void> {
       return this.exceptionManager.executeAsync(async () => {
       await this.http.delete(this.Constants.apiURL + '/users/' + username + '/blankPassword').toPromise();
+      });
+   }
+
+   public async insertUsersValidate(authRequestDTO: AuthRequestDTO): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+      await this.http.post(this.Constants.apiURL + '/users/validate', authRequestDTO).toPromise();
       });
    }
 
