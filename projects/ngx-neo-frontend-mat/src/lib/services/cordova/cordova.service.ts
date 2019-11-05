@@ -83,11 +83,15 @@ export class CordovaService {
   }
 
   public lockScreen(screenOrientation: ScreenOrientation) {
-    screen.orientation.lock(screenOrientation);
+    if (this.isCordovaApp) {
+      screen.orientation.lock(screenOrientation);
+    }
   }
 
   public unlockScreen() {
-    screen.orientation.unlock();
+    if (this.isCordovaApp) {
+      screen.orientation.unlock();
+    }
   }
 
   public download(namedBlob: NamedBlobDTO) {
