@@ -64,6 +64,9 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    get UserType(): string { return UserTypes[this.entityDTO.userType]; }
    set UserType(value: string) { this.notifyChangeDTO('userType', UserTypes[value]); }
 
+   get UserTypeArray(): Array<string> { return this.getStringFromUserTypes(this.entityDTO.userType); }
+   set UserTypeArray(value: Array<string>) { this.notifyChangeDTO('userType', this.getFlagFromUserTypesString(value)); }
+
    get Imagen(): string { return this.entityDTO.imagen; }
    set Imagen(value: string) { this.notifyChangeDTO('imagen', value); }
 
@@ -80,4 +83,27 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    public static getUserTypes(): string[] {
       return EntityModelDTO.getEnumArray(UserTypes);
    }
+ protected getStringFromUserTypes(Enum: UserTypes) : Array<string>  {
+        if (Enum)
+        {
+            var arrays = new Array<string>();
+            for (var i: number = 1; i <= 2097151; i = i << 1) {
+                if ((Enum & i) !== 0)
+                {
+                    arrays.push(UserTypes[i]);
+                }
+            }
+            return arrays;
+        }
+        else
+            return undefined;
+    }
+    protected getFlagFromUserTypesString(strings: Array<string>) : UserTypes  {
+        let flags : UserTypes;
+        strings.forEach(element => {
+            var enumVal: UserTypes = UserTypes[element];
+            flags |= enumVal;
+        });
+        return flags;
+    }
 }
