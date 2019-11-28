@@ -2,7 +2,6 @@ import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { NotificationDTO } from './DTO/notification.DTO';
 import { NotificationPriority } from './DTO/notificationPriority.ENUM';
-import { NotificationType } from './DTO/notificationType.ENUM';
 import { NotificationState } from './DTO/notificationState.ENUM';
 
 
@@ -29,8 +28,8 @@ export class NotificationModelDTO extends EntityModelDTO<NotificationDTO> {
    get Priority(): string { return NotificationPriority[this.entityDTO.priority]; }
    set Priority(value: string) { this.notifyChangeDTO('priority', NotificationPriority[value]); }
 
-   get NotificationType(): string { return NotificationType[this.entityDTO.notificationType]; }
-   set NotificationType(value: string) { this.notifyChangeDTO('notificationType', NotificationType[value]); }
+   get NotificationType(): number { return this.entityDTO.notificationType; }
+   set NotificationType(value: number) { this.notifyChangeDTO('notificationType', value); }
 
    get State(): string { return NotificationState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', NotificationState[value]); }
@@ -50,8 +49,8 @@ export class NotificationModelDTO extends EntityModelDTO<NotificationDTO> {
    get Title(): string { return this.entityDTO.title; }
    set Title(value: string) { this.notifyChangeDTO('title', value); }
 
-   get NoMostrarEnMenu(): boolean { return this.entityDTO.noMostrarEnMenu; }
-   set NoMostrarEnMenu(value: boolean) { this.notifyChangeDTO('noMostrarEnMenu', value); }
+   get NotShowInMenu(): boolean { return this.entityDTO.notShowInMenu; }
+   set NotShowInMenu(value: boolean) { this.notifyChangeDTO('notShowInMenu', value); }
 
    get Details(): string { return this.entityDTO.details; }
    set Details(value: string) { this.notifyChangeDTO('details', value); }
@@ -76,10 +75,6 @@ export class NotificationModelDTO extends EntityModelDTO<NotificationDTO> {
 
    public static getNotificationPriority(): string[] {
       return EntityModelDTO.getEnumArray(NotificationPriority);
-   }
-
-   public static getNotificationType(): string[] {
-      return EntityModelDTO.getEnumArray(NotificationType);
    }
 
    public static getNotificationState(): string[] {
