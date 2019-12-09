@@ -59,13 +59,18 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
         this.getItemFromLocalStorage();
 
+        window.addEventListener('popstate', (event) => {
+            // The popstate event is fired each time when the current history entry changes.
+            const beforeBackArgs: BeforeBackArgs = { path: '', cancelBack: false };
+            if (this.beforeBack) {
+                this.beforeBack(beforeBackArgs);
+                this.removeScrollSaved();
+            }
+        }, false);
+
         this.location.subscribe(x => {
             if (this.mobileSidebarService.isOpen) {
                 this.mobileSidebarService.showSidebar.next(false);
-            } else {
-                if (x.pop) {
-                    this.removeScrollSaved();
-                }
             }
         });
 
