@@ -19,9 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
       if (req.url.includes('BLOB=true')) {
         authReq = authReq.clone({responseType: 'blob'});
       } else if (req.url.includes('BLOB=XLSX')) {
-        authReq = authReq.clone({responseType: 'blob', headers: authReq.headers.set('Accept', 'xlsx')});
+        authReq = authReq.clone({responseType: 'blob', headers: authReq.headers.set('Accept', 'application/xlsx')});
       } else if (req.url.includes('BLOB=PDF')) {
-        authReq = authReq.clone({responseType: 'blob', headers: authReq.headers.set('Accept', 'pdf')});
+        authReq = authReq.clone({responseType: 'blob', headers: authReq.headers.set('Accept', 'application/pdf')});
       }
     }
 
