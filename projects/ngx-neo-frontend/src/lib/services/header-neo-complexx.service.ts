@@ -141,6 +141,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         this.currentUserWeb = null;
         this.userType = '';
         this.authenticationService.removeInfoLogin();
+        this.userEntity = undefined;
     }
 
     public notifyChange(changed: boolean): void {

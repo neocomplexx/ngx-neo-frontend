@@ -31,6 +31,9 @@ export class NewNotificationModelDTO extends EntityModelDTO<NewNotificationDTO> 
    get UsersName(): Array<string> { return this.entityDTO.usersName; }
    set UsersName(value: Array<string>) { this.notifyChangeDTO('usersName', value); }
 
+   get RoleIds(): Array<number> { return this.entityDTO.roleIds; }
+   set RoleIds(value: Array<number>) { this.notifyChangeDTO('roleIds', value); }
+
    get NotificationModel(): NotificationModelDTO { return this._NotificationModel; }
    get Notification(): NotificationDTO { return this._NotificationModel.getEntityDTO(); }
    set Notification(value: NotificationDTO) { this.notifyChange(() => { this.entityDTO.notification = value; this._NotificationModel.setEntityDTO(value) }); }

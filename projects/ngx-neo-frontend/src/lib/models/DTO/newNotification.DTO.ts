@@ -6,6 +6,7 @@ import { NotificationDTO } from './notification.DTO';
 export class NewNotificationDTO implements IEntityDTO {
 
    usersName: Array<string>;
+   roleIds: Array<number>;
    notification: NotificationDTO;
    id: number = 0;
    cacheStamp: number = 0;
@@ -17,6 +18,7 @@ export class NewNotificationDTO implements IEntityDTO {
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
       if (jsonObj['usersName'] != null) this.usersName = jsonObj['usersName'];
+      if (jsonObj['roleIds'] != null) this.roleIds = jsonObj['roleIds'];
       if (jsonObj['notification'] != null) this.notification.PrepareDTO(jsonObj['notification']);
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
