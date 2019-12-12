@@ -27,6 +27,16 @@ export class NotificationServiceBackend {
       });
    }
 
+   public async getUserNotificationsTipo(archived: boolean, pageNumber: number, pageSize: number, tipo: number = -1): Promise<NotificationDataDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+      const res = await this.http.get(this.Constants.apiURL + '/user/notifications/tipo' + '?archived=' + archived + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&tipo=' + tipo).toPromise();
+      if (!res) { return null; }
+      const resDTO = new NotificationDataDTO();
+      resDTO.PrepareDTO(res);
+      return resDTO;
+      });
+   }
+
    public async getUserNotificationsLast(type: number = -1): Promise<NotificationDTO> {
       return this.exceptionManager.executeAsync(async () => {
       const res = await this.http.get(this.Constants.apiURL + '/user/notifications/last' + '?type=' + type).toPromise();
