@@ -44,6 +44,8 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     public scrollSavedActivated = false;
     public currentElement: string;
 
+    public loggedOut$ = new Subject();
+
     public next: () => Promise<void> = async () => { console.log('next'); };
 
     constructor(protected router: Router, protected location: Location, protected ngxNeoModalService: NgxNeoModalMatService,
@@ -172,6 +174,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     public async Logout(): Promise<void> {
         await this.authenticationService.logout();
         this.dispose();
+        this.loggedOut$.next(true);
         if (this.cordovaService.isIOSApp) {
             this.router.navigate(['/ios-landing']);
         } else {
