@@ -1,5 +1,6 @@
 export * from './actionType.ENUM';
 export * from './attachment.DTO';
+export * from './AuditLogEntry.DTO';
 export * from './authChangePasswordRequest.DTO';
 export * from './authEditUserRequest.DTO';
 export * from './authNewUserRequest.DTO';
