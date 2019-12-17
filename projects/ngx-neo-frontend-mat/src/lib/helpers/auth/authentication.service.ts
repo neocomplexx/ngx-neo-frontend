@@ -6,6 +6,7 @@ import { PushService } from '../../services/push/signalr.push.service';
 import { ExceptionManagerService } from '../../services/exception-manager/exception-manager.service';
 import { AuthRequestDTO } from '../../models/DTO/authRequest.DTO';
 import { AuthServiceBackend } from '../../services/backend/auth.ServiceBackend';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthenticationService {
     public loggedEvent: BehaviorSubject<AuthResponseDTO>;
 
     constructor(private pushService: PushService, public router: Router, private authService: AuthServiceBackend,
-        private exceptionManager: ExceptionManagerService) {
+        protected modalService: MatDialog, private exceptionManager: ExceptionManagerService) {
         // set token if saved in local storage
         this.authResponseDTO = JSON.parse(localStorage.getItem('currentUserWeb'));
         this.loggedEvent = new BehaviorSubject<AuthResponseDTO>(this.authResponseDTO);
@@ -43,9 +44,9 @@ export class AuthenticationService {
 
     public removeInfoLogin(): void {
         this.pushService.stop();
-      /*   if (this.modalService.hasOpenModals()) {
-            this.modalService.dismissAll();
-        } */
+        if (this.modalService.openDialogs && this.modalService.openDialogs.length > 0) {
+            this.modalService.closeAll();
+        }
         // clear token remove user from local storage to log user out
         this.authResponseDTO = null;
         localStorage.removeItem('currentUserWeb');
