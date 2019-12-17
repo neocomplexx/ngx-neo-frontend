@@ -2,7 +2,7 @@ import { IEntityDTO } from './entity.DTO';
 
 export class AuditLogEntryDTO implements IEntityDTO {
 
-   nombreUsuario: Date;
+   nombreUsuario: string = '';
    tipoAccion: string = '';
    entidadPadre: string = '';
    entidadNombreCompleto: string = '';
@@ -16,7 +16,7 @@ export class AuditLogEntryDTO implements IEntityDTO {
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
-      if (jsonObj['nombreUsuario'] != null) this.nombreUsuario = new Date(jsonObj['nombreUsuario']);
+      if (jsonObj['nombreUsuario'] != null) this.nombreUsuario = jsonObj['nombreUsuario'];
       if (jsonObj['tipoAccion'] != null) this.tipoAccion = jsonObj['tipoAccion'];
       if (jsonObj['entidadPadre'] != null) this.entidadPadre = jsonObj['entidadPadre'];
       if (jsonObj['entidadNombreCompleto'] != null) this.entidadNombreCompleto = jsonObj['entidadNombreCompleto'];
