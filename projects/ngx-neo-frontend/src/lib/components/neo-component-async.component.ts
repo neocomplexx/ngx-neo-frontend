@@ -31,6 +31,7 @@ export abstract class NeoModalAsync implements OnInit, OnDestroy {
 }
 
 export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit, OnDestroy {
+    protected executeInitAsync: boolean;
 
     private subscriptions: Subscription;
 
@@ -45,7 +46,7 @@ export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit,
 
     constructor(protected headerService: HeaderNeoComplexxService) {
         super(headerService);
-
+        this.executeInitAsync = true;
         this.subscriptions = new Subscription();
 
         // Me aseguro que se limpien las suscripciones aunque se haga override del ondestroy
@@ -83,25 +84,27 @@ export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit,
 
 
     ngOnInit() {
-        if (!this.scrollDelay || this.scrollDelay === 0) {
-            this.scrollToSaved();
-        }
         // El ngOnInit debe ser sincronico por ello tenemos nuestro propio metodo asincroníco para trabajar
         // las cargas de datos en background que hacemos en los ngOnInit
-        this.ngOnInitAsync()
-            .then((finished) => {
-                if (this.scrollDelay > 0) {
-                    this.scrollToSaved();
-                }
-            })
-            .catch((error) => {
-                // Elevamos la excepción solo si es unauthorized
-                this.headerService.HandleErrorMessage(error);
-                throw error;
-            });
+        if (this.executeInitAsync) {
+            if (!this.scrollDelay || this.scrollDelay === 0) {
+                this.scrollToSaved();
+            }
+            this.ngOnInitAsync()
+                .then((finished) => {
+                    if (this.scrollDelay > 0) {
+                        this.scrollToSaved();
+                    }
+                })
+                .catch((error) => {
+                    // Elevamos la excepción solo si es unauthorized
+                    this.headerService.HandleErrorMessage(error);
+                    throw error;
+                });
+        }
     }
 
-    private scrollToSaved() {
+    protected scrollToSaved() {
         if (this._scrollSavedActivated) {
             let scrollTop = 0;
             const scrolls = JSON.parse(localStorage.getItem('scroll'));
