@@ -52,6 +52,8 @@ export abstract class NeoComponentAsync extends NeoModalAsync implements OnInit,
         // Me aseguro que se limpien las suscripciones aunque se haga override del ondestroy
         const originalOnDestroy = this.ngOnDestroy;
 
+        this.headerService.beforeBack = undefined;
+
         this.ngOnDestroy = () => {
             this.destroy();
             originalOnDestroy.apply(this);
