@@ -49,7 +49,13 @@ export class AuthenticationService {
         }
         // clear token remove user from local storage to log user out
         this.authResponseDTO = null;
-        localStorage.removeItem('currentUserWeb');
+      //  localStorage.removeItem('currentUserWeb');
+
+        // Mantengo el usuario anterior
+        const userLocal: AuthResponseDTO = new AuthResponseDTO();
+        userLocal.id = JSON.parse(localStorage.getItem('currentUserWeb')).id;
+        localStorage.setItem('currentUserWeb', JSON.stringify(userLocal));
+
         localStorage.removeItem('scroll');
     }
 
