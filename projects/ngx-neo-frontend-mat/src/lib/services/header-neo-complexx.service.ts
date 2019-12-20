@@ -25,6 +25,9 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     public userRole: string;
     public userLogged: UserDTO;
 
+    // Mantengo id del usuarioAnterior
+    public idLastUser: number;
+
     public changed: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     public componentSelected: string;
@@ -58,6 +61,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         super(mobileSidebarService);
         this.userType = '';
         this.userLogged = new UserDTO();
+        this.idLastUser = 0;
 
         this.getItemFromLocalStorage();
 
@@ -172,6 +176,8 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     }
 
     public async Logout(): Promise<void> {
+        // Lo inicializo cuando me voy, antes de hacer logout
+         this.idLastUser = this.userLogged.id;
         await this.authenticationService.logout();
         this.dispose();
         this.loggedOut$.next(true);
