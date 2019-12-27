@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend",
-  "version": "7.0.53",
+  "version": "7.0.54",
   "scripts": {
     "build": "cd ../../node_modules/.bin/ && tsc -p ../../projects/ngx-neo-frontend/tsconfig.schematics.json && cd ../../projects/ngx-neo-frontend",
     "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/ngx-neo-frontend/",

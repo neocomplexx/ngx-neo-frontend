@@ -6,18 +6,23 @@ import {
   Router
 } from '@angular/router';
 import { HeaderNeoComplexxService } from '../services/header-neo-complexx.service';
+import { CordovaService } from '../services/cordova';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private headerService: HeaderNeoComplexxService, private router: Router) { }
+  constructor(private headerService: HeaderNeoComplexxService, private router: Router, private cordovaService: CordovaService) { }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot, ) {
     if (this.headerService.IsLogged()) {
       return true;
     } else {
-      return this.router.parseUrl('/login');
+      if (this.cordovaService.isIOSApp) {
+        return this.router.parseUrl('/ios-landing');
+      } else {
+        return this.router.parseUrl('/login');
+      }
     }
   }
 
@@ -25,7 +30,11 @@ export class AuthGuard implements CanActivate {
     if (this.headerService.IsLogged()) {
       return true;
     } else {
-      return this.router.parseUrl('/login');
+      if (!this.cordovaService.isIOSApp) {
+        return this.router.parseUrl('/ios-landing');
+      } else {
+        return this.router.parseUrl('/login');
+      }
     }
   }
 }
