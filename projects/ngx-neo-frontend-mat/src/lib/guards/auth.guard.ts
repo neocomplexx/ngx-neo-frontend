@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
     if (this.headerService.IsLogged()) {
       return true;
     } else {
-      if (!this.cordovaService.isIOSApp) {
+      if (this.cordovaService.isIOSApp) {
         return this.router.parseUrl('/ios-landing');
       } else {
         return this.router.parseUrl('/login');
