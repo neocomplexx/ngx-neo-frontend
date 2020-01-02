@@ -1,0 +1,68 @@
+<div class="overflow-scroll">
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" id="chArch" class="custom-control-input" [checked]="verArchivadas" (change)="verArchivadas = !verArchivadas">
+            <label class="custom-control-label" for="chArch">Ver archivadas</label>
+        </div>
+    </div>
+    <div *ngIf="this.notificacionesUsuario.length > 0">
+        <div class="form-group" *ngFor="let notificacion of this.notificacionesUsuario; let i = index">
+            <neo-slider [leftIcon]="'fa fa-archive'" [leftText]="(notificacion.State != 'Archived')?'Archivar':'Desarchivar'" [rightIcon]="'fa fa-archive'" 
+                [rightText]="(notificacion.State != 'Archived')?'Archivar':'Desarchivar'" *ngIf="verArchivadas || notificacion.State != 'Archived'" 
+                [leftBackground]="(notificacion.State != 'Archived')?'neo-slider-archive':'neo-slider-unarchive'" 
+                [rightBackground]="(notificacion.State != 'Archived')?'neo-slider-archive':'neo-slider-unarchive'" 
+                (notifySwipeLeft)="onNotify(notificacion)" (notifySwipeRight)="onNotify(notificacion)"
+                [neoUndoElements]="undoMessage" [undo]="onUndo" [undoTimeOut]="undoTimeOut" [undoTimeOutLapse]="undoTimeOutLapse"
+                [undoActionText]="actionText">
+                <div  class=" card card-notificaciones"
+                [class.notificaciones-leidas]="notificacion.esLeida" *ngIf="verArchivadas || notificacion.State != 'Archived'">
+                <a (click)="leerNotificacion(notificacion)">
+                    <!--[@notificationAnimator]="notificacion.visibility"-->
+                    <div class="card-body card-body-dashboard ">
+                        <div class="align-items-top d-flex flex-row ">
+                            <div class="flex-grow-1 pr-2">
+                                <div class="d-none d-lg-block">
+                                    <h5 class="card-title-small">{{notificacion.Title}}</h5>
+                                    <label><small>{{notificacion.getEntityDTO().creationDateTime | date:'dd/MM/yyyy
+                                            HH:mm'}}</small></label>
+                                </div>
+                                <div class="d-lg-none">
+                                    <h6 class="card-title-small">{{notificacion.Title}}</h6>
+                                    <label><small>{{notificacion.getEntityDTO().creationDateTime | date:'dd/MM/yyyy
+                                            HH:mm'}}</small></label>
+                                </div>
+                            </div>
+                            <div class="d-flex nowrap flex-nowrap align-items-start">
+                                <ng-container *ngIf="notificacion.State !== 'Archived'">
+                                    <span *ngIf="notificacion.Priority === 'High'" class="mt-1 badge badge-danger badge-mini">Alta</span>
+                                    <span *ngIf="notificacion.Priority === 'Medium'" class="mt-1 badge badge-warning badge-mini">Media</span>
+                                    <span *ngIf="notificacion.Priority === 'Low'" class="mt-1 badge badge-success badge-mini">Baja</span>
+                                </ng-container>
+                                <span *ngIf="notificacion.State === 'Archived'" class="mt-1 badge badge-danger badge-mini">Archivada</span>
+                                <span ngbDropdown placement="bottom-right">
+                                    <button class="btn notification-menu" [id]="'dropdownBasic'+i" ngbDropdownToggle><i
+                                            class="fa fa-ellipsis-v"></i></button>
+                                    <div class="fixed" ngbDropdownMenu>
+                                        <button class="dropdown-item dropdown-item-notification" (click)="archivarConEfecto(notificacion, $event)">{{(notificacion.State
+                                            == 'Archived') ? 'Desarchivar' : 'Archivar'}}</button>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <label [class.text-truncate]="!notificacion.verMas" [class.text-truncate-notification]="!notificacion.verMas">
+                                {{notificacion.Details}}
+                            </label>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </neo-slider>
+    </div>
+</div>
+<div class="card form-group" *ngIf="this.notificacionesUsuario.length === 0">
+    <div class="card-body">
+        <p>No hay notificaciones nuevas para mostrar.</p>
+    </div>
+</div>
+</div>

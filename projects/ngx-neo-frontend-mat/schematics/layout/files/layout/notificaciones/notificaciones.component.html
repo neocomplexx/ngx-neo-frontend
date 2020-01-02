@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <ng-container *ngIf="esAdministrativo">
+    <ngb-tabset #tabs>
+      <ngb-tab title="Notificaciones" id="consulta">
+        <ng-template ngbTabContent>
+          <app-notificaciones-consulta></app-notificaciones-consulta>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Nueva Notificaci&oacute;n" id="generacion">
+        <ng-template ngbTabContent>
+          <app-notificaciones-generacion></app-notificaciones-generacion>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </ng-container>
+  <app-notificaciones-consulta *ngIf="!esAdministrativo"></app-notificaciones-consulta>
+</div>

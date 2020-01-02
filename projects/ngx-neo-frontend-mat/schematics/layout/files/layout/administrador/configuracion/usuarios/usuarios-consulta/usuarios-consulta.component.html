@@ -1,0 +1,52 @@
+<div class="container-fluid container-admin">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Usuarios</h3>
+    <button type="button" mat-raised-button color="primary" class="rounded" [command]="agregarCmd">Agregar</button>
+  </div>
+  <mat-form-field class="w-100">
+    <input #busquedaUser id="busquedaUser" name="busquedaUser" type="text" matInput [(ngModel)]="inputSearch"
+      placeholder="Busqueda de usuario">
+  </mat-form-field>
+  <div class="table-responsive personal-list spaced-container mat-elevation-z8 mb-3">
+    <neo-list class="list-group" [(activeIndex)]="indiceSeleccionado" [neoListKeydown]="busquedaUser" [typeAhead]="true"
+      [linkedWithInputElem]="true" [commandOnEnter]="false" [commandOnClick]="false">
+      <div class="d-flex flex-nowrap overflow-auto list-head secondary-color-intermediate-background">
+        <div class="flex-lg-2 flex-sm-fill">
+          Usuario
+        </div>
+        <div class="flex-2 text-left">
+          Nombre
+        </div>
+        <div class="flex-2 text-left">
+          Rol asociado
+        </div>
+        <div class="flex-grow-1 text-right">
+        </div>
+      </div>
+      <div items-container>
+        <neo-list-item class="d-flex flex-nowrap overflow-auto list-group-item neo-list-item"
+          *ngFor="let user of modeloUsuarios" [item]="user">
+          <div class="flex-lg-2 flex-sm-fill">
+            {{user.UserName}}
+          </div>
+          <div class="flex-lg-2 flex-sm-fill">
+            {{user.FullName}}
+          </div>
+          <div class="flex-lg-2 flex-sm-fill">
+            {{user.RoleName}}
+          </div>
+          <div class="flex-grow-1 text-right">
+            <div class="group-buttons form-sm text-right">
+              <button type="button" mat-raised-button color="primary" class="rounded-left" [command]="editarCmd"
+                [commandValue]="user"> Editar</button>
+              <button type="button" mat-raised-button color="primary" [command]="refreshPassCmd"
+                [commandValue]="user">Contraseña</button>
+              <button type="button" mat-raised-button color="warn" class="rounded-right" [command]="eliminarCmd"
+                [commandValue]="user"> Eliminar </button>
+            </div>
+          </div>
+        </neo-list-item>
+      </div>
+    </neo-list>
+  </div>
+</div>

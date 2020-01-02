@@ -1,0 +1,225 @@
+<div class="container-fluid">
+   <div class="card user-info-card" *ngIf="productor && productor.id > 0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col pl-3 d-none d-lg-block">
+                    <h5>{{productor.razonSocial}}</h5>
+                </div>
+                <div class="col pl-3 d-lg-none">
+                    <h6>{{productor.razonSocial}}</h6>
+                </div>
+            </div>
+            <div class="d-none d-lg-block">
+                <table class="table table-sm spaced-container">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Cuenta</strong>
+                            </td>
+                            <td>{{productor.codigoCuenta}}</td>
+                            <td>
+                                <strong>Cuit</strong>
+                            </td>
+                            <td>{{productor.cuit}}</td>
+                            <td>
+                                <strong>Domicilio</strong>
+                            </td>
+                            <td>{{productor.domicilio.direccion}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Localidad</strong>
+                            </td>
+                            <td>{{productor.domicilio.localidad.nombre}}</td>
+                            <td>
+                                <strong>Tel&eacute;fono</strong>
+                            </td>
+                            <td>{{productor.telefono}}</td>
+                            <td>
+                                <strong>Email</strong>
+                            </td>
+                            <td>{{productor.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-lg-none">
+                <table class="table table-sm spaced-container">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Cuenta</strong>
+                            </td>
+                            <td>{{productor.codigoCuenta}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Cuit</strong>
+                            </td>
+                            <td>{{productor.cuit}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Domicilio</strong>
+                            </td>
+                            <td>{{productor.domicilio.direccion}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Localidad</strong>
+                            </td>
+                            <td>{{productor.domicilio.localidad.nombre}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Telefono</strong>
+                            </td>
+                            <td>{{productor.telefono}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Email</strong>
+                            </td>
+                            <td>{{productor.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card user-info-card spaced-container" *ngIf="productor && productor.id > 0">
+        <div class="card-body">
+            <div class="d-none d-lg-block">
+                <h5>Cuentas bancarias</h5>
+                <table class="table table-sm spaced-container">
+                    <thead>
+                        <tr>
+                            <th scope="col">Banco</th>
+                            <th scope="col">CBU</th>
+                            <th scope="col">Es Afip</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cuenta of productor.cuentasBancarias">
+                            <td>{{cuenta.banco.nombre}}</td>
+                            <td>{{cuenta.cbu}}</td>
+                            <td>{{cuenta.esAfip? 'Si': 'No'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-lg-none">
+                <h6><strong>Cuentas bancarias</strong></h6>
+                <p *ngFor="let cuenta of productor.cuentasBancarias">
+                   {{cuenta.banco.nombre}}<span *ngIf="cuenta.esAfip == true" class="badge badge-warning badge-mini ml-2">AFIP</span><br>CBU: {{cuenta.cbu}}<br>
+                </p>
+                <p *ngIf ="productor.cuentasBancarias.length === 0" >No posee cuentas bancarias asociadas</p>
+            </div>
+        </div>
+    </div>
+    <div class="card user-info-card spaced-container" *ngIf="productor && productor.id > 0">
+        <div class="card-body">
+            <div class="d-none d-lg-block">
+                <h5>Cuentas ACABase</h5>
+            </div>
+            <div class="d-lg-none">
+                <h6><strong>Cuentas ACABase</strong></h6>
+            </div>
+            <table class="table table-sm spaced-container">
+                <thead>
+                    <tr>
+                        <th>Destino</th>
+                        <th class="text-right">C&oacute;digo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cuenta of productor.cuentasDestinoGranos">
+                            <td>{{cuenta.destino.nombre}}</td>
+                            <td class="text-right">{{productor.codigoCuenta}}{{cuenta.codigo | padLeft: 2 : '0'}}</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card user-info-card spaced-container" *ngIf="productor && productor.id > 0">
+        <div class="card-body">
+            <div class="d-none d-lg-block">
+                <h5>Or&iacute;genes</h5>
+            <table class="table table-sm spaced-container">
+                <thead>
+                    <tr>
+                        <th>Nombre campo</th>
+                        <th class="text-right">Hect&aacute;reas</th>
+                        <th>Ubicaci&oacute;n</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let origen of productor.origenes">
+                            <td>{{origen.nombre}}</td>
+                            <td class="text-right">{{origen.hectareas}}</td>
+                            <td class="text-right">{{origen.localidad.nombre}}</td>
+                        </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="d-lg-none">
+                <h6><strong>Origenes</strong></h6>
+                <p *ngFor="let origen of productor.origenes">
+                    Campo: {{origen.nombre}} <br>Hect&aacute;reas: {{origen.hectareas}}<br>Ubicaci&oacute;n: {{origen.localidad.nombre}}
+                </p>
+                <p *ngIf ="productor.origenes.length === 0" >No posee campos asociados</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card user-info-card spaced-container">
+        <div class="card-body">
+            <div class="d-none d-lg-block">
+                <h5>Datos de la cuenta</h5>
+            </div>
+            <div class="d-lg-none">
+                <h6><strong>Datos de la cuenta</strong></h6>
+            </div>
+            <div class="row spaced-container"> 
+                    <div class="col-4 form-group">
+                        <label> Usuario </label>
+                        <input class="form-control form-control-sm" type="text" [ngModel]="usuarioActualModel.UserName" disabled>             
+                    </div>
+                    <div class="col-8 form-group">
+                        <label> Nombre </label>
+                        <input class="form-control form-control-sm" type="text" [ngModel]="usuarioActualModel.FullName" disabled> 
+                    </div>
+                </div>
+                <div class="row"> 
+                        <div class="col-12 col-lg-4 form-group">
+                            <label> Contraseña actual </label>
+                            <input #contrasenia type="password" class="form-control form-control-sm" [minLength]='4' [maxLength]='20' [neoAutofocus]="this.productor && this.productor.id === 0"
+                                    placeholder="Contraseña actual" [(ngModel)]="cambioDeContraseniaModel.OldPassword" [onReturn]="[newPassword]" required>
+                        </div>
+                        <div class="col-12 col-lg-4 form-group" [class.has-success]="cambioDeContraseniaModel.correctPasswordValidation" 
+                                                      [class.has-danger]="cambioDeContraseniaModel.failedPasswordValidation">
+                                <label> Nueva contraseña </label>
+                                <input #newPassword type="password" class="form-control form-control-sm" [minLength]='4' [maxLength]='20'
+                                        [class.form-control-success]="cambioDeContraseniaModel.correctPasswordValidation"
+                                        [class.form-control-danger]="cambioDeContraseniaModel.failedPasswordValidation"
+                                        placeholder="Nueva contraseña" [(ngModel)]="cambioDeContraseniaModel.Password" required>       
+                        </div>
+                        <div class="col-12 col-lg-4 form-group" [class.has-success]="cambioDeContraseniaModel.correctPasswordValidation" 
+                                                      [class.has-danger]="cambioDeContraseniaModel.failedPasswordValidation">
+                                <label> Repetir nueva contraseña </label>
+                                <input #contrasenia type="password" class="form-control form-control-sm" [minLength]='4' [maxLength]='20'
+                                        [class.form-control-success]="cambioDeContraseniaModel.correctPasswordValidation"
+                                        [class.form-control-danger]="cambioDeContraseniaModel.failedPasswordValidation"
+                                        placeholder="Repetir nueva contraseña" [(ngModel)]="cambioDeContraseniaModel.repeatPassword" required>              
+                        </div>
+                    </div>
+                <div class="row align-items-center">
+                    <div class="col text-right">
+                        <button type="submit" class="btn btn-primary btn-sm" [command]="cambiarCmd"> Cambiar </button> 
+                    </div>   
+                </div>
+        </div>
+    </div>
+</div>
+

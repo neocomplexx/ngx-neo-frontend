@@ -1,0 +1,126 @@
+<div class="container-fluid container-admin spaced-container">
+    <div class="table-responsive tabla-ajustada mat-elevation-z8">
+        <table mat-table [dataSource]="permisos">
+
+            <ng-container matColumnDef="Entidad">
+                <th mat-header-cell *matHeaderCellDef>Entidad</th>
+                <td mat-cell *matCellDef="let permiso"> {{permiso.Module}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Metodo">
+                <th mat-header-cell *matHeaderCellDef>Metodo</th>
+                <td mat-cell *matCellDef="let permiso"> {{permiso.Method}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Permiso">
+                <th mat-header-cell *matHeaderCellDef>Permiso</th>
+                <td mat-cell *matCellDef="let permiso"> {{permiso.Description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Ignorar">
+                <th mat-header-cell *matHeaderCellDef>Ignorar</th>
+                <td mat-cell *matCellDef="let permiso">
+                    <input type="checkbox" [(checked)]="permiso.Ignore" (change)="permiso.Ignore = !permiso.Ignore">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef=" ">
+                <th mat-header-cell *matHeaderCellDef class="text-center"> </th>
+                <td mat-cell *matCellDef="let rol" class="text-center">
+                    <div class="group-buttons text-right">
+                        <button type="button" mat-raised-button color="primary" [command]="editarCmd"
+                            [commandValue]="rol.Id" disabled> Editar</button>
+                        <button type="button" mat-raised-button color="primary" [command]="eliminarCmd"
+                            [commandValue]="rol.Id" disabled> Eliminar </button>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </div>
+    <div class="row spaced-container">
+        <div class="col form-group text-right">
+            <button mat-raised-button color="primary" type="submit" [command]="actualizarCmd"> Actualizar </button>
+        </div>
+    </div>
+    <!--div class="d-none d-lg-block">
+  <table class="table table-sm table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Entidad</th>
+            <th>M&eacute;todo</th>
+            <th>Permiso</th>
+            <th>Ignorar</th>                     
+        </tr>
+        <tr>
+            <th>
+                <div class="input-group">
+                    <input #buscarEnt id="buscarEnt" name="buscarEnt" type="text" class="form-control form-control-sm" [onReturn]="[buscarMet]"  
+                            placeholder="Entidad" [(ngModel)]="buscarEntidad">
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <input #buscarMet id="buscarMet" name="buscarMet" type="text" class="form-control form-control-sm" [onReturn]="[buscarDesc]"  
+                           placeholder="M&eacute;todo" [(ngModel)]="buscarMetodo">
+                </div>
+            </th>
+            <th>
+                <div class="input-group">
+                    <input #buscarDesc id="buscarDesc" name="buscarDesc" type="text" class="form-control form-control-sm" 
+                            placeholder="Descripci&oacute;n" [(ngModel)]="buscarDescripcion">
+                </div>
+            </th>
+            <th class="text-center">
+                <input type="checkbox" [(checked)]="ignorarTodos" (change)="comprobarIgnorarTodos()">
+            </th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let permiso of permisos
+                    | textFilter : 'Module' : buscarEntidad
+                    | textFilter: 'Method' : buscarMetodo
+                    | textFilter: 'Description' : buscarDescripcion">
+            <td>{{permiso.Module}}</td>
+            <td>{{permiso.Method}}</td>
+            <td>{{permiso.Description}}</td>
+            <td class="text-center">
+                <input type="checkbox" [(checked)]="permiso.Ignore" (change)="permiso.Ignore = !permiso.Ignore">
+            </td> 
+        </tr>           
+    </tbody>
+</table>
+</div>
+
+<div class="d-lg-none">
+    <ng-container *ngFor="let permiso of permisos; let i = index">
+        <div class="card card-general spaced-container">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <p class="card-title"><strong>{{permiso.Module}}</strong> {{permiso.Method}}</p>
+                    </div>
+                    <div class="col text-right">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="i" [(checked)]="permiso.Ignore" 
+                                    (change)="permiso.Ignore = !permiso.Ignore">
+                            <label class="custom-control-label" for="i">Ignorar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p><strong>Permiso: </strong> {{permiso.Description}}</p>          
+            </div>
+        </div>
+    </ng-container>
+</div-->
+
+
+
+
+</div>

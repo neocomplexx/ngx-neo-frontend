@@ -1,0 +1,36 @@
+<div class="container-fluid container-admin">
+  <div class="d-flex flex-row flex-wrap spaced-container">
+      <mat-form-field class="flex-e pad-form">
+          <mat-label> Nombre rol </mat-label>
+          <input id="nombreRol" matInput name="nombreRol" type="text" class="form-control" placeholder="Nombre rol" [maxLength]='50'
+                 [(ngModel)]="rolGeneracionModel.Name" [onReturn]="[descripcion]" [neoAutofocus]="true">
+      </mat-form-field>
+      <mat-form-field class="flex-e pad-form">
+          <mat-label> Descripci&oacute;n </mat-label>
+          <input matInput #descripcion id="descripcion" name="descripcion" type="text" class="form-control" placeholder="Descripci&oacute;n" [maxLength]='140'
+                  [(ngModel)]="rolGeneracionModel.Description">
+      </mat-form-field>
+  </div>
+  <div class="d-flex flex-row flex-wrap spaced-container">
+    <mat-form-field class="flex-e pad-form">
+        <mat-label>Tipo de Usuario</mat-label>
+        <mat-select #selectUserType [(ngModel)]="rolGeneracionModel.UserType" class="form-control" id="selectUserType" name="selectUserType">
+            <mat-option *ngFor="let userType of usersType" [value]="userType.id">{{userType.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-label><strong>Permisos</strong></mat-label>
+    <ngx-treeview [config]="config" [items]="items" > <!-- (filterChange)="onFilterChange($event)" (selectedChange)="values = $event" -->
+    </ngx-treeview>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+        <div class="group-buttons">
+            <button mat-raised-button color="secondary" class="rounded-left" type="submit" [command]="cancelarCmd">Cancelar</button>
+            <button mat-raised-button color="primary" class="rounded-right" type="submit" [command]="generarCmd" *ngIf="rolGeneracionModel.Id === 0">Guardar</button>
+            <button mat-raised-button color="primary" class="rounded-right" type="submit" [command]="editarCmd" *ngIf="rolGeneracionModel.Id">Guardar</button>
+        </div>
+    </div>
+  </div>
+</div>

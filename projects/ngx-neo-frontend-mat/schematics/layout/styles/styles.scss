@@ -1,0 +1,36 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'colors';
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import '~@neocomplexx/ngx-neo-components/styles/_main.scss';
+
+body {
+  font-family: 'Gill Sans Regular' !important;
+  overflow-x: hidden;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Gill Sans Bold' !important;
+}
+
+.modal {
+  overscroll-behavior-y: contain;
+}
+
+a {
+  cursor: pointer;
+}
+
+.lg-logo {
+  height: 24px;
+}

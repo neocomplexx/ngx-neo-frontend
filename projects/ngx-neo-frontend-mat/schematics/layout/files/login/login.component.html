@@ -1,0 +1,40 @@
+<div>
+  <div class="entry-screen-background h-100">
+    <div class="neo-fullscreen container-fluid h-100">
+      <div class="entry-screen-container row h-100">
+        <div class="entry-screen-form col-12 col-sm-7 col-md-6 col-lg-5 col-xl-4 m-auto align-self-center">
+          <img src="assets/img/logo-lg.png" class="w-100 d-none d-lg-block" alt="Logo grande">
+          <img src="assets/img/logo-sm.png" class="w-100 d-lg-none" alt="Logo chico">
+          <form role="form" class="mt-4">
+            <div class="form-content">
+              <div class="form-group">
+                <input [disabled]="searching" [neoAutofocus]="true" type="text" name="usuario" class="form-control"
+                  [(ngModel)]="userPass.UserName" placeholder="Usuario" [onReturn]="password">
+              </div>
+              <div class="form-group">
+                <input [disabled]="searching" #password type="password" name="password" [(ngModel)]="userPass.Password"
+                  class="form-control" placeholder="Contraseña" (keydown.enter)="loginCmd.execute()">
+                <!-- [command]="loginCmd" expression changed after it was checked-->
+              </div>
+            </div>
+            <button #ingresar id="ingresar" name="ingresar" type="button" [command]="loginCmd"
+              class="form-group btn btn-success btn-block">Ingresar</button>
+          </form>
+          <div class="row">
+            <div class="mb-2 col-12 mb-sm-0 col-sm-6">
+              <div class="text-center">
+                <a [command]="forgetPassCmd" class="green-a">Olvid&eacute; mi contraseña</a>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="text-center">
+                <a [command]="noUsuarioCmd" class="green-a">No tengo usuario</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer-<%=dasherize(projectName)%>></app-footer-<%=dasherize(projectName)%>>

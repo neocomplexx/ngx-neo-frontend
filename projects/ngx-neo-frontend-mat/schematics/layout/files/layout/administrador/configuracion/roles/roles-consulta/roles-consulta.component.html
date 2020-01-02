@@ -1,0 +1,36 @@
+<div class="container-fluid container-admin">
+  <div class="d-flex justify-content-between align-items-center">
+    <h3>Roles</h3>
+    <button type="button" mat-raised-button color="primary" class="rounded" [command]="agregarCmd">Agregar</button>
+  </div>
+  <div class="table-responsive tabla-ajustada  spaced-container mat-elevation-z8 table-responsive mb-4">
+    <table mat-table [dataSource]="rolesConsulta">
+
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let rol"> {{rol.Name}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Descripcion">
+        <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+        <td mat-cell *matCellDef="let rol"> {{rol.Description}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef=" ">
+        <th mat-header-cell *matHeaderCellDef class="text-right"> </th>
+        <td mat-cell *matCellDef="let rol" class="text-right">
+          <div class="text-right">
+            <button type="button" mat-raised-button color="primary" class="rounded-left" [command]="editarCmd"
+              [commandValue]="rol"> Editar</button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="container-fluid overflow-scroll spaced-container">
+    <div class="row">
+        <div class="col-8 form-group">
+            <label>Ti&iacute;tulo</label>
+            <input type="text" class="form-control form-control-sm" placeholder="T&iacute;tulo"
+                [(ngModel)]="notificacionModelDTO.Title" [maxLength]='50' required>
+        </div>
+        <div class="col-4 form-group">
+            <label>Prioridad</label>
+            <select class="form-control form-control-sm" [(ngModel)]="notificacionModelDTO.Priority" required>
+                <option [value]="undefined" selected disabled hidden> -- Seleccione una prioridad --</option>
+                <option *ngFor="let prioridad of prioridades" [value]="prioridad">
+                    {{prioridad === 'Low'? 'Baja':''}}
+                    {{prioridad === 'Medium'? 'Media':''}}
+                    {{prioridad === 'High'? 'Alta':''}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Contenido</label>
+        <input type="text" class="form-control form-control-sm" placeholder="Contenido de la notificación"
+            [(ngModel)]="notificacionModelDTO.Details" [maxLength]='225' required>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-8 form-group">
+            <!-- Formatter para mostrar el typeahead -->
+            <ng-template #rt let-r="result" let-t="term">
+                <ngb-highlight [result]="r.fullName" [term]="t"></ngb-highlight>
+            </ng-template>
+            <label for="typeahead-user">Notificar a:</label>
+            <input id="typeahead-user" type="text" class="form-control" [(ngModel)]="usuarioSeleccionado" [disabled]="notificarATodos"
+                [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="searchUser" />
+        </div>
+        <div class="col col-lg-2 form-group">
+            <button class="btn btn-primary btn-sm btn-block" [command]="agregarUsuarioCmd"
+                [disabled]="notificarATodos">Agregar</button>
+        </div>
+        <div class="col form-group text-right">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="activochkbox" [checked]="notificarATodos"
+                    (change)="notificarATodos = !notificarATodos; limpiarUsuariosElegidos()">
+                <label class="custom-control-label" for="activochkbox">Todos</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col form-group text-right">
+            <button class="btn btn-primary" [command]="notificarCmd">Enviar</button>
+        </div>
+    </div>
+    <table class="table table-sm table-striped" [hidden]="usuariosANotificar.length === 0">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre completo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of this.usuariosANotificar">
+                <td>{{u.userName}}</td>
+                <td>{{u.fullName}}</td>
+                <td class="text-right"><button class="btn btn-danger btn-sm"
+                        (click)="eliminarUsuario(u)">Remover</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
