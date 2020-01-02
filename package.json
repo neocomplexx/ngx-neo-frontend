@@ -12,6 +12,7 @@
     "npm_pack": "cd dist/ngx-neo-frontend && npm pack",
     "package": "npm run build_lib && npm run copy-files &&  npm run build_schematic && npm run npm_pack",
     "debug": "npm run build_lib && ng serve --vendorSourceMap",
+    "debug_mat": "npm run build_lib_mat && ng serve --vendorSourceMap",
     "copy-license": "copy .\\LICENSE .\\dist\\ngx-neo-frontend",
     "copy-readme": "copy .\\README.md .\\dist\\ngx-neo-frontend",
     "copy-files": "npm run copy-license && npm run copy-readme",
