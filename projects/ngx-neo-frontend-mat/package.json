@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend-mat",
-  "version": "7.0.31",
+  "version": "7.0.32",
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",

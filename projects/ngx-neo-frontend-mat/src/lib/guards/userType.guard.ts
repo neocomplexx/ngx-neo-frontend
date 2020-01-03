@@ -14,15 +14,15 @@ export class UserTypeGuard implements CanActivate {
   constructor(private headerService: HeaderNeoComplexxService, private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.userType) {
+    if (this.headerService.IsLogged()) {
       if (next.data.expectedType) {
-        if (this.headerService.userType === next.data.expectedType) {
+        if (this.headerService.userLogged.userType === next.data.expectedType) {
           return true;
         } else {
           return this.router.parseUrl('/home');
         }
       } else if (next.data.expectedTypes) {
-        if (next.data.expectedTypes.includes(this.headerService.userType)) {
+        if (next.data.expectedTypes.includes(this.headerService.userLogged.userType)) {
           return true;
         } else {
           return this.router.parseUrl('/home');
@@ -37,15 +37,15 @@ export class UserTypeGuard implements CanActivate {
   }
 
   canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.userType) {
-      if (next.parent.data.expectedType) {
-        if (this.headerService.userType === next.parent.data.expectedType) {
+    if (this.headerService.IsLogged()) {
+      if (next.data.expectedType) {
+        if (this.headerService.userLogged.userType === next.data.expectedType) {
           return true;
         } else {
           return this.router.parseUrl('/home');
         }
-      } else if (next.parent.data.expectedTypes) {
-        if (next.parent.data.expectedTypes.includes(this.headerService.userType)) {
+      } else if (next.data.expectedTypes) {
+        if (next.data.expectedTypes.includes(this.headerService.userLogged.userType)) {
           return true;
         } else {
           return this.router.parseUrl('/home');

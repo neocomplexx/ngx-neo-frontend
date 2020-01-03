@@ -4,6 +4,7 @@ import {
   Router
 } from '@angular/router';
 import { HeaderNeoComplexxService } from '../services/header-neo-complexx.service';
+import { UserTypes } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserDecisionGuard implements CanActivate {
   constructor(private headerService: HeaderNeoComplexxService, private router: Router) { }
 
   canActivate() {
-    if (this.headerService.userType === 'administrator') {
+    if (this.headerService.userLogged.userType === UserTypes.Administrator) {
       return this.router.parseUrl('/admin');
     } else {
       return this.router.parseUrl('/user');
@@ -20,7 +21,7 @@ export class UserDecisionGuard implements CanActivate {
   }
 
   canActivateChild() {
-    if (this.headerService.userType === 'administrator') {
+    if (this.headerService.userLogged.userType === UserTypes.Administrator) {
       return this.router.parseUrl('/admin');
     } else {
       return this.router.parseUrl('/user');
