@@ -125,6 +125,8 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     private getItemFromLocalStorage(): void {
         const currentUser = JSON.parse(localStorage.getItem('currentUserWeb'));
         if (currentUser) {
+            const upper = currentUser.userType[0].toUpperCase() +  currentUser.userType.slice(1);
+            currentUser.userType = UserTypes[upper];
             this.userLogged.PrepareDTO(currentUser);
         } else {
             this.userLogged = new UserDTO();

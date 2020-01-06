@@ -16,7 +16,7 @@ export class RoleGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot) {
     if (this.headerService.IsLogged()) {
       if (next.data.expectedRole) {
-        if (this.headerService.userLogged.roleName === next.data.expectedRole) {
+        if (this.headerService.userLogged.role.name === next.data.expectedRole) {
           return true;
         } else {
           return this.router.parseUrl('/home');
