@@ -14,15 +14,12 @@ import { AuthenticationService } from '../helpers/auth/authentication.service';
 import { HeaderService } from '@neocomplexx/ngx-neo-components';
 import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 import { UsersServiceBackend } from './backend';
+import { UserTypes } from '../models';
 
 export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
 
-    protected currentUserWeb: any;
     protected userEntity: any;
 
-    public userTypeId: number;
-    public userType: string;
-    public userRole: string;
     public userLogged: UserDTO;
 
     // Mantengo id del usuarioAnterior
@@ -59,7 +56,6 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         protected breadCrumbService: BreadcrumbService, protected cordovaService: CordovaService,
         protected exceptionService: ExceptionManagerService) {
         super(mobileSidebarService);
-        this.userType = '';
         this.userLogged = new UserDTO();
         this.idLastUser = 0;
 
@@ -127,30 +123,24 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
 
     private getItemFromLocalStorage(): void {
-        this.currentUserWeb = JSON.parse(localStorage.getItem('currentUserWeb'));
-        if (this.currentUserWeb) {
-            this.userLogged.id = this.currentUserWeb.id;
-        }
-        if (this.currentUserWeb && this.currentUserWeb.role) {
-            this.userType = this.currentUserWeb.userType; // === 'administrative' || currentUserWeb.userType === 'administrator');
-            this.userTypeId = this.currentUserWeb.userTypeId;
-            this.userRole = this.currentUserWeb.role.name;
+        const currentUser = JSON.parse(localStorage.getItem('currentUserWeb'));
+        if (currentUser) {
+            const upper = currentUser.userType[0].toUpperCase() +  currentUser.userType.slice(1);
+            currentUser.userType = UserTypes[upper];
+            this.userLogged.PrepareDTO(currentUser);
         } else {
-            this.userTypeId = 0;
+            this.userLogged = new UserDTO();
         }
     }
 
     public async initializeActualUser(): Promise<void> {
         this.getItemFromLocalStorage();
-        this.userLogged = await this.usersServiceBackend.getUsersUsernameUSERNAME(this.currentUserWeb.userName);
         await this.getUserEntityById();
     }
 
 
     public dispose(): void {
         this.userLogged = new UserDTO();
-        this.currentUserWeb = null;
-        this.userType = '';
         this.authenticationService.removeInfoLogin();
         this.userEntity = undefined;
     }
@@ -193,7 +183,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     }
 
     public isAdmin() {
-        return this.userType === 'administrator';
+        return this.userLogged.userType === UserTypes.Administrator;
     }
 
     public async back(): Promise<void> {
@@ -206,7 +196,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         if (this.changed.value) {
             const result = await this.ngxNeoModalService.decision('Hay cambios sin guardar. ¿Está seguro de salir y perderlos?',
                 '', 'Ahora podrá guardarlos...');
-            if (result.ButtonResponse != AlertButton.Accept) {
+            if (result.ButtonResponse !== AlertButton.Accept) {
                 return;
             } else {
                 this.notifyChange(false);

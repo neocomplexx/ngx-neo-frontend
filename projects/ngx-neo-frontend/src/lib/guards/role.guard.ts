@@ -13,10 +13,10 @@ import { HeaderNeoComplexxService } from '../services/header-neo-complexx.servic
 export class RoleGuard implements CanActivate {
   constructor(private headerService: HeaderNeoComplexxService, private router: Router) { }
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.userRole) {
+  canActivate(next: ActivatedRouteSnapshot) {
+    if (this.headerService.IsLogged()) {
       if (next.data.expectedRole) {
-        if (this.headerService.userRole === next.data.expectedRole) {
+        if (this.headerService.userLogged.role.name === next.data.expectedRole) {
           return true;
         } else {
           return this.router.parseUrl('/home');
@@ -30,20 +30,7 @@ export class RoleGuard implements CanActivate {
     }
   }
 
-  canActivateChild(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.headerService.userRole) {
-      if (next.parent.data.expectedRole) {
-        if (this.headerService.userRole === next.parent.data.expectedRole) {
-          return true;
-        } else {
-          return this.router.parseUrl('/home');
-        }
-      } else {
-        return true;
-      }
-    } else {
-      this.headerService.dispose();
-      return this.router.parseUrl('/login');
-    }
+  canActivateChild(next: ActivatedRouteSnapshot) {
+    return this.canActivate(next);
   }
 }
