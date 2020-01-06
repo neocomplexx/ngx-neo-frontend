@@ -1,6 +1,6 @@
-import { NotificationModelDTO } from '@neocomplexx/ngx-neo-frontend';
-import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend';
-import { NotificationState } from '@neocomplexx/ngx-neo-frontend';
+import { NotificationModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NotificationState } from '@neocomplexx/ngx-neo-frontend-mat';
 import { Subscription } from 'rxjs';
 
 export class NotificacionesModel extends NotificationModelDTO  {

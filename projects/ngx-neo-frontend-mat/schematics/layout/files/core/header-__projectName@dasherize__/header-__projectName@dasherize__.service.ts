@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';
-import { UsersServiceBackend, PushService, HeaderNeoComplexxService, CordovaService } from '@neocomplexx/ngx-neo-frontend';
+import { UsersServiceBackend, PushService, HeaderNeoComplexxService, CordovaService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ExceptionManagerService } from '@neocomplexx/ngx-neo-frontend';
-import { AuthenticationService } from '@neocomplexx/ngx-neo-frontend';
+import { ExceptionManagerService } from '@neocomplexx/ngx-neo-frontend-mat';
+import { AuthenticationService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 
 @Injectable({

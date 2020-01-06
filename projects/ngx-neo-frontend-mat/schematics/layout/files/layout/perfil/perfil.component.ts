@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Command, ICommand } from '@neocomplexx/ngx-neo-directives';
-import { UserDTO } from '@neocomplexx/ngx-neo-frontend';
-import { AuthChangePasswordRequestDTO, NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend';
-import { UserModelDTO } from '@neocomplexx/ngx-neo-frontend';
+import { UserDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { AuthChangePasswordRequestDTO, NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
+import { UserModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { PerfilNewPasswordModel } from './perfil-user-new-password.model';
 import { PerfilService } from './perfil.service';
 import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';

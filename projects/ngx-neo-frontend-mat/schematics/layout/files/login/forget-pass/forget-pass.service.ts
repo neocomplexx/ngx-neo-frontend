@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthServiceBackend, AuthChangePasswordRequestDTO } from '@neocomplexx/ngx-neo-frontend';
+import { AuthServiceBackend, AuthChangePasswordRequestDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 
 @Injectable({
     providedIn: 'root'

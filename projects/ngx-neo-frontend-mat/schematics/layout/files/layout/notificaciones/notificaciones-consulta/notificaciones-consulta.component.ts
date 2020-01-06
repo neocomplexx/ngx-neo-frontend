@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject } from 'rxjs';
-import { NotificationState } from '@neocomplexx/ngx-neo-frontend';
-import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend';
+import { NotificationState } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NotificacionesModel } from '../notificaciones.model';
-import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend';
+import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend-mat';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
-import { NotificationNeoComplexxService } from '@neocomplexx/ngx-neo-frontend';
+import { NotificationNeoComplexxService } from '@neocomplexx/ngx-neo-frontend-mat';
 // import { trigger, transition, animate, keyframes } from '@angular/animations';
 // import * as kf from 'src/app/shared/services/keyframes';
 

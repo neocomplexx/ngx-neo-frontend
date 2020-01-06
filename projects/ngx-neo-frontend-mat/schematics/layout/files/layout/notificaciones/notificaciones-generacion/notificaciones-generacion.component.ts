@@ -1,9 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend';
-import { NotificationModelDTO, UserDTO } from '@neocomplexx/ngx-neo-frontend';
-import { NotificationDTO } from '@neocomplexx/ngx-neo-frontend';
+import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NotificationModelDTO, UserDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NotificationDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 import { NotificarUsuariosService } from './notificar-usuarios.service';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CordovaService } from '@neocomplexx/ngx-neo-frontend';
+import { CordovaService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { Header<%=classify(projectName)%>Service } from './header-<%=dasherize(projectName)%>.service';
 import { Router } from '@angular/router';
 

@@ -1,5 +1,5 @@
-import { AuthChangePasswordRequestDTO } from '@neocomplexx/ngx-neo-frontend';
-import { AuthChangePasswordRequestModelDTO  } from '@neocomplexx/ngx-neo-frontend';
+import { AuthChangePasswordRequestDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { AuthChangePasswordRequestModelDTO  } from '@neocomplexx/ngx-neo-frontend-mat';
 
 export class PerfilNewPasswordModel extends AuthChangePasswordRequestModelDTO {
 

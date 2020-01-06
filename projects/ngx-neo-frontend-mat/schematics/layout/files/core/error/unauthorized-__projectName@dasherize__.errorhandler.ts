@@ -1,5 +1,5 @@
 import { Injectable, Injector, ErrorHandler, Inject } from '@angular/core';
-import { UnauthorizedErrorHandler } from '@neocomplexx/ngx-neo-frontend';
+import { UnauthorizedErrorHandler } from '@neocomplexx/ngx-neo-frontend-mat';
 
 @Injectable()
 export class Unauthorized<%=classify(projectName)%>ErrorHandler extends UnauthorizedErrorHandler {

@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
-import { AuthRequestDTO } from '@neocomplexx/ngx-neo-frontend';
-import { AuthRequestModelDTO } from '@neocomplexx/ngx-neo-frontend';
+import { AuthRequestDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { AuthRequestModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 
 export class LoginModelDTO extends AuthRequestModelDTO {
 

@@ -5,12 +5,12 @@ import { Command, ICommand } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
-import { AuthRequestDTO } from '@neocomplexx/ngx-neo-frontend';
-import { AuthenticationService } from '@neocomplexx/ngx-neo-frontend';
-import { AuthServiceBackend } from '@neocomplexx/ngx-neo-frontend';
+import { AuthRequestDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { AuthenticationService } from '@neocomplexx/ngx-neo-frontend-mat';
+import { AuthServiceBackend } from '@neocomplexx/ngx-neo-frontend-mat';
 import { LoginModelDTO } from './login.model';
-import { CordovaService } from '@neocomplexx/ngx-neo-frontend';
-import { TypeSocial } from '@neocomplexx/ngx-neo-frontend';
+import { CordovaService } from '@neocomplexx/ngx-neo-frontend-mat';
+import { TypeSocial } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
 @Component({

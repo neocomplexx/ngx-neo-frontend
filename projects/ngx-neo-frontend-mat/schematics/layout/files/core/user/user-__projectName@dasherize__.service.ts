@@ -1,6 +1,6 @@
 import { Injectable,  Inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FrontEndConfig, ExceptionManagerService, FrontEndConfigService, UsersServiceBackend } from '@neocomplexx/ngx-neo-frontend';
+import { FrontEndConfig, ExceptionManagerService, FrontEndConfigService, UsersServiceBackend } from '@neocomplexx/ngx-neo-frontend-mat';
 
 @Injectable({
     providedIn: 'root'

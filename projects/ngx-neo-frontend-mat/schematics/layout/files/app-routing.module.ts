@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard, LoginGuard } from '@neocomplexx/ngx-neo-frontend';
+import { AuthGuard, LoginGuard } from '@neocomplexx/ngx-neo-frontend-mat';
 
 const routes: Routes = [
   {

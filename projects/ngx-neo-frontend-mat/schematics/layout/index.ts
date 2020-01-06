@@ -296,7 +296,7 @@ const addModuleToImports = (options: any): Rule => {
     context.logger.log('info', `✅️ "${moduleComponents}" is imported`);
 
     const moduleNeoFront = 'NgxNeoFrontendModule.forRoot({ apiURL: urlAPI, delaySearchMilliseconds: searchDelay })';
-    addModuleImportToRootModule(host, moduleNeoFront, '@neocomplexx/ngx-neo-frontend', project);
+    addModuleImportToRootModule(host, moduleNeoFront, '@neocomplexx/ngx-neo-frontend-mat', project);
     context.logger.log('info', `✅️ "NgxNeoFrontend" is imported`);
 
     const moduleNeoCompleter = 'NgxNeoCompleterModule.forRoot()';
@@ -373,7 +373,7 @@ const cordovaDebugString = `{
 
  const importString = (projectName: string) =>  `import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { NotificationNeoComplexxService, AuthGuard, HttpClientExtended, UnauthorizedErrorHandler, FrontEndConfig, UserServiceBackend, PushService, AuthenticationService, CordovaService, ExceptionManagerService, HeaderNeoComplexxService } from '@neocomplexx/ngx-neo-frontend';
+import { NotificationNeoComplexxService, AuthGuard, HttpClientExtended, UnauthorizedErrorHandler, FrontEndConfig, UserServiceBackend, PushService, AuthenticationService, CordovaService, ExceptionManagerService, HeaderNeoComplexxService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { HeaderService, NotificationService, CustomHammerConfig, MobileSidebarService } from '@neocomplexx/ngx-neo-components';
 import { urlAPI, searchDelay } from './shared/constants';
 import { Header${classify(projectName)}Service } from 'src/app/core/header-${dasherize(projectName)}/header-${dasherize(projectName)}.service';

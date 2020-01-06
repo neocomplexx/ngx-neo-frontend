@@ -5,16 +5,16 @@ import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { RolesService } from '../roles.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
-import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend';
+import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
-import { RoleDTO } from '@neocomplexx/ngx-neo-frontend';
-import { RolePermissionState} from '@neocomplexx/ngx-neo-frontend';
-import { RolePermissionDTO } from '@neocomplexx/ngx-neo-frontend';
-import { RoleModelDTO} from '@neocomplexx/ngx-neo-frontend';
+import { RoleDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { RolePermissionState} from '@neocomplexx/ngx-neo-frontend-mat';
+import { RolePermissionDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { RoleModelDTO} from '@neocomplexx/ngx-neo-frontend-mat';
 import { ConfiguracionRolService } from '../configuracion-rol.service';
-import { ModulePermissionsDTO} from '@neocomplexx/ngx-neo-frontend';
-import { NameDetailDTO } from '@neocomplexx/ngx-neo-frontend';
+import { ModulePermissionsDTO} from '@neocomplexx/ngx-neo-frontend-mat';
+import { NameDetailDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
 
 @Component({

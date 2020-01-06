@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { UserDecisionGuard, UserTypeGuard } from '@neocomplexx/ngx-neo-frontend';
+import { UserDecisionGuard, UserTypeGuard } from '@neocomplexx/ngx-neo-frontend-mat';
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        loadChildren: './cliente/cliente.module#ClienteModule',
+        loadChildren: './user/user.module#UserModule',
         data: { expectedTypes: ['professional', 'user'] },
         canActivate: [UserTypeGuard],
       },

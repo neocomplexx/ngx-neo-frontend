@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { NotificationServiceBackend, UserDTO} from '@neocomplexx/ngx-neo-frontend';
-import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend';
-import { NewNotificationDTO } from '@neocomplexx/ngx-neo-frontend';
-import { UsersServiceBackend } from '@neocomplexx/ngx-neo-frontend';
+import { NotificationServiceBackend, UserDTO} from '@neocomplexx/ngx-neo-frontend-mat';
+import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NewNotificationDTO } from '@neocomplexx/ngx-neo-frontend-mat';
+import { UsersServiceBackend } from '@neocomplexx/ngx-neo-frontend-mat';
 
 @Injectable({
     providedIn: 'root'
