@@ -2,6 +2,14 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-neo-frontend-mat",
   "lib": {
-    "entryFile": "src/public_api.ts"
+    "entryFile": "src/public_api.ts",
+    "umdModuleIds": {
+      "@neocomplexx/ngx-neo-components-mat": "ngx-neo-components-mat",
+      "@neocomplexx/ngx-neo-completer-mat": "ngx-neo-completer-mat",
+      "@neocomplexx/ngx-neo-loader": "ngx-neo-loader",
+      "@neocomplexx/ngx-neo-modal-mat": "ngx-neo-modal-mat",
+      "@neocomplexx/ngx-neo-directives-mat": "ngx-neo-directives-mat",
+      "@aspnet/signalr": "signlar"
+    }
   }
 }

@@ -17,12 +17,13 @@
     "copy-readme": "copy .\\README.md .\\dist\\ngx-neo-frontend",
     "copy-files": "npm run copy-license && npm run copy-readme",
     "build_schematic": "cd ./projects/ngx-neo-frontend && npm run build",
-    "package_mat": "npm run build_lib_mat && npm run copy-files_mat && npm run npm_pack_mat",
+    "package_mat": "npm run build_lib_mat && npm run copy-files_mat && npm run build_schematic_mat && npm run npm_pack_mat",
     "build_lib_mat": "ng build ngx-neo-frontend-mat",
     "npm_pack_mat": "cd dist/ngx-neo-frontend-mat && npm pack",
     "copy-license_mat": "copy .\\LICENSE .\\dist\\ngx-neo-frontend-mat",
     "copy-readme_mat": "copy .\\README.md .\\dist\\ngx-neo-frontend-mat",
-    "copy-files_mat": "npm run copy-license_mat && npm run copy-readme_mat"
+    "copy-files_mat": "npm run copy-license_mat && npm run copy-readme_mat",
+    "build_schematic_mat": "cd ./projects/ngx-neo-frontend-mat && npm run build"
   },
   "private": true,
   "dependencies": {
