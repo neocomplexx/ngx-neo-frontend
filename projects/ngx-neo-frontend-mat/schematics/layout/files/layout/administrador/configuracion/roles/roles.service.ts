@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RoleModelDTO, RoleServiceBackend, PermissionServiceBackend, RoleDTO, 
-         PermissionDTO, UpdatePermissionsDTO, ModulePermissionsDTO } from 'ngx-neo-frontend-mat/neocomplexx-ngx-neo-frontend-mat';
-
+import { RoleModelDTO, RoleServiceBackend, PermissionServiceBackend, RoleDTO, PermissionDTO, UpdatePermissionsDTO, ModulePermissionsDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 
 @Injectable({
     providedIn: 'root'

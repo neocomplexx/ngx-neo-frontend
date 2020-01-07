@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Command, ICommand } from '@neocomplexx/ngx-neo-directives';
+import { Command, ICommand } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ForgetPassComponent } from './forget-pass/forget-pass.component';
@@ -11,7 +11,7 @@ import { AuthServiceBackend } from '@neocomplexx/ngx-neo-frontend-mat';
 import { LoginModelDTO } from './login.model';
 import { CordovaService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { TypeSocial } from '@neocomplexx/ngx-neo-frontend-mat';
-import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';
+import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
 @Component({
   selector: 'app-login',
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   public searching = false;
 
   constructor(private router: Router, private location: Location,
-    private neoModal: NgxNeoModalService,
+    private neoModal: NgxNeoModalMatService,
     private authenticationService: AuthenticationService, private authServiceBackend: AuthServiceBackend,
     private headerService: Header<%=classify(projectName)%>Service, private cordovaService: CordovaService,
     private ngbModal: NgbModal) {

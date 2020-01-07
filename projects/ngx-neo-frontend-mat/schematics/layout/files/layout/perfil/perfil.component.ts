@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Command, ICommand } from '@neocomplexx/ngx-neo-directives';
+import { Command, ICommand } from '@neocomplexx/ngx-neo-directives-mat';
 import { UserDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { AuthChangePasswordRequestDTO, NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { UserModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { PerfilNewPasswordModel } from './perfil-user-new-password.model';
 import { PerfilService } from './perfil.service';
-import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';
+import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class PerfilComponent extends NeoComponentAsync {
     public usuarioActualModel: UserModelDTO;
     public cambioDeContraseniaModel: PerfilNewPasswordModel;
 
-    constructor(public perfilService: PerfilService, public neoModalService: NgxNeoModalService,
+    constructor(public perfilService: PerfilService, public neoModalService: NgxNeoModalMatService,
         public headerService: Header<%=classify(projectName)%>Service) {
         super(headerService);
     }

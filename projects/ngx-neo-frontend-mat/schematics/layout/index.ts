@@ -243,20 +243,18 @@ const addStylesImport = (): Rule => {
 const addPackageJsonDependencies = (): Rule => {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: NodeDependency[] = [
-      { type: NodeDependencyType.Default, version: '^4.3.1', name: 'bootstrap' },
-      { type: NodeDependencyType.Default, version: '^4.1.1', name: '@ng-bootstrap/ng-bootstrap' },
       { type: NodeDependencyType.Default, version: '^2.0.8', name: 'hammerjs' },
-      { type: NodeDependencyType.Default, version: '^7.3.6', name: '@angular/cdk' },
+      { type: NodeDependencyType.Default, version: '^8.2.3', name: '@angular/cdk' },
       { type: NodeDependencyType.Default, version: '^0.0.6', name: 'ng5-breadcrumb' },
       { type: NodeDependencyType.Default, version: '^6.0.2', name: 'ngx-treeview' },
-      { type: NodeDependencyType.Default, version: '~7.1.0', name: '@angular/animations' },
+      { type: NodeDependencyType.Default, version: '^8.2.14', name: '@angular/animations' },
       { type: NodeDependencyType.Default, version: '^5.8.1', name: '@fortawesome/fontawesome-free' },
-      { type: NodeDependencyType.Default, version: '^7.0.1', name: '@neocomplexx/ngx-neo-modal' },
-      { type: NodeDependencyType.Default, version: '^7.0.30', name: '@neocomplexx/ngx-neo-components' },
-      { type: NodeDependencyType.Default, version: '^7.0.10', name: '@neocomplexx/ngx-neo-directives' },
+      { type: NodeDependencyType.Default, version: '^7.0.2', name: '@neocomplexx/ngx-neo-modal-mat' },
+      { type: NodeDependencyType.Default, version: '^7.1.8', name: '@neocomplexx/ngx-neo-components-mat-mat-mat' },
+      { type: NodeDependencyType.Default, version: '^7.0.4', name: '@neocomplexx/ngx-neo-directives-mat' },
       { type: NodeDependencyType.Default, version: '^7.0.0', name: '@neocomplexx/ngx-neo-loader' },
-      { type: NodeDependencyType.Default, version: '^7.0.2', name: '@neocomplexx/ngx-neo-pipes' },
-      { type: NodeDependencyType.Default, version: '^7.0.0', name: '@neocomplexx/ngx-neo-completer' },
+      { type: NodeDependencyType.Default, version: '^7.0.5', name: '@neocomplexx/ngx-neo-pipes' },
+      { type: NodeDependencyType.Default, version: '^7.0.1', name: '@neocomplexx/ngx-neo-completer-mat' },
       { type: NodeDependencyType.Default, version: '1.1.2', name: '@aspnet/signalr' }
     ];
 
@@ -292,23 +290,23 @@ const addModuleToImports = (options: any): Rule => {
     context.logger.log('info', `✅️ "${moduleName}" is imported`);
 
     const moduleComponents = 'NgxNeoComponentsModule';
-    addModuleImportToRootModule(host, moduleComponents, '@neocomplexx/ngx-neo-components', project);
+    addModuleImportToRootModule(host, moduleComponents, '@neocomplexx/ngx-neo-components-mat', project);
     context.logger.log('info', `✅️ "${moduleComponents}" is imported`);
 
     const moduleNeoFront = 'NgxNeoFrontendModule.forRoot({ apiURL: urlAPI, delaySearchMilliseconds: searchDelay })';
     addModuleImportToRootModule(host, moduleNeoFront, '@neocomplexx/ngx-neo-frontend-mat', project);
     context.logger.log('info', `✅️ "NgxNeoFrontend" is imported`);
 
-    const moduleNeoCompleter = 'NgxNeoCompleterModule.forRoot()';
-    addModuleImportToRootModule(host, moduleNeoCompleter, '@neocomplexx/ngx-neo-completer', project);
+    const moduleNeoCompleter = 'NgxNeoCompleterMatModule.forRoot()';
+    addModuleImportToRootModule(host, moduleNeoCompleter, '@neocomplexx/ngx-neo-completer-mat', project);
     context.logger.log('info', `✅️ "NgxNeoCompleter" is imported`);
 
     const moduleNeoPipes = 'NgxNeoPipesModule.forRoot()';
     addModuleImportToRootModule(host, moduleNeoPipes, '@neocomplexx/ngx-neo-pipes', project);
     context.logger.log('info', `✅️ "NgxNeoPipes" is imported`);
 
-    const moduleNeomodal = 'NgxNeoModalModule.forRoot()';
-    addModuleImportToRootModule(host, moduleNeomodal, '@neocomplexx/ngx-neo-modal', project);
+    const moduleNeomodal = 'NgxNeoModalMatModule.forRoot()';
+    addModuleImportToRootModule(host, moduleNeomodal, '@neocomplexx/ngx-neo-modal-mat', project);
     context.logger.log('info', `✅️ "NgxNeoModal" is imported`);
 
     const moduleNeoLoader = 'NgxNeoLoaderModule.forRoot()';
@@ -374,7 +372,7 @@ const cordovaDebugString = `{
  const importString = (projectName: string) =>  `import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotificationNeoComplexxService, AuthGuard, HttpClientExtended, UnauthorizedErrorHandler, FrontEndConfig, UserServiceBackend, PushService, AuthenticationService, CordovaService, ExceptionManagerService, HeaderNeoComplexxService } from '@neocomplexx/ngx-neo-frontend-mat';
-import { HeaderService, NotificationService, CustomHammerConfig, MobileSidebarService } from '@neocomplexx/ngx-neo-components';
+import { HeaderService, NotificationService, CustomHammerConfig, MobileSidebarService } from '@neocomplexx/ngx-neo-components-mat';
 import { urlAPI, searchDelay } from './shared/constants';
 import { Header${classify(projectName)}Service } from 'src/app/core/header-${dasherize(projectName)}/header-${dasherize(projectName)}.service';
 import { Auth${classify(projectName)}Interceptor } from './shared/auth/auth-${dasherize(projectName)}.interceptor';

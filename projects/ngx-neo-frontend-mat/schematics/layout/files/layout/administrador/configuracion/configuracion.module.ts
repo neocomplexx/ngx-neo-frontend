@@ -4,7 +4,7 @@ import { ConfiguracionRoutingModule } from './configuracion-routing.module';
 import { ConfiguracionComponent } from './configuracion.component';
 import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
 import { MaterialSharedModule } from '../../../shared/material/material.module';
-import { NgxNeoComponentsModule } from '@neocomplexx/ngx-neo-components-mat';
+import { NgxNeoComponentsModule } from '@neocomplexx/ngx-neo-components-mat-mat-mat';
 
 @NgModule({
   declarations: [

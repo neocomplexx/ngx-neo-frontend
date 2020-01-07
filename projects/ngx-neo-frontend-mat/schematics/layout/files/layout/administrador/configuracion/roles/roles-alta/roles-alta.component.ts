@@ -4,18 +4,16 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { RolesService } from '../roles.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
-import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
-import { BehaviorSubject, Subscription } from 'rxjs';
-import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
+import { NeoComponentAsync, UserModelDTO, UserTypes } from '@neocomplexx/ngx-neo-frontend-mat';
 import { RoleDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { RolePermissionState} from '@neocomplexx/ngx-neo-frontend-mat';
 import { RolePermissionDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { RoleModelDTO} from '@neocomplexx/ngx-neo-frontend-mat';
-import { ConfiguracionRolService } from '../configuracion-rol.service';
 import { ModulePermissionsDTO} from '@neocomplexx/ngx-neo-frontend-mat';
 import { NameDetailDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { BreadcrumbService } from 'ng5-breadcrumb';
+import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
 
 @Component({
   selector: 'app-configuracion-rol-generacion',
@@ -56,7 +54,7 @@ export class RolesAltaComponent extends NeoComponentAsync implements OnDestroy {
 
         const userTypes = UserModelDTO.getUserTypes();
         this.usersType = new Array<NameDetailDTO>();
-        let userType = new NameDetailDTO();
+        const userType = new NameDetailDTO();
         userTypes.forEach(element => {
             if (UserTypes[element] > 0) {
                 const nameDetailDTO = new NameDetailDTO();

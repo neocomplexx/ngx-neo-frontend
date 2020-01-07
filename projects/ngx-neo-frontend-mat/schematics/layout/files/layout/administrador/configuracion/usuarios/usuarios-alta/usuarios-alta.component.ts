@@ -8,7 +8,7 @@ import { UsuariosService } from '../usuarios.service';
 import { RolesService } from '../../roles/roles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioConsultaModel } from '../usuarios-consulta/usuarios-consulta.model';
-import { HeaderFlysegService } from 'src/app/core/header-flyseg/header-flyseg.service';
+import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
 import { BreadcrumbService } from 'ng5-breadcrumb';
 
 @Component({
@@ -48,7 +48,7 @@ export class UsuariosAltaComponent extends NeoComponentAsync implements OnDestro
 
   constructor(private configuracionUsuarioService: UsuariosService,
     private configuracionRolService: RolesService, public userSearch: UserSearch,
-    protected headerService: HeaderFlysegService,
+    protected headerService: Header<%=classify(projectName)%>Service,
     public activeRoute: ActivatedRoute, public router: Router, protected breadcrumbService: BreadcrumbService) {
     super(headerService);
     this.breadcrumbService.addFriendlyNameForRouteRegex('\\/usuarios-alta(\\?.*)?$', 'Alta');
@@ -72,12 +72,12 @@ export class UsuariosAltaComponent extends NeoComponentAsync implements OnDestro
 
     const userToEdit: UsuarioConsultaModel = this.configuracionUsuarioService.getUsuarioAEditar();
     if (userToEdit) {
-        let userToEditDTO: UserDTO = userToEdit.getEntityDTO();
+        const userToEditDTO: UserDTO = userToEdit.getEntityDTO();
         this.idUsuarioAEditar = userToEditDTO.id;
         this.usuarioGeneracionModel.FirstName = userToEditDTO.firstName;
         this.usuarioGeneracionModel.LastName = userToEditDTO.lastName;
       //  console.log(userToEdit);
-        let rol = this.roles.find(x => x.name === userToEditDTO.roleName);
+        const rol = this.roles.find(x => x.name === userToEditDTO.roleName);
         if (rol) {
           this.usuarioGeneracionModel.IdRole = rol.id;
         }
@@ -144,7 +144,7 @@ export class UsuariosAltaComponent extends NeoComponentAsync implements OnDestro
    */
   public async editarUsuario(): Promise<void> {
     if (this.idUsuarioAEditar) {
-      let userToEditDTO: AuthEditUserRequestDTO = this.usuarioGeneracionModel.getEntityDTO();
+      const userToEditDTO: AuthEditUserRequestDTO = this.usuarioGeneracionModel.getEntityDTO();
       this.usuarioAEditar.FirstName = userToEditDTO.firstName;
       this.usuarioAEditar.LastName = userToEditDTO.lastName;
       this.usuarioAEditar.IdRole = userToEditDTO.idRole;
@@ -153,7 +153,7 @@ export class UsuariosAltaComponent extends NeoComponentAsync implements OnDestro
       await this.configuracionUsuarioService.editUser( this.idUsuarioAEditar, this.usuarioAEditar.getEntityDTO());
       this.limpiarPantalla();
      // this.router.navigate(['./usuarios'], { relativeTo: this.activeRoute.parent});
-     this.headerService.closeComponent();
+      this.headerService.closeComponent();
     }
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import data from 'src/app/layout/administrador/configuracion/configuracion-menu.json';
-import { NeoMenuComponent } from 'ngx-neo-frontend/neocomplexx-ngx-neo-frontend';
+import { NeoMenuComponent } from '@neocomplexx/ngx-neo-frontend-mat';
 
 @Component({
     selector: 'app-configuracion',

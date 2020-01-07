@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, OnDestroy, HostListener } from '@angular/core';
-import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
+import { MobileSidebarService } from '@neocomplexx/ngx-neo-components-mat';
 import { Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 

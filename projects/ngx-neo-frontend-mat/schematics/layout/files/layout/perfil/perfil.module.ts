@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { PerfilComponent } from './perfil.component';
-import { NgxNeoModalModule } from '@neocomplexx/ngx-neo-modal';
+import { NgxNeoModalMatModule } from '@neocomplexx/ngx-neo-modal-mat';
 import { FormsModule } from '@angular/forms';
-import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives';
+import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
 import { NgxNeoPipesModule } from '@neocomplexx/ngx-neo-pipes';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { NgxNeoPipesModule } from '@neocomplexx/ngx-neo-pipes';
     FormsModule,
     PerfilRoutingModule,
     NgxNeoPipesModule,
-    NgxNeoModalModule,
+    NgxNeoModalMatModule,
     NgxNeoDirectivesModule
   ]
 })

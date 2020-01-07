@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
+import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NotificationModelDTO, UserDTO } from '@neocomplexx/ngx-neo-frontend-mat';

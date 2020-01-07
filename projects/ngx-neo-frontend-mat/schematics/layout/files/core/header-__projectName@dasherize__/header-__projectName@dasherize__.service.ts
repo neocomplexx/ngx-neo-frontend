@@ -1,26 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { NgxNeoModalService } from '@neocomplexx/ngx-neo-modal';
-import { UsersServiceBackend, PushService, HeaderNeoComplexxService, CordovaService } from '@neocomplexx/ngx-neo-frontend-mat';
+import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
+import { MobileSidebarService } from '@neocomplexx/ngx-neo-components-mat';
+import { UsersServiceBackend, PushService, HeaderNeoComplexxService, CordovaService, AuthenticationService, ExceptionManagerService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { BreadcrumbService } from 'ng5-breadcrumb';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ExceptionManagerService } from '@neocomplexx/ngx-neo-frontend-mat';
-import { AuthenticationService } from '@neocomplexx/ngx-neo-frontend-mat';
-import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root'
 })
 export class Header<%=classify(projectName)%>Service extends HeaderNeoComplexxService {
 
-    constructor(router: Router, location: Location, ngxNeoModalService: NgxNeoModalService,
-        signalRService: PushService, authenticationService: AuthenticationService,  mobileSidebarService: MobileSidebarService,
-        usersServiceBackend: UsersServiceBackend, modalService: NgbModal, cordovaService: CordovaService,
-        breadCrumbService: BreadcrumbService,
-        exceptionService: ExceptionManagerService) {
-        super(router, location, ngxNeoModalService, signalRService, authenticationService, mobileSidebarService,
-            usersServiceBackend, modalService, breadCrumbService, cordovaService, exceptionService);
+    constructor(router: Router, location: Location,
+        signalRService: PushService, authenticationService: AuthenticationService, mobileSidebarService: MobileSidebarService,
+        usersServiceBackend: UsersServiceBackend, cordovaService: CordovaService,
+        breadCrumbService: BreadcrumbService, exceptionService: ExceptionManagerService, modalService: MatDialog, 
+        ngxNeoModalService: NgxNeoModalMatService) {
+super(router, location, ngxNeoModalService, signalRService, authenticationService, mobileSidebarService,
+    usersServiceBackend, modalService, breadCrumbService, cordovaService, exceptionService);
 
             this.router.events.subscribe((ev: any) => {
                 if (this.router.url === '' || this.router.url === '/user' ||
@@ -33,7 +31,7 @@ export class Header<%=classify(projectName)%>Service extends HeaderNeoComplexxSe
     }
 
     public async getUserEntityById(): Promise <void> {
-        if (this.userTypeId > 0) {
+        if (this.IsLogged() && this.userLogged.userTypeId) {
         this.userEntity = null; // call to user backend service
         } else {
             this.userEntity = undefined;

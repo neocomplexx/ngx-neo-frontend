@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ICommand, Command } from '@neocomplexx/ngx-neo-directives';
+import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject } from 'rxjs';
 import { NotificationState } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
