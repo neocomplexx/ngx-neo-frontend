@@ -6,7 +6,6 @@ import { PermissionModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { PermissionDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { RolesService } from '../roles.service';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
-import { BreadcrumbService } from 'ng5-breadcrumb';
 
 @Component({
     selector: 'app-configuracion-rol-permisos',
@@ -26,11 +25,10 @@ export class RolesPermisosComponent extends NeoComponentAsync {
 
     public displayedColumns: string[] = ['Entidad', 'Metodo', 'Permiso' , 'Ignorar' , ' ' ];
 
-    constructor(public configuracionRolService: RolesService, protected headerService: Header<%=classify(projectName)%>Service, protected breadcrumbService: BreadcrumbService) {
+    constructor(public configuracionRolService: RolesService, protected headerService: Header<%=classify(projectName)%>Service) {
         super(headerService);
         this.permisos = new Array<PermissionModelDTO >();
         this.ignorarTodos = false;
-        this.breadcrumbService.addFriendlyNameForRouteRegex('\\/roles-permisos(\\?.*)?$', 'Permisos');
     /*   this.headerService.beforeBack = (beforeBackArgs) => {
         
             beforeBackArgs.cancelBack = true;

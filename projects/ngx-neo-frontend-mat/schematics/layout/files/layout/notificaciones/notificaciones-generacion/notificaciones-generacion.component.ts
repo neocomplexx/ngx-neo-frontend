@@ -4,7 +4,6 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NotificationModelDTO, UserDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NotificationDTO } from '@neocomplexx/ngx-neo-frontend-mat';
-import { BreadcrumbService } from 'ng5-breadcrumb';
 import { NotificarUsuariosService } from './notificar-usuarios.service';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
@@ -32,10 +31,9 @@ export class NotificacionesGeneracionComponent extends NeoComponentAsync impleme
     public notificarCmd: ICommand = new Command(() => this.notificar(), new BehaviorSubject(true), true);
     public agregarUsuarioCmd: ICommand = new Command(() => this.agregarUsuario(), new BehaviorSubject(true), false);
 
-    constructor(private notificarUsuariosService: NotificarUsuariosService, public breadcrumbService: BreadcrumbService,
+    constructor(private notificarUsuariosService: NotificarUsuariosService,
         public headerService: Header<%=classify(projectName)%>Service) {
         super(headerService);
-        this.breadcrumbService.addFriendlyNameForRoute('/notificar-usuarios', 'Notificar usuarios');
         this.limpiarPantalla();
     }
 

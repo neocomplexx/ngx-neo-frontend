@@ -3,7 +3,6 @@ import { Injectable, OnDestroy, ElementRef } from '@angular/core';
 import { ITabChangeController } from '@neocomplexx/ngx-neo-directives-mat';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
-import { BreadcrumbService } from 'ng5-breadcrumb';
 import { UserDTO } from '../models/DTO/user.DTO';
 import { PushService } from './push/signalr.push.service';
 import { CordovaService } from './cordova/cordova.service';
@@ -53,7 +52,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         protected authenticationService: AuthenticationService,
         mobileSidebarService: MobileSidebarService,
         protected usersServiceBackend: UsersServiceBackend, protected modalService: MatDialog,
-        protected breadCrumbService: BreadcrumbService, protected cordovaService: CordovaService,
+        protected cordovaService: CordovaService,
         protected exceptionService: ExceptionManagerService) {
         super(mobileSidebarService);
         this.userLogged = new UserDTO();
@@ -103,7 +102,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         if (url) {
             const pos = url.lastIndexOf('/') + 1;
             if (pos > 0) {
-                const urlFriendly: string = this.breadCrumbService.getFriendlyNameForRoute(url);
+                const urlFriendly: string = url;
                 this.componentSelected = this.toPascalCase(urlFriendly); // this.toPascalCase(url.substring(pos));
             } else {
                 this.componentSelected = '';

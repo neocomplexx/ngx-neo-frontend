@@ -46,10 +46,9 @@
     "@neocomplexx/ngx-neo-directives-mat": "^7.0.0",
     "@neocomplexx/ngx-neo-loader": "^7.0.0",
     "@neocomplexx/ngx-neo-modal": "^7.0.1",
-    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "@neocomplexx/ngx-neo-modal-mat": "^7.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
-    "ng5-breadcrumb": "0.0.6",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
@@ -80,6 +79,6 @@
     "tsickle": ">=0.29.0",
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.1.6"
   }
 }

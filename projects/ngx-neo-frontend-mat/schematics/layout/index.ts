@@ -245,7 +245,6 @@ const addPackageJsonDependencies = (): Rule => {
     const dependencies: NodeDependency[] = [
       { type: NodeDependencyType.Default, version: '^2.0.8', name: 'hammerjs' },
       { type: NodeDependencyType.Default, version: '^8.2.3', name: '@angular/cdk' },
-      { type: NodeDependencyType.Default, version: '^0.0.6', name: 'ng5-breadcrumb' },
       { type: NodeDependencyType.Default, version: '^6.0.2', name: 'ngx-treeview' },
       { type: NodeDependencyType.Default, version: '^8.2.14', name: '@angular/animations' },
       { type: NodeDependencyType.Default, version: '^5.8.1', name: '@fortawesome/fontawesome-free' },
@@ -377,7 +376,6 @@ import { urlAPI, searchDelay } from './shared/constants';
 import { Header${classify(projectName)}Service } from 'src/app/core/header-${dasherize(projectName)}/header-${dasherize(projectName)}.service';
 import { Auth${classify(projectName)}Interceptor } from './shared/auth/auth-${dasherize(projectName)}.interceptor';
 import { Unauthorized${classify(projectName)}ErrorHandler } from './shared/services/unauthorized-${dasherize(projectName)}.errorhandler';
-import { BreadcrumbService } from 'ng5-breadcrumb';
 
 const FrontEndConfigService = new InjectionToken<FrontEndConfig>('FrontEndConfig');
 const config: FrontEndConfig = { delaySearchMilliseconds: searchDelay, apiURL: urlAPI };
@@ -400,5 +398,4 @@ const providersString = (projectName: string) =>  `  providers: [
     useValue: config
   },
   AuthGuard,
-  BreadcrumbService,
 ]`;

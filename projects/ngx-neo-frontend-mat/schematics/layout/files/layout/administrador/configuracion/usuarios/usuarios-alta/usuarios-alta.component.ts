@@ -9,7 +9,6 @@ import { RolesService } from '../../roles/roles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioConsultaModel } from '../usuarios-consulta/usuarios-consulta.model';
 import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
-import { BreadcrumbService } from 'ng5-breadcrumb';
 
 @Component({
   selector: 'app-configuracion-usuario-alta',
@@ -49,9 +48,8 @@ export class UsuariosAltaComponent extends NeoComponentAsync implements OnDestro
   constructor(private configuracionUsuarioService: UsuariosService,
     private configuracionRolService: RolesService, public userSearch: UserSearch,
     protected headerService: Header<%=classify(projectName)%>Service,
-    public activeRoute: ActivatedRoute, public router: Router, protected breadcrumbService: BreadcrumbService) {
+    public activeRoute: ActivatedRoute, public router: Router) {
     super(headerService);
-    this.breadcrumbService.addFriendlyNameForRouteRegex('\\/usuarios-alta(\\?.*)?$', 'Alta');
     this.usuarioGeneracionModel = new UsuarioGeneracionModel(new AuthNewUserRequestDTO());
     this.usuarioGeneracionModel.getEntityDTO().state = UserState.Active;
     this.usuarioActivo = true;
