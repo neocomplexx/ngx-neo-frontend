@@ -6,11 +6,11 @@ const routes: Routes = [
   { path: '', component: ConfiguracionComponent },
   {
     path: 'configuracion-usuario',
-    loadChildren: './configuracion-usuario/configuracion-usuario.module#ConfiguracionUsuarioModule'
+    loadChildren: () => import('./configuracion-usuario/configuracion-usuario.module').then(m => m.ConfiguracionUsuarioModule)
   },
   {
     path: 'configuracion-rol',
-    loadChildren: './configuracion-rol/configuracion-rol.module#ConfiguracionRolModule'
+    loadChildren: () => import('./configuracion-rol/configuracion-rol.module').then(m => m.ConfiguracionRolModule)
   }
 ];
 

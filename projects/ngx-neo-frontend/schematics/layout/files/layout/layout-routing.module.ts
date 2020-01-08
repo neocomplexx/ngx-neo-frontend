@@ -14,17 +14,17 @@ const routes: Routes = [
       },
       {
         path: 'notifications',
-        loadChildren: './notificaciones/notificaciones.module#NotificacionesModule',
+        loadChildren: () => import('./notificaciones/notificaciones.module').then(m => m.NotificacionesModule),
       },
       {
         path: 'admin',
-        loadChildren: './administrador/administrador.module#AdministradorModule',
+        loadChildren: () => import('./administrador/administrador.module').then(m => m.AdministradorModule),
         data: { expectedType: 'administrator' },
         canActivate: [UserTypeGuard],
       },
       {
         path: 'user',
-        loadChildren: './cliente/cliente.module#ClienteModule',
+        loadChildren: () => import('./cliente/cliente.module').then(m => m.ClienteModule),
         data: { expectedTypes: ['professional', 'user'] },
         canActivate: [UserTypeGuard],
       },
