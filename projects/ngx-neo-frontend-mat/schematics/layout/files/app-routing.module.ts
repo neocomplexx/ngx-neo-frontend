@@ -5,13 +5,13 @@ import { AuthGuard, LoginGuard } from '@neocomplexx/ngx-neo-frontend-mat';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './layout/layout.module#LayoutModule',
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
   },
   {
     path: 'login',
-    loadChildren: './login/login.module#LoginModule',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
     canActivate: [LoginGuard],
   },
   /**

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
-import { UserDecisionGuard, UserTypeGuard } from '@neocomplexx/ngx-neo-frontend-mat';
+import { UserDecisionGuard, UserTypeGuard, UserTypes } from '@neocomplexx/ngx-neo-frontend-mat';
 
 const routes: Routes = [
   {
@@ -14,18 +14,18 @@ const routes: Routes = [
       },
       {
         path: 'notifications',
-        loadChildren: './notificaciones/notificaciones.module#NotificacionesModule',
+        loadChildren: () => import('./notificaciones/notificaciones.module').then(m => m.NotificacionesModule),
       },
       {
         path: 'admin',
-        loadChildren: './administrador/administrador.module#AdministradorModule',
-        data: { expectedType: 'administrator' },
+        loadChildren: () => import('./administrador/administrador.module').then(m => m.AdministradorModule),
+        data: { expectedType: UserTypes.Administrator },
         canActivate: [UserTypeGuard],
       },
       {
         path: 'user',
-        loadChildren: './user/user.module#UserModule',
-        data: { expectedTypes: ['professional', 'user'] },
+        loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+        data: { expectedTypes: [UserTypes.Professional, UserTypes.User] },
         canActivate: [UserTypeGuard],
       },
     ]

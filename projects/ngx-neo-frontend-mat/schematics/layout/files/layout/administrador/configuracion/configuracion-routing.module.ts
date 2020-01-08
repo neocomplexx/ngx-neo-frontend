@@ -4,8 +4,8 @@ import { ConfiguracionComponent } from './configuracion.component';
 
 const routes: Routes = [
   { path: '', component: ConfiguracionComponent },
-  { path: 'usuarios', loadChildren: './usuarios/usuarios.module#UsuariosModule' },
-  { path: 'roles', loadChildren: './roles/roles.module#RolesModule' },
+  { path: 'usuarios', loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule) },
+  { path: 'roles', loadChildren: () => import('./roles/roles.module').then(m => m.RolesModule) },
 ];
 
 
