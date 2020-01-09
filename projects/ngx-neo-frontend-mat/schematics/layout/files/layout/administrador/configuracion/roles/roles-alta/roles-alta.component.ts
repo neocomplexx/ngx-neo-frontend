@@ -11,7 +11,7 @@ import { RolePermissionDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { RoleModelDTO} from '@neocomplexx/ngx-neo-frontend-mat';
 import { ModulePermissionsDTO} from '@neocomplexx/ngx-neo-frontend-mat';
 import { NameDetailDTO } from '@neocomplexx/ngx-neo-frontend-mat';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
 
 @Component({
@@ -34,7 +34,7 @@ export class RolesAltaComponent extends NeoComponentAsync implements OnDestroy {
     public usersType: NameDetailDTO[];
     public changedSubscribe: Subscription;
 
-    constructor(public configuracionRolService: RolesService, protected headerService: Header<%=classify(projectName)%>Service,
+    constructor(public configuracionRolService: RolesService, protected headerService: HeaderUaalooService,
         public activeRoute: ActivatedRoute, public router: Router,
         protected neoModalService: NgxNeoModalMatService) {
         super(headerService);

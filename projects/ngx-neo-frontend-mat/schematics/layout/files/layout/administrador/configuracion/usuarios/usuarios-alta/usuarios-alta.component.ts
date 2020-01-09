@@ -8,7 +8,7 @@ import { UsuariosService } from '../usuarios.service';
 import { RolesService } from '../../roles/roles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioConsultaModel } from '../usuarios-consulta/usuarios-consulta.model';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 
 @Component({
   selector: 'app-configuracion-usuario-alta',
@@ -47,7 +47,7 @@ export class UsuariosAltaComponent extends NeoComponentAsync implements OnDestro
 
   constructor(private configuracionUsuarioService: UsuariosService,
     private configuracionRolService: RolesService, public userSearch: UserSearch,
-    protected headerService: Header<%=classify(projectName)%>Service,
+    protected headerService: HeaderUaalooService,
     public activeRoute: ActivatedRoute, public router: Router) {
     super(headerService);
     this.usuarioGeneracionModel = new UsuarioGeneracionModel(new AuthNewUserRequestDTO());

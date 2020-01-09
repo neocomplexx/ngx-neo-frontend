@@ -8,8 +8,8 @@ import { MaterialSharedModule } from 'src/app/shared/material/material.module';
   declarations: [UserComponent],
   imports: [
     CommonModule,
-    UserRoutingModule,
-    MaterialSharedModule
+    MaterialSharedModule,
+    UserRoutingModule
   ]
 })
 export class UserModule { }

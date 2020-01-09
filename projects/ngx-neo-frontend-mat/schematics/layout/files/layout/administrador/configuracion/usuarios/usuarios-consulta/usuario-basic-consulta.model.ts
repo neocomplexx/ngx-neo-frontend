@@ -1,5 +1,5 @@
 import { UserBasicModelDTO, UserBasicDTO } from '@neocomplexx/ngx-neo-frontend-mat';
-import { Labeled } from '@neocomplexx/ngx-neo-components-mat-mat-mat';
+import { Labeled } from '@neocomplexx/ngx-neo-components-mat';
 
 export class UsuarioBasicConsultaModel extends UserBasicModelDTO implements Labeled/*  */{
 

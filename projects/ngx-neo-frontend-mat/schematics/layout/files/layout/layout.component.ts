@@ -5,8 +5,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  templateUrl: './layout.component.html'
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 

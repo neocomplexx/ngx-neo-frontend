@@ -1,16 +1,199 @@
-$stl-color-background: #fdfdfd;
-$stl-color-font: #2c2c2c;
+@import '~@angular/material/theming';
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@include mat-core();
 
-$stl-color-sidenav: white;
-$stl-color-font-sidenav: white;
+// Define a custom mixin that takes in the current theme
+@mixin theme-color-grabber($theme) {
 
-$stl-color-navbar: #004a61;
-$stl-color-font-navbar: white;
+  /*Colors*/
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
 
-$stl-color-footer: #004a61;
-$stl-color-font-footer: white;
+  $stl-primary-contrast: mat-color($primary, default-contrast);
 
-$stl-color-primary:  #004a61;
-$stl-color-secondary: #505e63;
-$stl-color-warning: #c5eb6d;
-$stl-color-danger: #982828;
+  $stl-color-primary: mat-color($primary, 500) !important;
+  $stl-color-primary-medium: mat-color($primary, 200) !important;
+  $stl-color-primary-light: mat-color($primary, 50) !important;
+  $stl-color-secondary: mat-color($accent, 900) !important;
+  $stl-color-secondary-intermediate: mat-color($accent, 500) !important;
+  $stl-color-secondary-light: mat-color($accent, 50) !important;
+  $stl-color-secondary-contrast: mat-con($accent, 800) !important;
+  $stl-color-warn: mat-color($warn, 500) !important;
+  $stl-color-warn-light: mat-color($warn, 200) !important;
+
+  /*Class*/
+  .primary-color {
+    color: $stl-color-primary;
+  }
+
+  .footer {
+    background-color: #2077b9;
+  }
+
+  .primary-color-background {
+    background-color: $stl-color-primary;
+  }
+
+  .primary-color-background {
+    background-color: $stl-color-primary;
+  }
+
+  .primary-color-border {
+    border-color: $stl-color-primary;
+  }
+
+  .primary-color-medium {
+    color: $stl-color-primary-medium;
+  }
+
+  .primary-color-light {
+    color: $stl-color-primary-light;
+  }
+
+  .primary-color-light-background {
+    background-color: $stl-color-primary-light;
+  }
+
+  .secondary-color {
+    color: $stl-color-secondary;
+  }
+
+  .secondary-color-background {
+    background-color: $stl-color-secondary;
+  }
+
+  .secondary-color-intermediate-background {
+    background-color: $stl-color-secondary-intermediate;
+  }
+
+  .secondary-color-light-background {
+    background-color: $stl-color-secondary-light;
+  }
+
+  .secondary-color-contrast-background {
+    background-color: white; // $stl-color-secondary-contrast;
+  }
+
+  .color-warn {
+    color: $stl-color-warn;
+  }
+
+  .color-warn-background {
+    background-color: $stl-color-warn;
+  }
+
+  .color-warn-light {
+    color: $stl-color-warn-light;
+  }
+
+  .color-warn-light-background {
+    background-color: $stl-color-warn-light;
+  }
+
+  .color-warn-light-background-hover {
+    background-color: $stl-color-warn-light;
+  }
+
+  .color-warn-light-background-hover:hover {
+    background-color: $stl-color-warn;
+  }
+
+  .color-contrast-secondary {
+    color: white;
+    // $stl-color-secondary-contrast;
+  }
+
+  .color-dias-con-turno {
+    background: $stl-color-primary-medium;
+    border-radius: 100%;
+  }
+
+  /*Elements*/
+
+  .right-menu {
+    background-color: #fafafa;
+    box-shadow: 0 0 12pt rgba(0, 0, 0, 0.25);
+  }
+
+  .right-menu div:hover {
+    background-color: $stl-color-primary;
+    color: $stl-primary-contrast;
+  }
+
+  .hover-table {
+    .mat-row:hover {
+      background-color: $stl-color-primary-light;
+    }
+  }
+
+  .neo-sidebar {
+    .list-group {
+      a:hover {
+        background: $stl-color-primary-light;
+      }
+    }
+
+    a.router-link-active .mat-list-item-content {
+      background: $stl-color-primary;
+    }
+  }
+
+  .clase-menu {
+    mat-list-item {
+      border-top: mat-color($accent, 100) solid .5px;
+      border-left: mat-color($accent, 100) solid .5px;
+      border-right: mat-color($accent, 100) solid .5px;
+    }
+
+    mat-list-item:last-child {
+      border-bottom: mat-color($accent, 100) solid .5px;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    neo-header nav {
+      background: $stl-color-primary;
+    }
+
+    neo-header {
+      .fas.neo-icon::before,
+      .mat-button,
+      .neo-icon,
+      nav .header-dropdown {
+        color: white;
+      }
+    }
+
+    .list-group-item.active {
+      color: white;
+      background-color: mat-color($primary, 400);
+      border-color: mat-color($primary, 400);
+    }
+
+    a {
+      color: $stl-color-primary;
+    }
+  }
+  @media screen and (max-width: 991px) {
+    neo-header {
+      .fas.neo-icon::before,
+      .neo-icon,
+      a {
+        color: $stl-color-primary;
+      }
+    }
+  }
+}
+
+$mat-flyseg-primary: ( 50 : #e7f3fe, 100 : #c3e2fd, 200 : #9bcffc, 300 : #73bcfa, 400 : #55adf9, 500 : #379ff8, 600 : #3197f7, 700 : #2a8df6, 800 : #2383f5, 900 : #1672f3, A100 : #ffffff, A200 : #f0f6ff, A400 : #bdd6ff, A700 : #a3c6ff, contrast: ( 50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #000000, 500 : #000000, 600 : #000000, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #000000, A700 : #000000, ) );
+
+$mat-flyseg-accent: ( 50 : #eff5e6, 100 : #d6e6c1, 200 : #bbd698, 300 : #9fc56e, 400 : #8bb84f, 500 : #76ac30, 600 : #6ea52b, 700 : #639b24, 800 : #59921e, 900 : #468213, A100 : #d5ffb7, A200 : #b8ff84, A400 : #9aff51, A700 : #8bff37, contrast: ( 50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #000000, 500 : #000000, 600 : #000000, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #000000, A700 : #000000, ) );
+
+$mat-flyseg-warn: ( 50 : #fdf0e8, 100 : #fad8c5, 200 : #f7bf9e, 300 : #f3a577, 400 : #f19159, 500 : #ee7e3c, 600 : #ec7636, 700 : #e96b2e, 800 : #e76127, 900 : #e24e1a, A100 : #ffffff, A200 : #ffe9e2, A400 : #ffc2af, A700 : #ffae96, contrast: ( 50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #000000, 500 : #000000, 600 : #000000, 700 : #000000, 800 : #000000, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #000000, A700 : #000000, ) );
+
+$primary: mat-palette($mat-flyseg-primary);
+$accent: mat-palette($mat-flyseg-accent);
+$warn: mat-palette($mat-flyseg-warn);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);

@@ -10,7 +10,7 @@ import { NgxNeoModalMatService, AlertButton } from '@neocomplexx/ngx-neo-modal-m
 import { MatDialog } from '@angular/material/dialog';
 import { UserRefreshPasswordComponent } from '../usuario-refresh-password/user-refresh-password.component';
 import { UserRefreshPasswordModel } from '../usuario-refresh-password/user-refresh-password.component.model';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 
 
 @Component({
@@ -42,7 +42,7 @@ export class UsuariosConsultaComponent extends NeoComponentAsync {
 
   constructor(public configuracionUsuarioService: UsuariosService, public activeRoute: ActivatedRoute, public router: Router,
     public neoModalService: NgxNeoModalMatService,
-    protected headerService: Header<%=classify(projectName)%>Service,
+    protected headerService: HeaderUaalooService,
     public dialog: MatDialog) {
     super(headerService);
 

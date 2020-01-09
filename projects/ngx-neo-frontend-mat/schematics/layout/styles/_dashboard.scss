@@ -1,0 +1,40 @@
+app-user{
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+app-administrador{
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+app-user-dashboard{
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+app-administrador-dashboard{
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+}
+
+.grid-container{
+  padding-right: 100px;
+  padding-bottom: 20px;
+}
+
+.mat-grid-list{
+  display: flex;
+  flex: 1;
+}
+
+.mat-grid-tile {
+  background-color: white;
+  box-shadow: 10px 11px 20px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+

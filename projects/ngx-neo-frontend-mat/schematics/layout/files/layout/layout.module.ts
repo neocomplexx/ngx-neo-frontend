@@ -5,6 +5,7 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { CoreModule } from '../core/core.module';
 import { NgxNeoModalMatModule } from '@neocomplexx/ngx-neo-modal-mat';
+import { MaterialSharedModule } from '../shared/material/material.module';
 @NgModule({
   declarations: [
     LayoutComponent
@@ -14,7 +15,8 @@ import { NgxNeoModalMatModule } from '@neocomplexx/ngx-neo-modal-mat';
     LayoutRoutingModule,
     NgxNeoComponentsModule,
     CoreModule,
-    NgxNeoModalMatModule
+    NgxNeoModalMatModule,
+    MaterialSharedModule
   ]
 })
 export class LayoutModule { }

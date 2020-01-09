@@ -1,10 +1,12 @@
-@import 'colors';
 @import '~@fortawesome/fontawesome-free/css/all.css';
-@import '~@neocomplexx/ngx-neo-components-mat-mat/styles/_main.scss';
+@import '~@neocomplexx/ngx-neo-components-mat/styles/_main.scss';
+@import 'material';
+@import 'dashboard';
 
 body {
   font-family: 'Gill Sans Regular' !important;
   overflow-x: hidden;
+  background-color: #f9f9f9;;
 }
 
 .h1,
@@ -33,3 +35,10 @@ a {
 .lg-logo {
   height: 24px;
 }
+
+.neo-layour{
+  bottom: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

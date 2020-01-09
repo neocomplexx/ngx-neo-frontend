@@ -5,7 +5,7 @@ import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { PermissionModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { PermissionDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { RolesService } from '../roles.service';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 
 @Component({
     selector: 'app-configuracion-rol-permisos',
@@ -25,7 +25,7 @@ export class RolesPermisosComponent extends NeoComponentAsync {
 
     public displayedColumns: string[] = ['Entidad', 'Metodo', 'Permiso' , 'Ignorar' , ' ' ];
 
-    constructor(public configuracionRolService: RolesService, protected headerService: Header<%=classify(projectName)%>Service) {
+    constructor(public configuracionRolService: RolesService, protected headerService: HeaderUaalooService) {
         super(headerService);
         this.permisos = new Array<PermissionModelDTO >();
         this.ignorarTodos = false;

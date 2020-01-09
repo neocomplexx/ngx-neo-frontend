@@ -7,6 +7,7 @@ import { MobileSidebar<%=classify(projectName)%>Component } from './mobile-sideb
 import { NgxNeoComponentsModule } from '@neocomplexx/ngx-neo-components-mat';
 import { RouterModule } from '@angular/router';
 import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
+import { MaterialSharedModule } from '../shared/material/material.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NgxNeoDirectivesModule } from '@neocomplexx/ngx-neo-directives-mat';
     CommonModule,
     NgxNeoComponentsModule,
     RouterModule,
-    NgxNeoDirectivesModule
+    NgxNeoDirectivesModule,
+    MaterialSharedModule
   ],
   exports: [
     Header<%=classify(projectName)%>Component,

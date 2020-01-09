@@ -25,7 +25,7 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('./user/user.module').then(m => m.UserModule),
-        data: { expectedTypes: [UserTypes.Professional, UserTypes.User] },
+        data: { expectedTypes: [UserTypes.Administrator, UserTypes.Professional, UserTypes.User, UserTypes.Administrative] },
         canActivate: [UserTypeGuard],
       },
     ]

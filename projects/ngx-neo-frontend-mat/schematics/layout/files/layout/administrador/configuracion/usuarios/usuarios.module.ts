@@ -9,7 +9,7 @@ import { UsuariosConsultaComponent } from './usuarios-consulta/usuarios-consulta
 import { UsuariosAltaComponent } from './usuarios-alta/usuarios-alta.component';
 import { FormsModule } from '@angular/forms';
 import { UserRefreshPasswordComponent } from './usuario-refresh-password/user-refresh-password.component';
-import { NgxNeoComponentsModule } from '@neocomplexx/ngx-neo-components-mat-mat-mat';
+import { NgxNeoComponentsModule } from '@neocomplexx/ngx-neo-components-mat';
 
 @NgModule({
   declarations: [

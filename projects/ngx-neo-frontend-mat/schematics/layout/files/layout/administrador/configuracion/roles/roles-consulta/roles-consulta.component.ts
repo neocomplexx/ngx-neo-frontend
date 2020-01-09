@@ -5,7 +5,7 @@ import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { RolesService } from '../roles.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertButton, NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 
 @Component({
   selector: 'app-roles',
@@ -28,7 +28,7 @@ export class RolesConsultaComponent extends NeoComponentAsync {
   // Html material
   public displayedColumns: string[] = ['Nombre', 'Descripcion', ' '];
 
-  constructor(public configuracionRolService: RolesService, protected headerService: Header<%=classify(projectName)%>Service,
+  constructor(public configuracionRolService: RolesService, protected headerService: HeaderUaalooService,
     public activeRoute: ActivatedRoute, public router: Router,
     private neoModalService: NgxNeoModalMatService
   ) {

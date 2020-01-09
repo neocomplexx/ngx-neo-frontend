@@ -6,7 +6,7 @@ import { NotificationModelDTO, UserDTO } from '@neocomplexx/ngx-neo-frontend-mat
 import { NotificationDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NotificarUsuariosService } from './notificar-usuarios.service';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 @Component({
     selector: 'app-notificaciones-generacion',
     templateUrl: './notificaciones-generacion.component.html',
@@ -32,7 +32,7 @@ export class NotificacionesGeneracionComponent extends NeoComponentAsync impleme
     public agregarUsuarioCmd: ICommand = new Command(() => this.agregarUsuario(), new BehaviorSubject(true), false);
 
     constructor(private notificarUsuariosService: NotificarUsuariosService,
-        public headerService: Header<%=classify(projectName)%>Service) {
+        public headerService: HeaderUaalooService) {
         super(headerService);
         this.limpiarPantalla();
     }

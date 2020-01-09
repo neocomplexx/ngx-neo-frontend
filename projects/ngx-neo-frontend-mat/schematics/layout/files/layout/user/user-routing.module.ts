@@ -4,7 +4,11 @@ import { UserComponent } from './user.component';
 
 const routes: Routes = [
     {
-        path: '', component: UserComponent, // Este tiene que ser vacio, si no tengo que poner en la url /user/user para que funcione
+        path: '', component: UserComponent,
+        children:
+            [
+                { path: '', loadChildren: () => import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule) }
+            ]
     },
 ];
 

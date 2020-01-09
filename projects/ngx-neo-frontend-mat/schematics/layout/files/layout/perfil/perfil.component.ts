@@ -7,7 +7,7 @@ import { UserModelDTO } from '@neocomplexx/ngx-neo-frontend-mat';
 import { PerfilNewPasswordModel } from './perfil-user-new-password.model';
 import { PerfilService } from './perfil.service';
 import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 
 @Component({
     selector: 'app-perfil',
@@ -24,7 +24,7 @@ export class PerfilComponent extends NeoComponentAsync {
     public cambioDeContraseniaModel: PerfilNewPasswordModel;
 
     constructor(public perfilService: PerfilService, public neoModalService: NgxNeoModalMatService,
-        public headerService: Header<%=classify(projectName)%>Service) {
+        public headerService: HeaderUaalooService) {
         super(headerService);
     }
 

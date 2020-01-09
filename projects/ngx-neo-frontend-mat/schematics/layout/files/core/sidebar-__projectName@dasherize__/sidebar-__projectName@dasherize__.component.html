@@ -1,18 +1,18 @@
 <neo-sidebar>
   <ng-container ngProjectAs="full-sidebar">
-    <ul class="list-group">
+    <mat-action-list  class="list-group">
       <!-- Si el primer link no coincide con la ruta, ej la ruta es /dashboard-admin y el link es admin, debemos usar exact para que solo se active en ese caso-->
       <!--       <a class="list-group-item"  [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/admin']" routerLinkActive="router-link-active">
         <i class="fas fa-tachometer-alt"></i></a> -->
-      <a class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-      <a class="list-group-item list-group-item-action">Morbi leo risus</a>
-      <a class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-      <a class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+      <a class="list-group-item" mat-list-item>Dapibus ac facilisis in</a>
+      <a class="list-group-item" mat-list-item>Morbi leo risus</a>
+      <a class="list-group-item" mat-list-item>Porta ac consectetur ac</a>
+      <a class="list-group-item" mat-list-item>Vestibulum at eros</a>
       <ng-container *ngIf="esUsuarioAdministrador">
         <a class="list-group-item" [routerLink]="['/admin/configuracion']"
           routerLinkActive="router-link-active">Configuraci&oacute;n</a>
       </ng-container>
-    </ul>
+    </mat-action-list>
   </ng-container>
   <ng-container ngProjectAs="small-sidebar">
   </ng-container>

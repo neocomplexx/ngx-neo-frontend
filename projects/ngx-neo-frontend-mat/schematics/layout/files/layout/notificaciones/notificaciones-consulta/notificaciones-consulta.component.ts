@@ -5,7 +5,7 @@ import { NotificationState } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NeoComponentAsync } from '@neocomplexx/ngx-neo-frontend-mat';
 import { NotificacionesModel } from '../notificaciones.model';
 import { NotificationDTO  } from '@neocomplexx/ngx-neo-frontend-mat';
-import { Header<%=classify(projectName)%>Service } from 'src/app/core/header-<%=dasherize(projectName)%>/header-<%=dasherize(projectName)%>.service';
+import { HeaderUaalooService } from 'src/app/core/header-uaaloo/header-uaaloo.service';
 import { NotificationNeoComplexxService } from '@neocomplexx/ngx-neo-frontend-mat';
 // import { trigger, transition, animate, keyframes } from '@angular/animations';
 // import * as kf from 'src/app/shared/services/keyframes';
@@ -34,7 +34,7 @@ export class NotificacionesConsultaComponent extends NeoComponentAsync {
     // Command para leer y archivar notificaciones
     public leerCmd: ICommand = new Command((notificacion) => this.leerNotificacion(notificacion), new BehaviorSubject(true), true);
 
-    constructor(private notificationService: NotificationNeoComplexxService, protected headerService: Header<%=classify(projectName)%>Service) {
+    constructor(private notificationService: NotificationNeoComplexxService, protected headerService: HeaderUaalooService) {
         super(headerService);
         this.verArchivadas = false;
     }
