@@ -18,7 +18,7 @@
   $stl-color-secondary: mat-color($accent, 900) !important;
   $stl-color-secondary-intermediate: mat-color($accent, 500) !important;
   $stl-color-secondary-light: mat-color($accent, 50) !important;
-  $stl-color-secondary-contrast: mat-con($accent, 800) !important;
+  $stl-color-secondary-contrast: mat-color($accent, 800) !important;
   $stl-color-warn: mat-color($warn, 500) !important;
   $stl-color-warn-light: mat-color($warn, 200) !important;
 
@@ -197,3 +197,4 @@ $warn: mat-palette($mat-flyseg-warn);
 
 $theme: mat-light-theme($primary, $accent, $warn);
 @include angular-material-theme($theme);
+@include theme-color-grabber($theme);

@@ -1,6 +1,5 @@
 <div class="container-fluid container-admin">
   <div class="d-flex flex-row clase-menu">
-
       <div class="flex-6 pr-4 pad-form" *ngFor="let menuGrupo of menus[0].grupos">
           <h3>{{menuGrupo.nombre}}</h3>
           <mat-list class="mat-elevation-z8" >
@@ -9,24 +8,4 @@
               </mat-list-item>
             </mat-list>
       </div> 
-      <div class="flex-6" *ngFor="let menuGrupo of menus[1].grupos">
-        <h3>{{menuGrupo.nombre}}</h3>
-        <mat-list class="mat-elevation-z8" >
-            <mat-list-item *ngFor="let menuGrupoOpcion of menuGrupo.opciones" id={{menuGrupoOpcion.id}}>
-                <a class="w-100" [command]="menuGrupoOpcion.comando"> {{menuGrupoOpcion.nombre}} </a>
-            </mat-list-item>
-          </mat-list>
-    </div>        
-  </div>
-  <div class="d-flex flex-row clase-menu mb-2">
-    <div class="flex-6 pr-4" *ngFor="let menuGrupo of menus[2].grupos">
-        <h3>{{menuGrupo.nombre}}</h3>
-        <mat-list class="mat-elevation-z8" >
-            <mat-list-item *ngFor="let menuGrupoOpcion of menuGrupo.opciones" id={{menuGrupoOpcion.id}}>
-                <a class="w-100" [command]="menuGrupoOpcion.comando"> {{menuGrupoOpcion.nombre}} </a>
-            </mat-list-item>
-          </mat-list>
-    </div> 
-  </div>
-
 </div>
