@@ -4,6 +4,7 @@ import { ExceptionManagerService } from '../exception-manager/exception-manager.
 import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend-mat.module';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { AuditLogEntryDTO } from '../../models';
 import { RoleDTO } from '../../models';
 
 @Injectable({
@@ -13,6 +14,20 @@ export class RoleServiceBackend {
 
    constructor (@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
       protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
+
+   public async getUsuariosrolesIdAuditory(id: number): Promise<Array<AuditLogEntryDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+      const res = await this.http.get(this.Constants.apiURL + '/usuariosroles/' + id + '/Auditory').toPromise();
+      const resJson = res['data'];
+      const resDTO = new Array<AuditLogEntryDTO>();
+      for (const item of resJson) {
+         const itemDTO = new AuditLogEntryDTO()
+         itemDTO.PrepareDTO(item);
+         resDTO.push(itemDTO);
+      }
+      return resDTO;
+      });
+   }
 
    public async getUsuariosrolesIdPDF(id: number, namedBlob: NamedBlobDTO = null): Promise<Blob> {
       return this.exceptionManager.executeAsync(async () => {

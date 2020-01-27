@@ -8,6 +8,7 @@ import { AuthEditUserRequestDTO } from '../../models';
 import { AuthNewUserRequestDTO } from '../../models';
 import { AuthRequestDTO } from '../../models';
 import { AuthResponseDTO } from '../../models';
+import { AuditLogEntryDTO } from '../../models';
 import { UserBasicDTO } from '../../models';
 import { UserDTO } from '../../models';
 
@@ -18,6 +19,20 @@ export class UsersServiceBackend {
 
    constructor (@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
       protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
+
+   public async getUsersIdAuditory(id: number): Promise<Array<AuditLogEntryDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+      const res = await this.http.get(this.Constants.apiURL + '/users/' + id + '/Auditory').toPromise();
+      const resJson = res['data'];
+      const resDTO = new Array<AuditLogEntryDTO>();
+      for (const item of resJson) {
+         const itemDTO = new AuditLogEntryDTO()
+         itemDTO.PrepareDTO(item);
+         resDTO.push(itemDTO);
+      }
+      return resDTO;
+      });
+   }
 
    public async getUsers(withoutRole: boolean): Promise<Array<UserDTO>> {
       return this.exceptionManager.executeAsync(async () => {

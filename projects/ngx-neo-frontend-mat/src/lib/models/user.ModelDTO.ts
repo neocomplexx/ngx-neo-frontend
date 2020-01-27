@@ -67,8 +67,8 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    get UserTypeArray(): Array<string> { return this.getStringFromUserTypes(this.entityDTO.userType); }
    set UserTypeArray(value: Array<string>) { this.notifyChangeDTO('userType', this.getFlagFromUserTypesString(value)); }
 
-   get Imagen(): string { return this.entityDTO.imagen; }
-   set Imagen(value: string) { this.notifyChangeDTO('imagen', value); }
+   get Image(): string { return this.entityDTO.image; }
+   set Image(value: string) { this.notifyChangeDTO('image', value); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

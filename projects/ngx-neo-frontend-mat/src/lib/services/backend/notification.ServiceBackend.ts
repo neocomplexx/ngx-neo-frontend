@@ -4,6 +4,7 @@ import { ExceptionManagerService } from '../exception-manager/exception-manager.
 import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend-mat.module';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { AuditLogEntryDTO } from '../../models';
 import { NewNotificationDTO } from '../../models';
 import { NotificationDataDTO } from '../../models';
 import { NotificationDTO } from '../../models';
@@ -16,6 +17,20 @@ export class NotificationServiceBackend {
 
    constructor (@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
       protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
+
+   public async getUserNotificationsIdAuditory(id: number): Promise<Array<AuditLogEntryDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+      const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + id + '/Auditory').toPromise();
+      const resJson = res['data'];
+      const resDTO = new Array<AuditLogEntryDTO>();
+      for (const item of resJson) {
+         const itemDTO = new AuditLogEntryDTO()
+         itemDTO.PrepareDTO(item);
+         resDTO.push(itemDTO);
+      }
+      return resDTO;
+      });
+   }
 
    public async getUserNotifications(archived: boolean, pageNumber: number, pageSize: number): Promise<NotificationDataDTO> {
       return this.exceptionManager.executeAsync(async () => {

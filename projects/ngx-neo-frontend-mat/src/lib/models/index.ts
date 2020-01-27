@@ -1,5 +1,6 @@
 export * from './DTO';
 export * from './attachment.ModelDTO';
+export * from './auditLogEntry.ModelDTO';
 export * from './authChangePasswordRequest.ModelDTO';
 export * from './authEditUserRequest.ModelDTO';
 export * from './authNewUserRequest.ModelDTO';
