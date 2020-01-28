@@ -6,7 +6,7 @@ export class BackendConfigurationDTO implements IEntityDTO {
    logInfoBackend: boolean;
    logInfoOwnApp: boolean;
    logInfoPUSHNotification: boolean;
-   pUSHServer: boolean;
+   pushServerEnabled: boolean;
    apnsServerEnvironmentIsSandbox: boolean;
    originsDeniedByCORS: Array<string>;
    originsAllowByCORS: Array<string>;
@@ -22,7 +22,7 @@ export class BackendConfigurationDTO implements IEntityDTO {
       if (jsonObj['logInfoBackend'] != null) this.logInfoBackend = jsonObj['logInfoBackend'];
       if (jsonObj['logInfoOwnApp'] != null) this.logInfoOwnApp = jsonObj['logInfoOwnApp'];
       if (jsonObj['logInfoPUSHNotification'] != null) this.logInfoPUSHNotification = jsonObj['logInfoPUSHNotification'];
-      if (jsonObj['pUSHServer'] != null) this.pUSHServer = jsonObj['pUSHServer'];
+      if (jsonObj['pushServerEnabled'] != null) this.pushServerEnabled = jsonObj['pushServerEnabled'];
       if (jsonObj['apnsServerEnvironmentIsSandbox'] != null) this.apnsServerEnvironmentIsSandbox = jsonObj['apnsServerEnvironmentIsSandbox'];
       if (jsonObj['originsDeniedByCORS'] != null) this.originsDeniedByCORS = jsonObj['originsDeniedByCORS'];
       if (jsonObj['originsAllowByCORS'] != null) this.originsAllowByCORS = jsonObj['originsAllowByCORS'];
