@@ -2,7 +2,7 @@ import { IEntityDTO } from './entity.DTO';
 
 export class ImageEntityDTO implements IEntityDTO {
 
-   imagen: string = '';
+   image: string = '';
    id: number = 0;
    cacheStamp: number = 0;
 
@@ -11,7 +11,7 @@ export class ImageEntityDTO implements IEntityDTO {
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
-      if (jsonObj['imagen'] != null) this.imagen = jsonObj['imagen'];
+      if (jsonObj['image'] != null) this.image = jsonObj['image'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

@@ -29,8 +29,8 @@ export class BackendConfigurationModelDTO extends EntityModelDTO<BackendConfigur
    get LogInfoPUSHNotification(): boolean { return this.entityDTO.logInfoPUSHNotification; }
    set LogInfoPUSHNotification(value: boolean) { this.notifyChangeDTO('logInfoPUSHNotification', value); }
 
-   get PUSHServer(): boolean { return this.entityDTO.pUSHServer; }
-   set PUSHServer(value: boolean) { this.notifyChangeDTO('pUSHServer', value); }
+   get PushServerEnabled(): boolean { return this.entityDTO.pushServerEnabled; }
+   set PushServerEnabled(value: boolean) { this.notifyChangeDTO('pushServerEnabled', value); }
 
    get ApnsServerEnvironmentIsSandbox(): boolean { return this.entityDTO.apnsServerEnvironmentIsSandbox; }
    set ApnsServerEnvironmentIsSandbox(value: boolean) { this.notifyChangeDTO('apnsServerEnvironmentIsSandbox', value); }
