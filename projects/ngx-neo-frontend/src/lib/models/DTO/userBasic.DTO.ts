@@ -14,7 +14,7 @@ export class UserBasicDTO implements IEntityDTO {
    state: UserState;
    roleName: string = '';
    userType: UserTypes;
-   imagen: string = '';
+   image: string = '';
    id: number = 0;
    cacheStamp: number = 0;
 
@@ -31,7 +31,7 @@ export class UserBasicDTO implements IEntityDTO {
       if (jsonObj['state'] != null) this.state = jsonObj['state'] as UserState;
       if (jsonObj['roleName'] != null) this.roleName = jsonObj['roleName'];
       if (jsonObj['userType'] != null) this.userType = jsonObj['userType'] as UserTypes;
-      if (jsonObj['imagen'] != null) this.imagen = jsonObj['imagen'];
+      if (jsonObj['image'] != null) this.image = jsonObj['image'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }
