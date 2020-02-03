@@ -34,9 +34,9 @@ export class UsersServiceBackend {
       });
    }
 
-   public async getUsers(withoutRole: boolean): Promise<Array<UserDTO>> {
+   public async getUsers(withoutRole: boolean, withRoleUsers: boolean = false): Promise<Array<UserDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-      const res = await this.http.get(this.Constants.apiURL + '/users/' + '?withoutRole=' + withoutRole).toPromise();
+      const res = await this.http.get(this.Constants.apiURL + '/users/' + '?withoutRole=' + withoutRole + '&withRoleUsers=' + withRoleUsers).toPromise();
       const resJson = res['data'];
       const resDTO = new Array<UserDTO>();
       for (const item of resJson) {
