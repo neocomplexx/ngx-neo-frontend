@@ -19,9 +19,9 @@ export class UsersServiceBackend {
    constructor (@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
       protected http: HttpClient, protected exceptionManager: ExceptionManagerService) {}
 
-   public async getUsers(withoutRole: boolean): Promise<Array<UserDTO>> {
+   public async getUsers(withoutRole: boolean, withRoleUsers: boolean = false): Promise<Array<UserDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-      const res = await this.http.get(this.Constants.apiURL + '/users/' + '?withoutRole=' + withoutRole).toPromise();
+      const res = await this.http.get(this.Constants.apiURL + '/users/' + '?withoutRole=' + withoutRole + '&withRoleUsers=' + withRoleUsers).toPromise();
       const resJson = res['data'];
       const resDTO = new Array<UserDTO>();
       for (const item of resJson) {
@@ -32,7 +32,7 @@ export class UsersServiceBackend {
       return resDTO;
       });
    }
-
+   
    public async getUsersAutoComplete(contiene: string, pageSize: number): Promise<Array<UserBasicDTO>> {
       return this.exceptionManager.executeAsync(async () => {
       const res = await this.http.get(this.Constants.apiURL + '/users/autoComplete' + '?contiene=' + contiene + '&pageSize=' + pageSize).toPromise();
