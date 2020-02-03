@@ -1,5 +1,7 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
+import { UserState } from './userState.ENUM';
+
 
 export class AuthEditUserRequestDTO implements IEntityDTO {
 
@@ -8,6 +10,7 @@ export class AuthEditUserRequestDTO implements IEntityDTO {
    userName: string = '';
    idRole: number = 0;
    idUserOwner: number = 0;
+   state: UserState;
 
    constructor() {
    }
@@ -19,5 +22,6 @@ export class AuthEditUserRequestDTO implements IEntityDTO {
       if (jsonObj['userName'] != null) this.userName = jsonObj['userName'];
       if (jsonObj['idRole'] != null) this.idRole = jsonObj['idRole'];
       if (jsonObj['idUserOwner'] != null) this.idUserOwner = jsonObj['idUserOwner'];
+      if (jsonObj['state'] != null) this.state = jsonObj['state'] as UserState;
    }
 }
