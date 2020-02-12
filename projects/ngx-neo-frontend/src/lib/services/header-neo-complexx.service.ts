@@ -13,9 +13,10 @@ import { ExceptionManagerService } from './exception-manager/exception-manager.s
 import { AuthenticationService } from '../helpers/auth/authentication.service';
 import { HeaderService } from '@neocomplexx/ngx-neo-components';
 import { MobileSidebarService } from '@neocomplexx/ngx-neo-components';
-import { UsersServiceBackend } from './backend';
 import { UserTypes } from '../models';
+import { UsersServiceBackend } from './backend/users.ServiceBackend';
 
+@Injectable()
 export abstract class HeaderNeoComplexxService extends HeaderService implements ITabChangeController, OnDestroy {
 
     protected userEntity: any;
