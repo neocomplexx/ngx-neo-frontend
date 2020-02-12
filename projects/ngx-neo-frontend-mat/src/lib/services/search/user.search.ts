@@ -1,8 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { CompleterItem } from '@neocomplexx/ngx-neo-completer-mat';
 import { BaseEntitiesSearch } from './base-entitites.search';
-import { FrontEndConfig, FrontEndConfigService } from '../../ngx-neo-frontend-mat.module';
+
 import { UserEntityService } from '../entity';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 @Injectable({
     providedIn: 'root'

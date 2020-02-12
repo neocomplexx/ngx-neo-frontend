@@ -2,7 +2,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { CompleterItem, CompleterData } from '@neocomplexx/ngx-neo-completer-mat';
 import { ICommand, Command } from '@neocomplexx/ngx-neo-directives-mat';
 import { Inject } from '@angular/core';
-import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend-mat.module';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 export abstract class BaseEntitiesSearch extends Subject<CompleterItem[]> implements CompleterData {
 

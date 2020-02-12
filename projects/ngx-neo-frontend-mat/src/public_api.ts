@@ -20,3 +20,4 @@ export * from './lib/services/entity';
 export * from './lib/services/search';
 export * from './lib/directives/scrolleable.directive';
 export * from './lib/components/view-model';
+export * from './lib/FrontendConfig';

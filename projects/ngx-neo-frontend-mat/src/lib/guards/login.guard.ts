@@ -11,7 +11,7 @@ import { HeaderNeoComplexxService } from '../services/header-neo-complexx.servic
   providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
-  constructor(private headerService: HeaderNeoComplexxService, private router: Router) {}
+  constructor(protected headerService: HeaderNeoComplexxService, protected router: Router) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.headerService.IsLogged()) {

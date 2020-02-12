@@ -396,6 +396,5 @@ const providersString = (projectName: string) =>  `  providers: [
   {
     provide: FrontEndConfigService,
     useValue: config
-  },
-  AuthGuard,
+  }
 ]`;
