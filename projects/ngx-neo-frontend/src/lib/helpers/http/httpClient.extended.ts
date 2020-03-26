@@ -12,6 +12,7 @@ import { CordovaService } from '../../services/cordova/cordova.service';
 export class HttpClientExtended extends HttpClient {
 
     public LoaderActivo = true;
+    public TIMEOUT = 60000;
 
     constructor(handler: HttpHandler, public loaderService: NgxNeoLoaderService,
         public router: Router, private cordovaService: CordovaService) {
@@ -22,7 +23,7 @@ export class HttpClientExtended extends HttpClient {
     public get(url: string, options?): Observable<any> {
         const loaderSub = this.showLoader();
         return super.get(url, options).pipe(
-            timeout(60000),
+            timeout(this.TIMEOUT),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
             }),
@@ -39,7 +40,7 @@ export class HttpClientExtended extends HttpClient {
     public post(url: string, body: any, options?): Observable<any> {
         const loaderSub = this.showLoader();
         return super.post(url, body, options).pipe(
-            timeout(60000),
+            timeout(this.TIMEOUT),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
             }),
@@ -56,7 +57,7 @@ export class HttpClientExtended extends HttpClient {
     public put(url: string, body: any, options?): Observable<any> {
         const loaderSub = this.showLoader();
         return super.put(url, body, options).pipe(
-            timeout(60000),
+            timeout(this.TIMEOUT),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
             }),
@@ -72,7 +73,7 @@ export class HttpClientExtended extends HttpClient {
     public deleteResponse(url: string): Observable<any> {
         const loaderSub = this.showLoader();
         return super.delete(url, { observe: 'response' }).pipe(
-            timeout(600000),
+            timeout(this.TIMEOUT),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
             }),
@@ -89,7 +90,7 @@ export class HttpClientExtended extends HttpClient {
     public delete(url: string): Observable<any> {
         const loaderSub = this.showLoader();
         return super.delete(url).pipe(
-            timeout(60000),
+            timeout(this.TIMEOUT),
             catchError((error: any, caught: Observable<any>) => {
                 return this.onCatch(error, caught, loaderSub);
             }), tap((res: Response) => {
