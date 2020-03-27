@@ -12,16 +12,16 @@
     "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:assets && npm run copy:cordova && npm run copy:styles && npm run copy:collection"
   },
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0",
-    "@neocomplexx/ngx-neo-components": "^7.0.24",
+    "@angular/common": "~8.2.14",
+    "@angular/core": "~8.2.14",
+    "@neocomplexx/ngx-neo-components": "^8.0.0",
     "@neocomplexx/ngx-neo-completer": "^7.0.0",
     "@neocomplexx/ngx-neo-loader": "^7.0.0",
-    "@neocomplexx/ngx-neo-modal": "^7.0.1",
+    "@neocomplexx/ngx-neo-modal": "^8.0.0",
     "@neocomplexx/ngx-neo-directives": "^7.0.9",
-    "@ng-bootstrap/ng-bootstrap": "^4.0.1",
+    "@ng-bootstrap/ng-bootstrap": "^5.0",
     "@aspnet/signalr": "^1.1.2",
-    "@angular/cdk": "^7.3.7",
+    "@angular/cdk": "^8.2.3",
     "ng5-breadcrumb": "^0.0.6"
   },
   "schematics": "./schematics/collection.json"

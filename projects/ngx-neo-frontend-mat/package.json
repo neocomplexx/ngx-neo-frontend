@@ -19,7 +19,7 @@
     "@neocomplexx/ngx-neo-completer-mat": "^7.0.1",
     "@neocomplexx/ngx-neo-loader": "^7.0.0",
     "@neocomplexx/ngx-neo-directives-mat": "^7.0.4",
-    "@neocomplexx/ngx-neo-modal-mat": "^7.0.2",
+    "@neocomplexx/ngx-neo-modal-mat": "^8.0.0",
     "@neocomplexx/ngx-neo-pipes": "^7.0.5",
     "ngx-treeview": "^6.0.2",
     "@aspnet/signalr": "^1.1.2"

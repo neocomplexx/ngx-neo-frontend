@@ -10,7 +10,7 @@ import { ForgetPassService } from './forget-pass.service';
 })
 export class ForgetPassComponent implements AfterViewInit {
 
-  @ViewChild('inpUserName') inpUserName: ElementRef;
+  @ViewChild('inpUserName', { static: false }) inpUserName: ElementRef;
 
   public userName: string;
   public reestablecerExitoso: boolean;
