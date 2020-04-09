@@ -55,13 +55,15 @@ export class ChatService {
       chat.AddChatMessage(message);
     });
 
-    this.pushService.onConectedToServer(() => {
-      this.Users.forEach(chatUser => {
-        if (this.pushService.user.userName !== chatUser.userTo.userName) {
-          chatUser.onLine = false;
-        }
-      });
-      this.pushService.sendMessageToServer('FindAllOnline', this.pushService.user.userName);
+    this.pushService.onConectedToServer((data) => {
+      if (data) {
+        this.Users.forEach(chatUser => {
+          if (this.pushService.user.userName !== chatUser.userTo.userName) {
+            chatUser.onLine = false;
+          }
+        });
+        this.pushService.sendMessageToServer('FindAllOnline', this.pushService.user.userName);
+      }
     });
   }
 

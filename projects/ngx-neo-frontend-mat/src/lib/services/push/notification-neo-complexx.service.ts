@@ -42,8 +42,10 @@ export class NotificationNeoComplexxService extends NotificationService {
             }
         });
 
-        this.pushService.onConectedToServer(async () => {
-            await this.getAllNotification();
+        this.pushService.onConectedToServer(async (data) => {
+            if (data) {
+                await this.getAllNotification();
+            }
         });
     }
     private async getAllNotification(): Promise<void> {

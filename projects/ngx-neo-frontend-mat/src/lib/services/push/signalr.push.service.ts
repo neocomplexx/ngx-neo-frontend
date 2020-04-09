@@ -1,6 +1,6 @@
 import { HubConnectionBuilder, HubConnection, IHttpConnectionOptions } from '@aspnet/signalr';
 import { Injectable, Inject } from '@angular/core';
-import { Subscription, Subject, timer } from 'rxjs';
+import { Subscription, Subject, timer, BehaviorSubject } from 'rxjs';
 import { AppError } from '../exception-manager/app-error';
 import { AuthResponseDTO } from '../../models/DTO/authResponse.DTO';
 import { IEntityDTO } from '../../models/DTO/entity.DTO';
@@ -18,7 +18,7 @@ export class PushService {
 
     public user: AuthResponseDTO;
 
-    private _onConnectedEvent = new Subject();
+    private _onConnectedEvent = new BehaviorSubject<boolean>(false);
 
     constructor(@Inject(FrontEndConfigService) private Constants: FrontEndConfig) {
         const thisAux = this;
@@ -49,7 +49,7 @@ export class PushService {
             .start()
             .then(() => {
                 console.log('Connection started (1)!');
-                this._onConnectedEvent.next();
+                this._onConnectedEvent.next(true);
             })
             .catch(error => {
                 if (!this.isStoped) { this.connection(); }
@@ -78,7 +78,7 @@ export class PushService {
             .start()
             .then(() => {
                 console.log('Connection started (2)!');
-                this._onConnectedEvent.next();
+                this._onConnectedEvent.next(true);
             })
             .catch(err => {
                 if (err && err.message.includes('Unauthorized')) {
@@ -90,8 +90,8 @@ export class PushService {
             });
     }
 
-    public onConectedToServer(onConnectedMethod: () => void): Subscription {
-        return this._onConnectedEvent.asObservable().subscribe(onConnectedMethod);
+    public onConectedToServer(onConnectedMethod: (connection: boolean) => void): Subscription {
+        return this._onConnectedEvent.asObservable().subscribe(data => onConnectedMethod(data));
     }
 
     public registerPushFrom<TDTO extends IEntityDTO | null>(methodName: string, newMethod: (dto: TDTO | null) => void): void {

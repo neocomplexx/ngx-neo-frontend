@@ -88,7 +88,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
             }
         });
 
-        this.subscriptions.add(this.signalRService.onConectedToServer(() => this.withoutConnection$.next(false)));
+        this.subscriptions.add(this.signalRService.onConectedToServer((data) => this.withoutConnection$.next(!data)));
     }
 
     public notifyWithoutConnection(): void {
