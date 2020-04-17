@@ -29,6 +29,12 @@ export class BackendConfigurationModelDTO extends EntityModelDTO<BackendConfigur
    get LogInfoPUSHNotification(): boolean { return this.entityDTO.logInfoPUSHNotification; }
    set LogInfoPUSHNotification(value: boolean) { this.notifyChangeDTO('logInfoPUSHNotification', value); }
 
+   get LogInfoRequestBody(): boolean { return this.entityDTO.logInfoRequestBody; }
+   set LogInfoRequestBody(value: boolean) { this.notifyChangeDTO('logInfoRequestBody', value); }
+
+   get CacheActivated(): boolean { return this.entityDTO.cacheActivated; }
+   set CacheActivated(value: boolean) { this.notifyChangeDTO('cacheActivated', value); }
+
    get PushServerEnabled(): boolean { return this.entityDTO.pushServerEnabled; }
    set PushServerEnabled(value: boolean) { this.notifyChangeDTO('pushServerEnabled', value); }
 
