@@ -105,7 +105,7 @@ export class HttpClientExtended extends HttpClient {
     public onCatch(error: any, caught: Observable<any>, loaderSub: any): Observable<any> {
         this.hideLoader(loaderSub);
         const neoError = error.headers ? error.headers.get("x-neo-error") : null;
-        if (neoError && (!error.statusText || error.statusText == '' || error.statusText == 'Bad Request')) {
+        if (neoError && (!error.statusText || error.statusText == '' || error.statusText == 'Bad Request' || error.statusText == 'OK')) {
             error.statusText = neoError;
         }
         if (error.statusText && error.statusText.startsWith('data:txt;base64,')) {
