@@ -29,7 +29,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public componentSelected: string;
 
-    public beforeBack: (beforeBackArgs: BeforeBackArgs) => void;
+    public beforeBack: (beforeBackArgs: BeforeBackArgs) => void | Promise<void>;
 
     public canShowWithoutConnectionBanner: boolean;
     public withoutConnection$ = new Subject<boolean>();
@@ -42,6 +42,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     /** auto scroll section */
     public scrolleableComponent: ElementRef;
     public scrollSavedActivated = false;
+    public stopNavigation = false;
     public currentElement: string;
 
     public loggedOut$ = new Subject();
@@ -61,11 +62,11 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
         this.getItemFromLocalStorage();
 
-        window.addEventListener('popstate', (event) => {
+        window.addEventListener('popstate', async (event) => {
             // The popstate event is fired each time when the current history entry changes.
             const beforeBackArgs: BeforeBackArgs = { path: '', cancelBack: false };
             if (this.beforeBack) {
-                this.beforeBack(beforeBackArgs);
+                await this.beforeBack(beforeBackArgs);
                 this.removeScrollSaved();
             }
         }, false);
@@ -125,7 +126,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     private getItemFromLocalStorage(): void {
         const currentUser = JSON.parse(localStorage.getItem('currentUserWeb'));
         if (currentUser) {
-            const upper = currentUser.userType[0].toUpperCase() +  currentUser.userType.slice(1);
+            const upper = currentUser.userType[0].toUpperCase() + currentUser.userType.slice(1);
             currentUser.userType = UserTypes[upper];
             this.userLogged.PrepareDTO(currentUser);
         } else {
@@ -242,6 +243,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
                 this.destroyComponent();
                 return true;
             } else {
+                this.stopNavigation = true;
                 return false;
             }
         }

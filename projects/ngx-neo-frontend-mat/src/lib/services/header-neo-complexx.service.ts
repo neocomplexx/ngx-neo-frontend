@@ -29,8 +29,9 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
 
     public componentSelected: string;
 
-    public beforeBack: (beforeBackArgs: BeforeBackArgs) => void;
+    public beforeBack: (beforeBackArgs: BeforeBackArgs) => void | Promise<void>;
 
+    public stopNavigation = false;
     public canShowWithoutConnectionBanner: boolean;
     public withoutConnection$ = new Subject<boolean>();
 
@@ -125,7 +126,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
     private getItemFromLocalStorage(): void {
         const currentUser = JSON.parse(localStorage.getItem('currentUserWeb'));
         if (currentUser) {
-            const upper = currentUser.userType[0].toUpperCase() +  currentUser.userType.slice(1);
+            const upper = currentUser.userType[0].toUpperCase() + currentUser.userType.slice(1);
             currentUser.userType = UserTypes[upper];
             this.userLogged.PrepareDTO(currentUser);
         } else {
@@ -239,6 +240,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
                 this.destroyComponent();
                 return true;
             } else {
+                this.stopNavigation = true;
                 return false;
             }
         }
