@@ -35,6 +35,9 @@ export class FileDBModelDTO extends EntityModelDTO<FileDBDTO> {
    get Path(): string { return this.entityDTO.path; }
    set Path(value: string) { this.notifyChangeDTO('path', value); }
 
+   get Size(): number { return this.entityDTO.size; }
+   set Size(value: number) { this.notifyChangeDTO('size', value); }
+
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }
 

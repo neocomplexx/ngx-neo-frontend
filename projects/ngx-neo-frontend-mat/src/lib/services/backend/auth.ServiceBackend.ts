@@ -1,9 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuthChangePasswordRequestDTO } from '../../models';
+import { AuthNewUserRequestDTO } from '../../models';
 import { AuthRequestDTO } from '../../models';
 import { AuthResponseDTO } from '../../models';
 import { AuthTenantsResponseDTO } from '../../models';
@@ -66,6 +68,12 @@ export class AuthServiceBackend {
       return this.exceptionManager.executeAsync(async () => {
          await this.http.post(this.Constants.apiURL + '/auth/logout', authRequestDTO).toPromise();
       }, null, false, true);
+   }
+
+   public async insertAuthNewAccount(authNewUserRequestDTO: AuthNewUserRequestDTO): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+         await this.http.post(this.Constants.apiURL + '/auth/newAccount', authNewUserRequestDTO).toPromise();
+      }, null, true, true);
    }
 
 }

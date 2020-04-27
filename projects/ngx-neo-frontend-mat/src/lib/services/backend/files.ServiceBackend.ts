@@ -1,9 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuditLogEntryDTO } from '../../models';
+import { PublicLinkDTO } from '../../models';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 @Injectable({
@@ -36,6 +38,16 @@ export class FilesServiceBackend {
             namedBlob.setBlobNameFromHttpResponse(res);
             namedBlob.blob = res.body;
          }
+         return resDTO;
+      });
+   }
+
+   public async getFilesPublicLinkId(id: number, expiredMinutes: number = 15): Promise<PublicLinkDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/files/publicLink/' + id + '?expiredMinutes=' + expiredMinutes).toPromise();
+         if (!res) { return null; }
+         const resDTO = new PublicLinkDTO();
+         resDTO.PrepareDTO(res);
          return resDTO;
       });
    }

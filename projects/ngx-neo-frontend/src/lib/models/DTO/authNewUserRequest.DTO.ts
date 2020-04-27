@@ -11,6 +11,7 @@ export class AuthNewUserRequestDTO implements IEntityDTO {
    password: string = '';
    idRole: number = 0;
    idUserOwner: number = 0;
+   email: string = '';
    state: UserState;
 
    constructor() {
@@ -24,6 +25,7 @@ export class AuthNewUserRequestDTO implements IEntityDTO {
       if (jsonObj['password'] != null) this.password = jsonObj['password'];
       if (jsonObj['idRole'] != null) this.idRole = jsonObj['idRole'];
       if (jsonObj['idUserOwner'] != null) this.idUserOwner = jsonObj['idUserOwner'];
+      if (jsonObj['email'] != null) this.email = jsonObj['email'];
       if (jsonObj['state'] != null) this.state = jsonObj['state'] as UserState;
    }
 }

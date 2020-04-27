@@ -1,13 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+import { AuthTenantsResponseDTO } from '../../models';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuditLogEntryDTO } from '../../models';
 import { ModulePermissionsDTO } from '../../models';
 import { PermissionDTO } from '../../models';
 import { UpdatePermissionsDTO } from '../../models';
-import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 @Injectable({
    providedIn: 'root'

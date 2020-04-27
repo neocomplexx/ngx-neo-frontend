@@ -1,6 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+import { AuthTenantsResponseDTO } from '../../models';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuditLogEntryDTO } from '../../models';
@@ -8,7 +10,6 @@ import { NewNotificationDTO } from '../../models';
 import { NotificationDataDTO } from '../../models';
 import { NotificationDTO } from '../../models';
 import { UserDTO } from '../../models';
-import { FrontEndConfig, FrontEndConfigService } from '../../FrontendConfig';
 
 @Injectable({
    providedIn: 'root'

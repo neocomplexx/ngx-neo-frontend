@@ -35,6 +35,9 @@ export class AuthNewUserRequestModelDTO extends EntityModelDTO<AuthNewUserReques
    get IdUserOwner(): number { return this.entityDTO.idUserOwner; }
    set IdUserOwner(value: number) { this.notifyChangeDTO('idUserOwner', value); }
 
+   get Email(): string { return this.entityDTO.email; }
+   set Email(value: string) { this.notifyChangeDTO('email', value); }
+
    get State(): string { return UserState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', UserState[value]); }
 
