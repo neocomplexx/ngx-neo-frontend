@@ -36,16 +36,18 @@ export class AuthenticationService {
         const authRes = new AuthRequestDTO();
         authRes.token = localStorage.getItem('fcm');
         await this.exceptionManager.executeAsync(async () => {
-            await this.authService.insertAuthLogout(authRes);
+            try {
+                await this.authService.insertAuthLogout(authRes);
+            } catch  { }
             this.removeInfoLogin();
         }, 'No se puede cerrar la sesión en este momento, intente nuevamente más tarde.');
     }
 
     public removeInfoLogin(): void {
         this.pushService.stop();
-      /*   if (this.modalService.hasOpenModals()) {
-            this.modalService.dismissAll();
-        } */
+        /*   if (this.modalService.hasOpenModals()) {
+              this.modalService.dismissAll();
+          } */
         // clear token remove user from local storage to log user out
         this.authResponseDTO = null;
         localStorage.removeItem('currentUserWeb');
