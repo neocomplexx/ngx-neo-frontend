@@ -35,10 +35,10 @@ export class AuthenticationService {
     public async logout(): Promise<void> {
         const authRes = new AuthRequestDTO();
         authRes.token = localStorage.getItem('fcm');
-        await this.exceptionManager.executeAsync(async () => {
+        try {
             await this.authService.insertAuthLogout(authRes);
-            this.removeInfoLogin();
-        }, 'No se puede cerrar la sesión en este momento, intente nuevamente más tarde.');
+        } catch { }
+        this.removeInfoLogin();
     }
 
     public removeInfoLogin(): void {
