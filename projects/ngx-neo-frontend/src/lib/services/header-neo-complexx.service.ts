@@ -4,7 +4,7 @@ import { ITabChangeController } from '@neocomplexx/ngx-neo-directives';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 import { NgxNeoModalService, AlertButton } from '@neocomplexx/ngx-neo-modal';
-import { BreadcrumbService } from 'ng5-breadcrumb';
+import { NgxNeoBreadcrumbService } from '@neocomplexx/ngx-neo-breadcrumb';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserDTO } from '../models/DTO/user.DTO';
 import { PushService } from './push/signalr.push.service';
@@ -54,7 +54,7 @@ export abstract class HeaderNeoComplexxService extends HeaderService implements 
         protected authenticationService: AuthenticationService,
         mobileSidebarService: MobileSidebarService,
         protected usersServiceBackend: UsersServiceBackend, protected modalService: NgbModal,
-        protected breadCrumbService: BreadcrumbService, protected cordovaService: CordovaService,
+        protected breadCrumbService: NgxNeoBreadcrumbService, protected cordovaService: CordovaService,
         protected exceptionService: ExceptionManagerService) {
         super(mobileSidebarService);
         this.userLogged = new UserDTO();
