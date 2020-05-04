@@ -97,7 +97,7 @@ const editAppHtml = (options: schemaOptions): Rule => {
 
     if (!buffer) { return tree; }
 
-   // const content = buffer.toString('utf-8');
+    // const content = buffer.toString('utf-8');
 
     const newContent = '<router-outlet></router-outlet>';
 
@@ -121,7 +121,7 @@ const editMainTs = (options: schemaOptions): Rule => {
     const content = buffer.toString('utf-8');
 
     const newContent = content.replace(`import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';`,
-     `import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+      `import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import 'hammerjs';`);
 
     tree.overwrite(movePath, newContent);
@@ -249,11 +249,11 @@ const addPackageJsonDependencies = (): Rule => {
       { type: NodeDependencyType.Default, version: '^8.2.14', name: '@angular/animations' },
       { type: NodeDependencyType.Default, version: '^5.8.1', name: '@fortawesome/fontawesome-free' },
       { type: NodeDependencyType.Default, version: '^7.0.2', name: '@neocomplexx/ngx-neo-modal-mat' },
-      { type: NodeDependencyType.Default, version: '^7.1.8', name: '@neocomplexx/ngx-neo-components-mat-mat-mat' },
+      { type: NodeDependencyType.Default, version: '^8.0.16', name: '@neocomplexx/ngx-neo-components-mat' },
       { type: NodeDependencyType.Default, version: '^7.0.4', name: '@neocomplexx/ngx-neo-directives-mat' },
       { type: NodeDependencyType.Default, version: '^7.0.0', name: '@neocomplexx/ngx-neo-loader' },
       { type: NodeDependencyType.Default, version: '^7.0.5', name: '@neocomplexx/ngx-neo-pipes' },
-      { type: NodeDependencyType.Default, version: '^7.0.1', name: '@neocomplexx/ngx-neo-completer-mat' },
+      { type: NodeDependencyType.Default, version: '^7.0.3', name: '@neocomplexx/ngx-neo-completer-mat' },
       { type: NodeDependencyType.Default, version: '1.1.2', name: '@aspnet/signalr' }
     ];
 
@@ -368,7 +368,7 @@ const cordovaDebugString = `{
   "buildOptimizer": false
 }`;
 
- const importString = (projectName: string) =>  `import { AppComponent } from './app.component';
+const importString = (projectName: string) => `import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NotificationNeoComplexxService, AuthGuard, HttpClientExtended, UnauthorizedErrorHandler, FrontEndConfig, UserServiceBackend, PushService, AuthenticationService, CordovaService, ExceptionManagerService, HeaderNeoComplexxService } from '@neocomplexx/ngx-neo-frontend-mat';
 import { HeaderService, NotificationService, CustomHammerConfig, MobileSidebarService } from '@neocomplexx/ngx-neo-components-mat';
@@ -382,7 +382,7 @@ const config: FrontEndConfig = { delaySearchMilliseconds: searchDelay, apiURL: u
     `;
 
 
-const providersString = (projectName: string) =>  `  providers: [
+const providersString = (projectName: string) => `  providers: [
   { provide: ErrorHandler, useClass: Unauthorized${classify(projectName)}ErrorHandler },
   { provide: HTTP_INTERCEPTORS, useClass: Auth${classify(projectName)}Interceptor, multi: true },
   { provide: HttpClient, useClass: HttpClientExtended },
