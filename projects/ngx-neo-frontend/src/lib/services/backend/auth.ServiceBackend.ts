@@ -8,7 +8,7 @@ import { AuthNewUserRequestDTO } from '../../models';
 import { AuthRequestDTO } from '../../models';
 import { AuthResponseDTO } from '../../models';
 import { AuthTenantsResponseDTO } from '../../models';
-import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend.module';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 @Injectable({
    providedIn: 'root'

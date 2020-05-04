@@ -4,7 +4,7 @@ import { Subscription, Subject, timer } from 'rxjs';
 import { AppError } from '../exception-manager/app-error';
 import { AuthResponseDTO } from '../../models/DTO/authResponse.DTO';
 import { IEntityDTO } from '../../models/DTO/entity.DTO';
-import { FrontEndConfigService, FrontEndConfig } from '../../ngx-neo-frontend.module';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 @Injectable({
     providedIn: 'root'

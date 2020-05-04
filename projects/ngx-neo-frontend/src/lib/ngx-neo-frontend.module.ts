@@ -2,13 +2,7 @@ import { NgModule, InjectionToken, ModuleWithProviders } from '@angular/core';
 import { NeoFloatingHelpComponent } from './components/neo-floating-help/neo-floating-help.component';
 import { CommonModule } from '@angular/common';
 import { ScrolleableDirective } from './directives/scrolleable.directive';
-
-export interface FrontEndConfig {
-  apiURL: string;
-  delaySearchMilliseconds: number;
-}
-
-export const FrontEndConfigService = new InjectionToken<FrontEndConfig>('FrontEndConfig');
+import { FrontEndConfig, FrontEndConfigService } from './FrontendConfig';
 
 @NgModule({
   declarations: [NeoFloatingHelpComponent, ScrolleableDirective],
