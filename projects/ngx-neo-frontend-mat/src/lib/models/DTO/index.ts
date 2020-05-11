@@ -25,6 +25,7 @@ export * from './notification.DTO';
 export * from './notificationData.DTO';
 export * from './notificationPriority.ENUM';
 export * from './notificationState.ENUM';
+export * from './notificationStats.DTO';
 export * from './notificationType.ENUM';
 export * from './permission.DTO';
 export * from './publicLink.DTO';

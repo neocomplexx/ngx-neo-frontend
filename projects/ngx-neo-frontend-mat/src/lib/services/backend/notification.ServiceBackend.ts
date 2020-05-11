@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
-import { AuthTenantsResponseDTO } from '../../models';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
@@ -9,6 +8,7 @@ import { AuditLogEntryDTO } from '../../models';
 import { NewNotificationDTO } from '../../models';
 import { NotificationDataDTO } from '../../models';
 import { NotificationDTO } from '../../models';
+import { NotificationStatsDTO } from '../../models';
 import { UserDTO } from '../../models';
 
 @Injectable({
@@ -49,6 +49,20 @@ export class NotificationServiceBackend {
          if (!res) { return null; }
          const resDTO = new NotificationDataDTO();
          resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
+   public async getUserNotificationsStaticsByType(type: number = -1): Promise<Array<NotificationStatsDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/staticsByType' + '?type=' + type).toPromise();
+         const resJson = res['data'];
+         const resDTO = new Array<NotificationStatsDTO>();
+         for (const item of resJson) {
+            const itemDTO = new NotificationStatsDTO()
+            itemDTO.PrepareDTO(item);
+            resDTO.push(itemDTO);
+         }
          return resDTO;
       });
    }

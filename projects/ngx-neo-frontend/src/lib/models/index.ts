@@ -22,6 +22,7 @@ export * from './neoCompanyWithAuthToken.ModelDTO';
 export * from './newNotification.ModelDTO';
 export * from './notification.ModelDTO';
 export * from './notificationData.ModelDTO';
+export * from './notificationStats.ModelDTO';
 export * from './permission.ModelDTO';
 export * from './publicLink.ModelDTO';
 export * from './role.ModelDTO';
