@@ -24,4 +24,7 @@ export class TenantResponseModelDTO extends EntityModelDTO<TenantResponseDTO> {
 
    get Token(): string { return this.entityDTO.token; }
    set Token(value: string) { this.notifyChangeDTO('token', value); }
+
+   get UserTypeId(): number { return this.entityDTO.userTypeId; }
+   set UserTypeId(value: number) { this.notifyChangeDTO('userTypeId', value); }
 }
