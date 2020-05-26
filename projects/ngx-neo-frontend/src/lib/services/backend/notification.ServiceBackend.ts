@@ -77,11 +77,11 @@ export class NotificationServiceBackend {
       });
    }
 
-   public async getUserNotificationsTotalWithoutRead(type: number = -1): Promise<NotificationDTO> {
+   public async getUserNotificationsTotalWithoutRead(type: number = -1): Promise<NotificationDataDTO> {
       return this.exceptionManager.executeAsync(async () => {
       const res = await this.http.get(this.Constants.apiURL + '/user/notifications/totalWithoutRead' + '?type=' + type).toPromise();
       if (!res) { return null; }
-      const resDTO = new NotificationDTO();
+      const resDTO = new NotificationDataDTO();
       resDTO.PrepareDTO(res);
       return resDTO;
       });
