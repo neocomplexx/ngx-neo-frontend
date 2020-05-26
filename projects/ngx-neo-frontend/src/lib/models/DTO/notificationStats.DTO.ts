@@ -6,6 +6,7 @@ import { NotificationPriority } from './notificationPriority.ENUM';
 export class NotificationStatsDTO implements IEntityDTO {
 
    title: string = '';
+   details: string = '';
    userName: string = '';
    total: number = 0;
    read: number = 0;
@@ -21,6 +22,7 @@ export class NotificationStatsDTO implements IEntityDTO {
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
       if (jsonObj['title'] != null) this.title = jsonObj['title'];
+      if (jsonObj['details'] != null) this.details = jsonObj['details'];
       if (jsonObj['userName'] != null) this.userName = jsonObj['userName'];
       if (jsonObj['total'] != null) this.total = jsonObj['total'];
       if (jsonObj['read'] != null) this.read = jsonObj['read'];

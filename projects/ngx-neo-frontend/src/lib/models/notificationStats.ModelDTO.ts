@@ -24,6 +24,9 @@ export class NotificationStatsModelDTO extends EntityModelDTO<NotificationStatsD
    get Title(): string { return this.entityDTO.title; }
    set Title(value: string) { this.notifyChangeDTO('title', value); }
 
+   get Details(): string { return this.entityDTO.details; }
+   set Details(value: string) { this.notifyChangeDTO('details', value); }
+
    get UserName(): string { return this.entityDTO.userName; }
    set UserName(value: string) { this.notifyChangeDTO('userName', value); }
 
