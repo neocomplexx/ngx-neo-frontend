@@ -1,15 +1,15 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
-import { ListOfIdsDTO } from './DTO/listOfIds.DTO';
+import { CuoteFilesDTO } from './DTO/cuoteFiles.DTO';
 
 
-export class ListOfIdsModelDTO extends EntityModelDTO<ListOfIdsDTO> {
+export class CuoteFilesModelDTO extends EntityModelDTO<CuoteFilesDTO> {
 
 
-   public constructor(protected entityDTO: ListOfIdsDTO) {
+   public constructor(protected entityDTO: CuoteFilesDTO) {
       super(entityDTO);
    }
-   public setEntityDTO(entityDTO: ListOfIdsDTO) {
+   public setEntityDTO(entityDTO: CuoteFilesDTO) {
       super.setEntityDTO(entityDTO);
       if (entityDTO == null) return;
    }
@@ -20,8 +20,11 @@ export class ListOfIdsModelDTO extends EntityModelDTO<ListOfIdsDTO> {
    public dispose(): void {
    }
 
-   get Ids(): Array<number> { return this.entityDTO.ids; }
-   set Ids(value: Array<number>) { this.notifyChangeDTO('ids', value); }
+   get TotalFiles(): number { return this.entityDTO.totalFiles; }
+   set TotalFiles(value: number) { this.notifyChangeDTO('totalFiles', value); }
+
+   get TotalCuote(): number { return this.entityDTO.totalCuote; }
+   set TotalCuote(value: number) { this.notifyChangeDTO('totalCuote', value); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

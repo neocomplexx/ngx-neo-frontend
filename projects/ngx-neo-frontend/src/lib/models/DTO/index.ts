@@ -9,6 +9,7 @@ export * from './authResponse.DTO';
 export * from './authTenantsResponse.DTO';
 export * from './backendConfiguration.DTO';
 export * from './chatMessage.DTO';
+export * from './cuoteFiles.DTO';
 export * from './entity.DTO';
 export * from './fileDB.DTO';
 export * from './imageEntity.DTO';

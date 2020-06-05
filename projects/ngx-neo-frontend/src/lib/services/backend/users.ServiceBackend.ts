@@ -139,4 +139,10 @@ export class UsersServiceBackend {
       });
    }
 
+   public async insertUsersIdInvalidateTokenAuth(id: number): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+         await this.http.post(this.Constants.apiURL + '/users/' + id + '/invalidateTokenAuth', null).toPromise();
+      });
+   }
+
 }

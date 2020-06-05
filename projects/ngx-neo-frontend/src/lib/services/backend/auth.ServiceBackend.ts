@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
+import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuthChangePasswordRequestDTO } from '../../models';
@@ -8,7 +9,6 @@ import { AuthNewUserRequestDTO } from '../../models';
 import { AuthRequestDTO } from '../../models';
 import { AuthResponseDTO } from '../../models';
 import { AuthTenantsResponseDTO } from '../../models';
-import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 
 @Injectable({
    providedIn: 'root'
@@ -42,6 +42,12 @@ export class AuthServiceBackend {
          const resDTO = new AuthChangePasswordRequestDTO();
          resDTO.PrepareDTO(res);
          return resDTO;
+      });
+   }
+
+   public async updateAuthResetPassword(authRequestDTO: AuthRequestDTO): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+         await this.http.put(this.Constants.apiURL + '/auth/resetPassword', authRequestDTO).toPromise();
       });
    }
 

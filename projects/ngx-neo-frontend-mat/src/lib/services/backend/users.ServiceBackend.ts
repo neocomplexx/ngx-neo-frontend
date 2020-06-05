@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
-import { AuthTenantsResponseDTO } from '../../models';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
@@ -137,6 +136,12 @@ export class UsersServiceBackend {
    public async insertUsersValidate(authRequestDTO: AuthRequestDTO): Promise<void> {
       return this.exceptionManager.executeAsync(async () => {
          await this.http.post(this.Constants.apiURL + '/users/validate', authRequestDTO).toPromise();
+      });
+   }
+
+   public async insertUsersIdInvalidateTokenAuth(id: number): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+         await this.http.post(this.Constants.apiURL + '/users/' + id + '/invalidateTokenAuth', null).toPromise();
       });
    }
 

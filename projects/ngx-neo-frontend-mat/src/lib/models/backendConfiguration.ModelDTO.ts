@@ -20,6 +20,12 @@ export class BackendConfigurationModelDTO extends EntityModelDTO<BackendConfigur
    public dispose(): void {
    }
 
+   get MainDomain(): string { return this.entityDTO.mainDomain; }
+   set MainDomain(value: string) { this.notifyChangeDTO('mainDomain', value); }
+
+   get SiteName(): string { return this.entityDTO.siteName; }
+   set SiteName(value: string) { this.notifyChangeDTO('siteName', value); }
+
    get LogInfoBackend(): boolean { return this.entityDTO.logInfoBackend; }
    set LogInfoBackend(value: boolean) { this.notifyChangeDTO('logInfoBackend', value); }
 

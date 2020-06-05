@@ -16,11 +16,11 @@ export class UserSearch extends BaseEntitiesSearch {
 
 
     public async getEntitiesSearch(startWith: string): Promise<void> {
-      const res = await this.userEntityService.getEntitiesByNombre(startWith);
-      // Convert the result to CompleterItem[]
-      const matches: CompleterItem[] = new Array<CompleterItem>(res.length);
-      res.forEach((item, index) => matches[index] = { title: item.userName, originalObject: item } as CompleterItem);
-      this.next(matches);
-  }
+        const res = await this.userEntityService.getEntitiesByNombre(startWith);
+        // Convert the result to CompleterItem[]
+        const matches: CompleterItem[] = new Array<CompleterItem>(res.length);
+        res.forEach((item, index) => matches[index] = { title: item.userName, originalObject: item } as CompleterItem);
+        this.next(matches);
+    }
 
 }

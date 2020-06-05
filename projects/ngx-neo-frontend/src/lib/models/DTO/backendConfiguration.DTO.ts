@@ -3,6 +3,8 @@ import { NamedBlobDTO } from './namedBlob.DTO';
 
 export class BackendConfigurationDTO implements IEntityDTO {
 
+   mainDomain: string = '';
+   siteName: string = '';
    logInfoBackend: boolean;
    logInfoOwnApp: boolean;
    logInfoPUSHNotification: boolean;
@@ -21,6 +23,8 @@ export class BackendConfigurationDTO implements IEntityDTO {
 
    public PrepareDTO(jsonObj: any): void {
       if (jsonObj == null) return;
+      if (jsonObj['mainDomain'] != null) this.mainDomain = jsonObj['mainDomain'];
+      if (jsonObj['siteName'] != null) this.siteName = jsonObj['siteName'];
       if (jsonObj['logInfoBackend'] != null) this.logInfoBackend = jsonObj['logInfoBackend'];
       if (jsonObj['logInfoOwnApp'] != null) this.logInfoOwnApp = jsonObj['logInfoOwnApp'];
       if (jsonObj['logInfoPUSHNotification'] != null) this.logInfoPUSHNotification = jsonObj['logInfoPUSHNotification'];
