@@ -5,8 +5,6 @@ export class FileDBDTO implements IEntityDTO {
 
    creationDate: Date;
    fileName: string = '';
-   mD5: string = '';
-   path: string = '';
    size: number = 0;
    id: number = 0;
    cacheStamp: number = 0;
@@ -18,8 +16,6 @@ export class FileDBDTO implements IEntityDTO {
       if (jsonObj == null) return;
       if (jsonObj['creationDate'] != null) this.creationDate = new Date(jsonObj['creationDate']);
       if (jsonObj['fileName'] != null) this.fileName = jsonObj['fileName'];
-      if (jsonObj['mD5'] != null) this.mD5 = jsonObj['mD5'];
-      if (jsonObj['path'] != null) this.path = jsonObj['path'];
       if (jsonObj['size'] != null) this.size = jsonObj['size'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];

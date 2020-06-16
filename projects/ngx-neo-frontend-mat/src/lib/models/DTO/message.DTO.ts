@@ -1,7 +1,7 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
 import { UserDTO } from './user.DTO';
-import { AttachmentDTO } from './attachment.DTO';
+import { MessageAttachmentDTO } from './messageAttachment.DTO';
 
 
 export class MessageDTO implements IEntityDTO {
@@ -15,14 +15,14 @@ export class MessageDTO implements IEntityDTO {
    receivers: Array<UserDTO>;
    subject: string = '';
    body: string = '';
-   attachments: Array<AttachmentDTO>;
+   attachments: Array<MessageAttachmentDTO>;
    id: number = 0;
    cacheStamp: number = 0;
 
    constructor() {
       this.sender = new UserDTO();
       this.receivers = new Array<UserDTO>();
-      this.attachments = new Array<AttachmentDTO>();
+      this.attachments = new Array<MessageAttachmentDTO>();
    }
 
    public PrepareDTO(jsonObj: any): void {
@@ -36,7 +36,7 @@ export class MessageDTO implements IEntityDTO {
       if (jsonObj['receivers'] != null) for (const item of jsonObj['receivers']) { const itemDTO = new UserDTO(); itemDTO.PrepareDTO(item); this.receivers.push(itemDTO); }
       if (jsonObj['subject'] != null) this.subject = jsonObj['subject'];
       if (jsonObj['body'] != null) this.body = jsonObj['body'];
-      if (jsonObj['attachments'] != null) for (const item of jsonObj['attachments']) { const itemDTO = new AttachmentDTO(); itemDTO.PrepareDTO(item); this.attachments.push(itemDTO); }
+      if (jsonObj['attachments'] != null) for (const item of jsonObj['attachments']) { const itemDTO = new MessageAttachmentDTO(); itemDTO.PrepareDTO(item); this.attachments.push(itemDTO); }
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

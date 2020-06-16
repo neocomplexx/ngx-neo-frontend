@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { AuditLogEntryDTO } from '../../models';
 import { ListOfIdsDTO } from '../../models';
 import { NewNotificationDTO } from '../../models';
+import { NotificationAttachmentsDTO } from '../../models';
 import { NotificationDataDTO } from '../../models';
 import { NotificationDTO } from '../../models';
 import { NotificationStatsDTO } from '../../models';
@@ -133,11 +134,11 @@ export class NotificationServiceBackend {
       });
    }
 
-   public async getUserNotificationsId(id: number): Promise<UserDTO> {
+   public async getUserNotificationsId(id: number): Promise<NotificationAttachmentsDTO> {
       return this.exceptionManager.executeAsync(async () => {
          const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + id).toPromise();
          if (!res) { return null; }
-         const resDTO = new UserDTO();
+         const resDTO = new NotificationAttachmentsDTO();
          resDTO.PrepareDTO(res);
          return resDTO;
       });

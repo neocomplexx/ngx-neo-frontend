@@ -29,12 +29,6 @@ export class FileDBModelDTO extends EntityModelDTO<FileDBDTO> {
    get FileName(): string { return this.entityDTO.fileName; }
    set FileName(value: string) { this.notifyChangeDTO('fileName', value); }
 
-   get MD5(): string { return this.entityDTO.mD5; }
-   set MD5(value: string) { this.notifyChangeDTO('mD5', value); }
-
-   get Path(): string { return this.entityDTO.path; }
-   set Path(value: string) { this.notifyChangeDTO('path', value); }
-
    get Size(): number { return this.entityDTO.size; }
    set Size(value: number) { this.notifyChangeDTO('size', value); }
 

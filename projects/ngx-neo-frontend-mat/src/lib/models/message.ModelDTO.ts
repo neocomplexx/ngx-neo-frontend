@@ -3,8 +3,8 @@ import { EntityModelDTO } from './entity.ModelDTO';
 import { MessageDTO } from './DTO/message.DTO';
 import { UserDTO } from './DTO/user.DTO';
 import { UserModelDTO } from './user.ModelDTO';
-import { AttachmentDTO } from './DTO/attachment.DTO';
-import { AttachmentModelDTO } from './attachment.ModelDTO';
+import { MessageAttachmentDTO } from './DTO/messageAttachment.DTO';
+import { MessageAttachmentModelDTO } from './messageAttachment.ModelDTO';
 
 
 export class MessageModelDTO extends EntityModelDTO<MessageDTO> {
@@ -67,8 +67,8 @@ export class MessageModelDTO extends EntityModelDTO<MessageDTO> {
    get Body(): string { return this.entityDTO.body; }
    set Body(value: string) { this.notifyChangeDTO('body', value); }
 
-   get Attachments(): Array<AttachmentDTO> { return this.entityDTO.attachments; }
-   set Attachments(value: Array<AttachmentDTO>) { this.notifyChangeDTO('attachments', value); }
+   get Attachments(): Array<MessageAttachmentDTO> { return this.entityDTO.attachments; }
+   set Attachments(value: Array<MessageAttachmentDTO>) { this.notifyChangeDTO('attachments', value); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

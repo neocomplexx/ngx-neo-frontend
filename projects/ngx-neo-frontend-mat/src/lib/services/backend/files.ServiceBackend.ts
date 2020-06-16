@@ -5,8 +5,8 @@ import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuditLogEntryDTO } from '../../models';
-import { CuoteFilesDTO } from '../../models';
 import { PublicLinkDTO } from '../../models';
+import { QuoteFilesDTO } from '../../models';
 
 @Injectable({
    providedIn: 'root'
@@ -52,11 +52,11 @@ export class FilesServiceBackend {
       });
    }
 
-   public async getFilesTotalCuote(): Promise<CuoteFilesDTO> {
+   public async getFilesTotalQuote(): Promise<QuoteFilesDTO> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/files/totalCuote').toPromise();
+         const res = await this.http.get(this.Constants.apiURL + '/files/totalQuote').toPromise();
          if (!res) { return null; }
-         const resDTO = new CuoteFilesDTO();
+         const resDTO = new QuoteFilesDTO();
          resDTO.PrepareDTO(res);
          return resDTO;
       });

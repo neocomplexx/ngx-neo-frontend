@@ -6,7 +6,7 @@ export class TenantResponseDTO implements IEntityDTO {
    name: string = '';
    image: string = '';
    token: string = '';
-   userTypeId: number = 0;
+   userTypeId: number;
 
    constructor() {
    }
