@@ -38,6 +38,9 @@ export class AuthNewUserRequestModelDTO extends EntityModelDTO<AuthNewUserReques
    get Email(): string { return this.entityDTO.email; }
    set Email(value: string) { this.notifyChangeDTO('email', value); }
 
+   get RecaptchaToken(): string { return this.entityDTO.recaptchaToken; }
+   set RecaptchaToken(value: string) { this.notifyChangeDTO('recaptchaToken', value); }
+
    get State(): string { return UserState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', UserState[value]); }
 

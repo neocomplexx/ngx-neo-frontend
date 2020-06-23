@@ -12,6 +12,7 @@ export class AuthNewUserRequestDTO implements IEntityDTO {
    idRole: number = 0;
    idUserOwner: number = 0;
    email: string = '';
+   recaptchaToken: string = '';
    state: UserState;
 
    constructor() {
@@ -26,6 +27,7 @@ export class AuthNewUserRequestDTO implements IEntityDTO {
       if (jsonObj['idRole'] != null) this.idRole = jsonObj['idRole'];
       if (jsonObj['idUserOwner'] != null) this.idUserOwner = jsonObj['idUserOwner'];
       if (jsonObj['email'] != null) this.email = jsonObj['email'];
+      if (jsonObj['recaptchaToken'] != null) this.recaptchaToken = jsonObj['recaptchaToken'];
       if (jsonObj['state'] != null) this.state = jsonObj['state'] as UserState;
    }
 }
