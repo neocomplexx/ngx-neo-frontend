@@ -328,14 +328,14 @@ const addModuleToImports = (options: any): Rule => {
 const cordovaString = `{
   "fileReplacements": [
     {
-      "replace": "src/index.html",
-      "with": "./cordova/index.html"
-    },
-    {
       "replace": "src/environments/environment.ts",
       "with": "src/environments/environment.prod.ts"
     }
   ],
+  "index": {
+    "input": "./cordova/index.html",
+    "output": "index.html"
+  },
   "outputPath": "./cordova/www",
   "baseHref": ".",
   "optimization": true,
@@ -349,12 +349,10 @@ const cordovaString = `{
   "buildOptimizer": true
 }`;
 const cordovaDebugString = `{
-  "fileReplacements": [
-    {
-      "replace": "src/index.html",
-      "with": "./cordova/index.html"
-    }
-  ],
+  "index": {
+    "input": "./cordova/index.html",
+    "output": "index.html"
+  },
   "outputPath": "./cordova/www",
   "baseHref": ".",
   "optimization": false,
