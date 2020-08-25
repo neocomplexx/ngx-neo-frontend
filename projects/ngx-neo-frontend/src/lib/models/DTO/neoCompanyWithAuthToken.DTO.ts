@@ -7,6 +7,7 @@ export class NeoCompanyWithAuthTokenDTO implements IEntityDTO {
    brand: string = '';
    companyName: string = '';
    taxID: string = '';
+   subsidiary: number = 0;
    id: number = 0;
    cacheStamp: number = 0;
 
@@ -19,6 +20,7 @@ export class NeoCompanyWithAuthTokenDTO implements IEntityDTO {
       if (jsonObj['brand'] != null) this.brand = jsonObj['brand'];
       if (jsonObj['companyName'] != null) this.companyName = jsonObj['companyName'];
       if (jsonObj['taxID'] != null) this.taxID = jsonObj['taxID'];
+      if (jsonObj['subsidiary'] != null) this.subsidiary = jsonObj['subsidiary'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }
