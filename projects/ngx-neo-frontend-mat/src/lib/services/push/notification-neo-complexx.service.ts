@@ -114,6 +114,31 @@ export class NotificationNeoComplexxService extends NotificationService {
         this.notificationPriorityAnalyzer();
     }
 
+    public async openedNotification(notificationDTO: NotificationDTO): Promise<void> {
+        const readedNotification = await this.notificationServiceBackend.updateUserNotificationsIdOpened(notificationDTO.id, notificationDTO);
+        notificationDTO.openDateTime = readedNotification.openDateTime;
+
+        this.notificationPriorityAnalyzer();
+    }
+
+    public async understoodNotification(notificationDTO: NotificationDTO): Promise<void> {
+        const readedNotification = await this.notificationServiceBackend.updateUserNotificationsIdUnderstood(notificationDTO.id, notificationDTO);
+        notificationDTO.understoodDateTime = readedNotification.understoodDateTime;
+        notificationDTO.state = NotificationState.Read;
+        notificationDTO.noUnderstood = false;
+
+        this.notificationPriorityAnalyzer();
+    }
+
+    public async noUnderstoodNotification(notificationDTO: NotificationDTO): Promise<void> {
+        const readedNotification = await this.notificationServiceBackend.updateUserNotificationsIdNoUnderstood(notificationDTO.id, notificationDTO);
+        notificationDTO.understoodDateTime = null;
+        notificationDTO.noUnderstood = true;
+        notificationDTO.state = NotificationState.Read;
+
+        this.notificationPriorityAnalyzer();
+    }
+
     public async archivedNotification(notificationDTO: NotificationDTO): Promise<void> {
         await this.notificationServiceBackend.deleteUserNotificationsId(notificationDTO.id);
         notificationDTO.state = NotificationState.Archived;

@@ -20,11 +20,8 @@ export class MetricSnapshotModelDTO extends EntityModelDTO<MetricSnapshotDTO> {
    public dispose(): void {
    }
 
-   get TimeStamp(): string { return this.dateToString(this.entityDTO.timeStamp); }
-   set TimeStamp(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('timeStamp', date); }
-   }
+   get TimeStamp(): Date { return this.entityDTO.timeStamp; }
+   set TimeStamp(value: Date) { this.notifyChangeDTO('timeStamp', value); }
 
    get TimeSpan(): number { return this.entityDTO.timeSpan; }
    set TimeSpan(value: number) { this.notifyChangeDTO('timeSpan', value); }

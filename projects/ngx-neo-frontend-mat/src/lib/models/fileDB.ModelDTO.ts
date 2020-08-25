@@ -20,11 +20,8 @@ export class FileDBModelDTO extends EntityModelDTO<FileDBDTO> {
    public dispose(): void {
    }
 
-   get CreationDate(): string { return this.dateToString(this.entityDTO.creationDate); }
-   set CreationDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('creationDate', date); }
-   }
+   get CreationDate(): Date { return this.entityDTO.creationDate; }
+   set CreationDate(value: Date) { this.notifyChangeDTO('creationDate', value); }
 
    get FileName(): string { return this.entityDTO.fileName; }
    set FileName(value: string) { this.notifyChangeDTO('fileName', value); }

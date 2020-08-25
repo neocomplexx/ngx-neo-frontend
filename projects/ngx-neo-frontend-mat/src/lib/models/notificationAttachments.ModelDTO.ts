@@ -39,17 +39,20 @@ export class NotificationAttachmentsModelDTO extends EntityModelDTO<Notification
    get State(): string { return NotificationState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', NotificationState[value]); }
 
-   get CreationDateTime(): string { return this.dateToString(this.entityDTO.creationDateTime); }
-   set CreationDateTime(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('creationDateTime', date); }
-   }
+   get CreationDateTime(): Date { return this.entityDTO.creationDateTime; }
+   set CreationDateTime(value: Date) { this.notifyChangeDTO('creationDateTime', value); }
 
-   get ReadDateTime(): string { return this.dateToString(this.entityDTO.readDateTime); }
-   set ReadDateTime(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('readDateTime', date); }
-   }
+   get OpenDateTime(): Date { return this.entityDTO.openDateTime; }
+   set OpenDateTime(value: Date) { this.notifyChangeDTO('openDateTime', value); }
+
+   get ReadDateTime(): Date { return this.entityDTO.readDateTime; }
+   set ReadDateTime(value: Date) { this.notifyChangeDTO('readDateTime', value); }
+
+   get UnderstoodDateTime(): Date { return this.entityDTO.understoodDateTime; }
+   set UnderstoodDateTime(value: Date) { this.notifyChangeDTO('understoodDateTime', value); }
+
+   get NoUnderstood(): boolean { return this.entityDTO.noUnderstood; }
+   set NoUnderstood(value: boolean) { this.notifyChangeDTO('noUnderstood', value); }
 
    get Title(): string { return this.entityDTO.title; }
    set Title(value: string) { this.notifyChangeDTO('title', value); }

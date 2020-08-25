@@ -23,11 +23,8 @@ export class PublicLinkModelDTO extends EntityModelDTO<PublicLinkDTO> {
    get Link(): string { return this.entityDTO.link; }
    set Link(value: string) { this.notifyChangeDTO('link', value); }
 
-   get Expired(): string { return this.dateToString(this.entityDTO.expired); }
-   set Expired(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('expired', date); }
-   }
+   get Expired(): Date { return this.entityDTO.expired; }
+   set Expired(value: Date) { this.notifyChangeDTO('expired', value); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

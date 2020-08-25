@@ -30,23 +30,14 @@ export class MessageModelDTO extends EntityModelDTO<MessageDTO> {
       this.senderSubscribe.unsubscribe();
    }
 
-   get CreationDate(): string { return this.dateToString(this.entityDTO.creationDate); }
-   set CreationDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('creationDate', date); }
-   }
+   get CreationDate(): Date { return this.entityDTO.creationDate; }
+   set CreationDate(value: Date) { this.notifyChangeDTO('creationDate', value); }
 
-   get ReceptionDate(): string { return this.dateToString(this.entityDTO.receptionDate); }
-   set ReceptionDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('receptionDate', date); }
-   }
+   get ReceptionDate(): Date { return this.entityDTO.receptionDate; }
+   set ReceptionDate(value: Date) { this.notifyChangeDTO('receptionDate', value); }
 
-   get ReadDate(): string { return this.dateToString(this.entityDTO.readDate); }
-   set ReadDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('readDate', date); }
-   }
+   get ReadDate(): Date { return this.entityDTO.readDate; }
+   set ReadDate(value: Date) { this.notifyChangeDTO('readDate', value); }
 
    get Read(): boolean { return this.entityDTO.read; }
    set Read(value: boolean) { this.notifyChangeDTO('read', value); }

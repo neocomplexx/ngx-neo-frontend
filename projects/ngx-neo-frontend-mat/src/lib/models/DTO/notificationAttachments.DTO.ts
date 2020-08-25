@@ -13,7 +13,10 @@ export class NotificationAttachmentsDTO implements IEntityDTO {
    notificationType: number = 0;
    state: NotificationState;
    creationDateTime: Date;
+   openDateTime: Date;
    readDateTime: Date;
+   understoodDateTime: Date;
+   noUnderstood: boolean;
    title: string = '';
    notShowInMenu: boolean;
    details: string = '';
@@ -36,7 +39,10 @@ export class NotificationAttachmentsDTO implements IEntityDTO {
       if (jsonObj['notificationType'] != null) this.notificationType = jsonObj['notificationType'];
       if (jsonObj['state'] != null) this.state = jsonObj['state'] as NotificationState;
       if (jsonObj['creationDateTime'] != null) this.creationDateTime = new Date(jsonObj['creationDateTime']);
+      if (jsonObj['openDateTime'] != null) this.openDateTime = new Date(jsonObj['openDateTime']);
       if (jsonObj['readDateTime'] != null) this.readDateTime = new Date(jsonObj['readDateTime']);
+      if (jsonObj['understoodDateTime'] != null) this.understoodDateTime = new Date(jsonObj['understoodDateTime']);
+      if (jsonObj['noUnderstood'] != null) this.noUnderstood = jsonObj['noUnderstood'];
       if (jsonObj['title'] != null) this.title = jsonObj['title'];
       if (jsonObj['notShowInMenu'] != null) this.notShowInMenu = jsonObj['notShowInMenu'];
       if (jsonObj['details'] != null) this.details = jsonObj['details'];

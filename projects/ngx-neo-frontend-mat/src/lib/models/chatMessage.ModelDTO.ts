@@ -26,23 +26,14 @@ export class ChatMessageModelDTO extends EntityModelDTO<ChatMessageDTO> {
    get To(): string { return this.entityDTO.to; }
    set To(value: string) { this.notifyChangeDTO('to', value); }
 
-   get CreationDate(): string { return this.dateToString(this.entityDTO.creationDate); }
-   set CreationDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('creationDate', date); }
-   }
+   get CreationDate(): Date { return this.entityDTO.creationDate; }
+   set CreationDate(value: Date) { this.notifyChangeDTO('creationDate', value); }
 
-   get ReceptionDate(): string { return this.dateToString(this.entityDTO.receptionDate); }
-   set ReceptionDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('receptionDate', date); }
-   }
+   get ReceptionDate(): Date { return this.entityDTO.receptionDate; }
+   set ReceptionDate(value: Date) { this.notifyChangeDTO('receptionDate', value); }
 
-   get ReadDate(): string { return this.dateToString(this.entityDTO.readDate); }
-   set ReadDate(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('readDate', date); }
-   }
+   get ReadDate(): Date { return this.entityDTO.readDate; }
+   set ReadDate(value: Date) { this.notifyChangeDTO('readDate', value); }
 
    get Message(): string { return this.entityDTO.message; }
    set Message(value: string) { this.notifyChangeDTO('message', value); }

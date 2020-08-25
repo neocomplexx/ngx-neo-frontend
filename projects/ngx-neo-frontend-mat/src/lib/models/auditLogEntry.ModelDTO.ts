@@ -50,11 +50,8 @@ export class AuditLogEntryModelDTO extends EntityModelDTO<AuditLogEntryDTO> {
    get ValorNuevo(): string { return this.entityDTO.valorNuevo; }
    set ValorNuevo(value: string) { this.notifyChangeDTO('valorNuevo', value); }
 
-   get Estampilla(): string { return this.dateToString(this.entityDTO.estampilla); }
-   set Estampilla(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('estampilla', date); }
-   }
+   get Estampilla(): Date { return this.entityDTO.estampilla; }
+   set Estampilla(value: Date) { this.notifyChangeDTO('estampilla', value); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

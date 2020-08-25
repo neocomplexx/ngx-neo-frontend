@@ -39,11 +39,8 @@ export class NotificationStatsModelDTO extends EntityModelDTO<NotificationStatsD
    get Unread(): number { return this.entityDTO.unread; }
    set Unread(value: number) { this.notifyChangeDTO('unread', value); }
 
-   get Date(): string { return this.dateToString(this.entityDTO.date); }
-   set Date(value: string) {
-      const date = this.stringToDate(value);
-      if (date) { this.notifyChangeDTO('date', date); }
-   }
+   get Date(): Date { return this.entityDTO.date; }
+   set Date(value: Date) { this.notifyChangeDTO('date', value); }
 
    get Priority(): string { return NotificationPriority[this.entityDTO.priority]; }
    set Priority(value: string) { this.notifyChangeDTO('priority', NotificationPriority[value]); }

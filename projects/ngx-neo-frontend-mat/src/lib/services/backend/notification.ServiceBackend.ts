@@ -122,6 +122,33 @@ export class NotificationServiceBackend {
       });
    }
 
+   public async updateUserNotificationsIdOpened(id: number, notificationDTO: NotificationDTO, unArchive: boolean = false): Promise<NotificationDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.put(this.Constants.apiURL + '/user/notifications/' + id + '/opened' + '?unArchive=' + unArchive, notificationDTO).toPromise();
+         const resDTO = new NotificationDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
+   public async updateUserNotificationsIdUnderstood(id: number, notificationDTO: NotificationDTO, unArchive: boolean = false): Promise<NotificationDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.put(this.Constants.apiURL + '/user/notifications/' + id + '/understood' + '?unArchive=' + unArchive, notificationDTO).toPromise();
+         const resDTO = new NotificationDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
+   public async updateUserNotificationsIdNoUnderstood(id: number, notificationDTO: NotificationDTO, unArchive: boolean = false): Promise<NotificationDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.put(this.Constants.apiURL + '/user/notifications/' + id + '/noUnderstood' + '?unArchive=' + unArchive, notificationDTO).toPromise();
+         const resDTO = new NotificationDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
    public async updateUserNotificationsArchive(listOfIdsDTO: ListOfIdsDTO): Promise<void> {
       return this.exceptionManager.executeAsync(async () => {
          await this.http.put(this.Constants.apiURL + '/user/notifications/archive', listOfIdsDTO).toPromise();
@@ -137,6 +164,16 @@ export class NotificationServiceBackend {
    public async getUserNotificationsId(id: number): Promise<NotificationAttachmentsDTO> {
       return this.exceptionManager.executeAsync(async () => {
          const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + id).toPromise();
+         if (!res) { return null; }
+         const resDTO = new NotificationAttachmentsDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
+   public async getUserNotificationsIdNotification(id: number): Promise<NotificationAttachmentsDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + id + '/notification').toPromise();
          if (!res) { return null; }
          const resDTO = new NotificationAttachmentsDTO();
          resDTO.PrepareDTO(res);
