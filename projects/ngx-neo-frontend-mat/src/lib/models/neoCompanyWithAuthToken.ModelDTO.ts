@@ -32,6 +32,9 @@ export class NeoCompanyWithAuthTokenModelDTO extends EntityModelDTO<NeoCompanyWi
    get TaxID(): string { return this.entityDTO.taxID; }
    set TaxID(value: string) { this.notifyChangeDTO('taxID', value); }
 
+   get Subsidiary(): number { return this.entityDTO.subsidiary; }
+   set Subsidiary(value: number) { this.notifyChangeDTO('subsidiary', value); }
+
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }
 
