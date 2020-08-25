@@ -125,15 +125,15 @@ export class NotificationNeoComplexxService extends NotificationService {
         const readedNotification = await this.notificationServiceBackend.updateUserNotificationsIdUnderstood(notificationDTO.id, notificationDTO);
         notificationDTO.understoodDateTime = readedNotification.understoodDateTime;
         notificationDTO.state = NotificationState.Read;
-        notificationDTO.noUnderstood = false;
+        notificationDTO.notUnderstood = false;
 
         this.notificationPriorityAnalyzer();
     }
 
-    public async noUnderstoodNotification(notificationDTO: NotificationDTO): Promise<void> {
-        const readedNotification = await this.notificationServiceBackend.updateUserNotificationsIdNoUnderstood(notificationDTO.id, notificationDTO);
+    public async notUnderstoodNotification(notificationDTO: NotificationDTO): Promise<void> {
+        const readedNotification = await this.notificationServiceBackend.updateUserNotificationsIdNotUnderstood(notificationDTO.id, notificationDTO);
         notificationDTO.understoodDateTime = null;
-        notificationDTO.noUnderstood = true;
+        notificationDTO.notUnderstood = true;
         notificationDTO.state = NotificationState.Read;
 
         this.notificationPriorityAnalyzer();

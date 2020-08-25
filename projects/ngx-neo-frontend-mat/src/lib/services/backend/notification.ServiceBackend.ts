@@ -140,9 +140,9 @@ export class NotificationServiceBackend {
       });
    }
 
-   public async updateUserNotificationsIdNoUnderstood(id: number, notificationDTO: NotificationDTO, unArchive: boolean = false): Promise<NotificationDTO> {
+   public async updateUserNotificationsIdNotUnderstood(id: number, notificationDTO: NotificationDTO, unArchive: boolean = false): Promise<NotificationDTO> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.put(this.Constants.apiURL + '/user/notifications/' + id + '/noUnderstood' + '?unArchive=' + unArchive, notificationDTO).toPromise();
+         const res = await this.http.put(this.Constants.apiURL + '/user/notifications/' + id + '/notUnderstood' + '?unArchive=' + unArchive, notificationDTO).toPromise();
          const resDTO = new NotificationDTO();
          resDTO.PrepareDTO(res);
          return resDTO;

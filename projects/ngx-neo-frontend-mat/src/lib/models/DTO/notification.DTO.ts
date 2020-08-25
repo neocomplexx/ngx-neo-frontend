@@ -14,7 +14,7 @@ export class NotificationDTO implements IEntityDTO {
    openDateTime: Date;
    readDateTime: Date;
    understoodDateTime: Date;
-   noUnderstood: boolean;
+   notUnderstood: boolean;
    title: string = '';
    notShowInMenu: boolean;
    details: string = '';
@@ -38,7 +38,7 @@ export class NotificationDTO implements IEntityDTO {
       if (jsonObj['openDateTime'] != null) this.openDateTime = new Date(jsonObj['openDateTime']);
       if (jsonObj['readDateTime'] != null) this.readDateTime = new Date(jsonObj['readDateTime']);
       if (jsonObj['understoodDateTime'] != null) this.understoodDateTime = new Date(jsonObj['understoodDateTime']);
-      if (jsonObj['noUnderstood'] != null) this.noUnderstood = jsonObj['noUnderstood'];
+      if (jsonObj['notUnderstood'] != null) this.notUnderstood = jsonObj['notUnderstood'];
       if (jsonObj['title'] != null) this.title = jsonObj['title'];
       if (jsonObj['notShowInMenu'] != null) this.notShowInMenu = jsonObj['notShowInMenu'];
       if (jsonObj['details'] != null) this.details = jsonObj['details'];

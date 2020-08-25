@@ -51,8 +51,8 @@ export class NotificationAttachmentsModelDTO extends EntityModelDTO<Notification
    get UnderstoodDateTime(): Date { return this.entityDTO.understoodDateTime; }
    set UnderstoodDateTime(value: Date) { this.notifyChangeDTO('understoodDateTime', value); }
 
-   get NoUnderstood(): boolean { return this.entityDTO.noUnderstood; }
-   set NoUnderstood(value: boolean) { this.notifyChangeDTO('noUnderstood', value); }
+   get NotUnderstood(): boolean { return this.entityDTO.notUnderstood; }
+   set NotUnderstood(value: boolean) { this.notifyChangeDTO('notUnderstood', value); }
 
    get Title(): string { return this.entityDTO.title; }
    set Title(value: string) { this.notifyChangeDTO('title', value); }
