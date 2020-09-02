@@ -1,1 +1,1 @@
-export enum SignatureStatusType { unsigned = 0, requested = 1, signed = 2 }
+export enum SignatureStatusType { unsigned = 0, pending = 1, requested = 2, signed = 4 }
