@@ -1,13 +1,13 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { AttachmentDTO } from './DTO/attachment.DTO';
+import { AttachmentSignatureDTO } from './DTO/attachmentSignature.DTO';
+import { AttachmentSignatureModelDTO } from './attachmentSignature.ModelDTO';
 import { AttachmentType } from './DTO/attachmentType.ENUM';
 import { UserDTO } from './DTO/user.DTO';
 import { UserModelDTO } from './user.ModelDTO';
 import { FileDBDTO } from './DTO/fileDB.DTO';
 import { FileDBModelDTO } from './fileDB.ModelDTO';
-import { AttachmentSignatureDTO } from './DTO/attachmentSignature.DTO';
-import { AttachmentSignatureModelDTO } from './attachmentSignature.ModelDTO';
 
 
 export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
@@ -39,6 +39,9 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
       this.fileSubscribe.unsubscribe();
    }
 
+   get Signatures(): Array<AttachmentSignatureDTO> { return this.entityDTO.signatures; }
+   set Signatures(value: Array<AttachmentSignatureDTO>) { this.notifyChangeDTO('signatures', value); }
+
    get Type(): string { return AttachmentType[this.entityDTO.type]; }
    set Type(value: string) { this.notifyChangeDTO('type', AttachmentType[value]); }
 
@@ -58,9 +61,6 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
 
    get AllowsDigitalSignature(): boolean { return this.entityDTO.allowsDigitalSignature; }
    set AllowsDigitalSignature(value: boolean) { this.notifyChangeDTO('allowsDigitalSignature', value); }
-
-   get Signatures(): Array<AttachmentSignatureDTO> { return this.entityDTO.signatures; }
-   set Signatures(value: Array<AttachmentSignatureDTO>) { this.notifyChangeDTO('signatures', value); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

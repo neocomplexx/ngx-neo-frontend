@@ -13,6 +13,7 @@ export class NotificationStatsDTO implements IEntityDTO {
    unread: number = 0;
    date: Date;
    priority: NotificationPriority;
+   withAttachments: boolean;
    id: number = 0;
    cacheStamp: number = 0;
 
@@ -29,6 +30,7 @@ export class NotificationStatsDTO implements IEntityDTO {
       if (jsonObj['unread'] != null) this.unread = jsonObj['unread'];
       if (jsonObj['date'] != null) this.date = new Date(jsonObj['date']);
       if (jsonObj['priority'] != null) this.priority = jsonObj['priority'] as NotificationPriority;
+      if (jsonObj['withAttachments'] != null) this.withAttachments = jsonObj['withAttachments'];
       if (jsonObj['id'] != null) this.id = jsonObj['id'];
       if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
    }

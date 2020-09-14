@@ -45,6 +45,9 @@ export class NotificationStatsModelDTO extends EntityModelDTO<NotificationStatsD
    get Priority(): string { return NotificationPriority[this.entityDTO.priority]; }
    set Priority(value: string) { this.notifyChangeDTO('priority', NotificationPriority[value]); }
 
+   get WithAttachments(): boolean { return this.entityDTO.withAttachments; }
+   set WithAttachments(value: boolean) { this.notifyChangeDTO('withAttachments', value); }
+
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }
 
