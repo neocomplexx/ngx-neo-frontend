@@ -1,13 +1,13 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend-mat",
-  "version": "9.0.7",
+  "version": "9.0.8",
   "scripts": {
     "build": "cd ../../node_modules/.bin/ && tsc -p ../../projects/ngx-neo-frontend-mat/tsconfig.schematics.json && cd ../../projects/ngx-neo-frontend-mat",
-    "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/ngx-neo-frontend-mat/",
-    "copy:files": "cp --parents -p -r schematics/*/files/** ../../dist/ngx-neo-frontend-mat/",
-    "copy:assets": "cp --parents -p -r schematics/*/assets/** ../../dist/ngx-neo-frontend-mat/",
-    "copy:cordova": "cp --parents -p -r schematics/*/cordova/** ../../dist/ngx-neo-frontend-mat/",
-    "copy:styles": "cp --parents -p -r schematics/*/styles/** ../../dist/ngx-neo-frontend-mat/",
+    "copy:schemas": "rsync -R schematics/*/schema.json ../../dist/ngx-neo-frontend-mat/",
+    "copy:files": "rsync -R -p -r schematics/*/files/** ../../dist/ngx-neo-frontend-mat/",
+    "copy:assets": "rsync -R -p -r schematics/*/assets/** ../../dist/ngx-neo-frontend-mat/",
+    "copy:cordova": "rsync -R -p -r schematics/*/cordova/** ../../dist/ngx-neo-frontend-mat/",
+    "copy:styles": "rsync -R -p -r schematics/*/styles/** ../../dist/ngx-neo-frontend-mat/",
     "copy:collection": "cp schematics/collection.json ../../dist/ngx-neo-frontend-mat/schematics/collection.json",
     "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:assets && npm run copy:cordova && npm run copy:styles && npm run copy:collection"
   },
