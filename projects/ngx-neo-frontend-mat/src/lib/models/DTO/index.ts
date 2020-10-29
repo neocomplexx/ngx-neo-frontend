@@ -7,6 +7,7 @@ export * from './attachmentType.ENUM';
 export * from './user.DTO';
 export * from './attachmentSignature.DTO';
 export * from './signatureStatusType.ENUM';
+export * from './signatureType.ENUM';
 export * from './authRequest.DTO';
 export * from './authResponse.DTO';
 export * from './authTenantsResponse.DTO';

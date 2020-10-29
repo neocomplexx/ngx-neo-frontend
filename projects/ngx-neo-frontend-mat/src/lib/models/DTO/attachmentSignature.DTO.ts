@@ -1,6 +1,7 @@
 import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
 import { SignatureStatusType } from './signatureStatusType.ENUM';
+import { SignatureType } from './signatureType.ENUM';
 import { UserDTO } from './user.DTO';
 
 
@@ -9,6 +10,7 @@ export class AttachmentSignatureDTO implements IEntityDTO {
    ownerUser: UserDTO;
    requesterUser: UserDTO;
    status: SignatureStatusType;
+   type: SignatureType;
    isCreator: boolean;
    requestDate: Date;
    signDate: Date;
@@ -25,6 +27,7 @@ export class AttachmentSignatureDTO implements IEntityDTO {
       if (jsonObj['ownerUser'] != null) this.ownerUser.PrepareDTO(jsonObj['ownerUser']);
       if (jsonObj['requesterUser'] != null) this.requesterUser.PrepareDTO(jsonObj['requesterUser']);
       if (jsonObj['status'] != null) this.status = jsonObj['status'] as SignatureStatusType;
+      if (jsonObj['type'] != null) this.type = jsonObj['type'] as SignatureType;
       if (jsonObj['isCreator'] != null) this.isCreator = jsonObj['isCreator'];
       if (jsonObj['requestDate'] != null) this.requestDate = new Date(jsonObj['requestDate']);
       if (jsonObj['signDate'] != null) this.signDate = new Date(jsonObj['signDate']);
