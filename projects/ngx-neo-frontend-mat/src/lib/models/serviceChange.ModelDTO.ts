@@ -10,19 +10,22 @@ export class ServiceChangeModelDTO extends EntityModelDTO<ServiceChangeDTO> {
    public constructor(protected entityDTO: ServiceChangeDTO) {
       super(entityDTO);
    }
+
+   public static getActionType(): string[] {
+      return EntityModelDTO.getEnumArray(ActionType);
+   }
+
    public setEntityDTO(entityDTO: ServiceChangeDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
-
-   get Id(): number { return this.entityDTO.id; }
-   set Id(value: number) { this.notifyChangeDTO('id', value); }
 
    get UserName(): string { return this.entityDTO.userName; }
    set UserName(value: string) { this.notifyChangeDTO('userName', value); }
@@ -42,10 +45,9 @@ export class ServiceChangeModelDTO extends EntityModelDTO<ServiceChangeDTO> {
    get Id2(): number { return this.entityDTO.id2; }
    set Id2(value: number) { this.notifyChangeDTO('id2', value); }
 
+   get Id(): number { return this.entityDTO.id; }
+   set Id(value: number) { this.notifyChangeDTO('id', value); }
+
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getActionType(): string[] {
-      return EntityModelDTO.getEnumArray(ActionType);
-   }
 }

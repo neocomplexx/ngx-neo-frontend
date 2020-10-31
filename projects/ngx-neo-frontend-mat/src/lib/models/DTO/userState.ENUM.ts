@@ -1,1 +1,5 @@
-export enum UserState { Inactive = 0, Active = 1, AuthorizationExpired = 2 }
+export enum UserState {
+   Inactive = 0,
+   Active = 1,
+   AuthorizationExpired = 2
+ }

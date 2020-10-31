@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { NamedBlobDTO } from '../../models';
+import { DataDTO, NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';

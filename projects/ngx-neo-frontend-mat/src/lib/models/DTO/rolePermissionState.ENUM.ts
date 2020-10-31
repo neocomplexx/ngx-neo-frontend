@@ -1,1 +1,4 @@
-export enum RolePermissionState { Inactive = 0, Active = 1 }
+export enum RolePermissionState {
+   Inactive = 0,
+   Active = 1
+ }

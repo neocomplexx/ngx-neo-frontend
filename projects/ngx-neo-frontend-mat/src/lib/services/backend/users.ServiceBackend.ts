@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { NamedBlobDTO } from '../../models';
+import { DataDTO, NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
@@ -22,11 +22,11 @@ export class UsersServiceBackend {
 
    public async getUsersIdAuditory(id: number): Promise<Array<AuditLogEntryDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/users/' + id + '/Auditory').toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/users/' + id + '/Auditory').toPromise();
+         const resJson = res.data;
          const resDTO = new Array<AuditLogEntryDTO>();
          for (const item of resJson) {
-            const itemDTO = new AuditLogEntryDTO()
+            const itemDTO = new AuditLogEntryDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }
@@ -36,11 +36,12 @@ export class UsersServiceBackend {
 
    public async getUsers(withoutRole: boolean, withRoleUsers: boolean = false): Promise<Array<UserDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/users/' + '?withoutRole=' + withoutRole + '&withRoleUsers=' + withRoleUsers).toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/users/' + '?withoutRole=' + withoutRole +
+            '&withRoleUsers=' + withRoleUsers).toPromise();
+         const resJson = res.data;
          const resDTO = new Array<UserDTO>();
          for (const item of resJson) {
-            const itemDTO = new UserDTO()
+            const itemDTO = new UserDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }
@@ -50,11 +51,12 @@ export class UsersServiceBackend {
 
    public async getUsersAutoComplete(contiene: string, pageSize: number): Promise<Array<UserBasicDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/users/autoComplete' + '?contiene=' + contiene + '&pageSize=' + pageSize).toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/users/autoComplete' + '?contiene=' + contiene +
+            '&pageSize=' + pageSize).toPromise();
+         const resJson = res.data;
          const resDTO = new Array<UserBasicDTO>();
          for (const item of resJson) {
-            const itemDTO = new UserBasicDTO()
+            const itemDTO = new UserBasicDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }
@@ -94,11 +96,11 @@ export class UsersServiceBackend {
 
    public async getUsersBasic(onlyAdministratives: boolean = false): Promise<Array<UserBasicDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/users/basic' + '?onlyAdministratives=' + onlyAdministratives).toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/users/basic' + '?onlyAdministratives=' + onlyAdministratives).toPromise();
+         const resJson = res.data;
          const resDTO = new Array<UserBasicDTO>();
          for (const item of resJson) {
-            const itemDTO = new UserBasicDTO()
+            const itemDTO = new UserBasicDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }

@@ -9,14 +9,16 @@ export class PublicLinkModelDTO extends EntityModelDTO<PublicLinkDTO> {
    public constructor(protected entityDTO: PublicLinkDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: PublicLinkDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

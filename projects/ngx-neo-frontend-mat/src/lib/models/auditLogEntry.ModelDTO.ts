@@ -9,14 +9,16 @@ export class AuditLogEntryModelDTO extends EntityModelDTO<AuditLogEntryDTO> {
    public constructor(protected entityDTO: AuditLogEntryDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: AuditLogEntryDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

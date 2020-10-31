@@ -10,10 +10,16 @@ export class AuthChangePasswordRequestModelDTO extends EntityModelDTO<AuthChange
    public constructor(protected entityDTO: AuthChangePasswordRequestDTO) {
       super(entityDTO);
    }
+
+   public static getTypeSocial(): string[] {
+      return EntityModelDTO.getEnumArray(TypeSocial);
+   }
+
    public setEntityDTO(entityDTO: AuthChangePasswordRequestDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
+
    public dispose(): void {
    }
 
@@ -34,8 +40,4 @@ export class AuthChangePasswordRequestModelDTO extends EntityModelDTO<AuthChange
 
    get TokenId(): string { return this.entityDTO.tokenId; }
    set TokenId(value: string) { this.notifyChangeDTO('tokenId', value); }
-
-   public static getTypeSocial(): string[] {
-      return EntityModelDTO.getEnumArray(TypeSocial);
-   }
 }

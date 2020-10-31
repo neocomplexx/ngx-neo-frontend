@@ -11,14 +11,48 @@ export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
    public constructor(protected entityDTO: UserBasicDTO) {
       super(entityDTO);
    }
+
+   public static getUserState(): string[] {
+      return EntityModelDTO.getEnumArray(UserState);
+   }
+
+   public static getUserTypes(): string[] {
+      return EntityModelDTO.getEnumArray(UserTypes);
+   }
+
+    protected getStringFromUserTypes(Enum: UserTypes) : Array<string> {
+        if (Enum) {
+            const arrays = new Array<string>();
+            for (let i = 0; i <= 31; i = i++) {
+                const pow = Math.pow(2, i);
+                if ((Enum & pow) !== 0) {
+                    arrays.push(UserTypes[pow]);
+                }
+            }
+            return arrays;
+        } else {
+            return undefined;
+        }
+    }
+
+    protected getFlagFromUserTypesString(strings: Array<string>) : UserTypes {
+        let flags: UserTypes;
+        strings.forEach(element => {
+            const enumVal: UserTypes = UserTypes[element];
+            flags |= enumVal;
+        });
+        return flags;
+    }
+
    public setEntityDTO(entityDTO: UserBasicDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 
@@ -57,35 +91,4 @@ export class UserBasicModelDTO extends EntityModelDTO<UserBasicDTO> {
 
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getUserState(): string[] {
-      return EntityModelDTO.getEnumArray(UserState);
-   }
-
-   public static getUserTypes(): string[] {
-      return EntityModelDTO.getEnumArray(UserTypes);
-   }
- protected getStringFromUserTypes(Enum: UserTypes) : Array<string>  {
-        if (Enum)
-        {
-            var arrays = new Array<string>();
-            for (var i: number = 1; i <= 2097151; i = i << 1) {
-                if ((Enum & i) !== 0)
-                {
-                    arrays.push(UserTypes[i]);
-                }
-            }
-            return arrays;
-        }
-        else
-            return undefined;
-    }
-    protected getFlagFromUserTypesString(strings: Array<string>) : UserTypes  {
-        let flags : UserTypes;
-        strings.forEach(element => {
-            var enumVal: UserTypes = UserTypes[element];
-            flags |= enumVal;
-        });
-        return flags;
-    }
 }

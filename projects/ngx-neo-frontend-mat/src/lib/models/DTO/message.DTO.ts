@@ -13,11 +13,11 @@ export class MessageDTO implements IEntityDTO {
    archived: boolean;
    sender: UserDTO;
    receivers: Array<UserDTO>;
-   subject: string = '';
-   body: string = '';
+   subject = '';
+   body = '';
    attachments: Array<MessageAttachmentDTO>;
-   id: number = 0;
-   cacheStamp: number = 0;
+   id = 0;
+   cacheStamp = 0;
 
    constructor() {
       this.sender = new UserDTO();
@@ -25,20 +25,20 @@ export class MessageDTO implements IEntityDTO {
       this.attachments = new Array<MessageAttachmentDTO>();
    }
 
-   public PrepareDTO(jsonObj: any): void {
-      if (jsonObj == null) return;
-      if (jsonObj['creationDate'] != null) this.creationDate = new Date(jsonObj['creationDate']);
-      if (jsonObj['receptionDate'] != null) this.receptionDate = new Date(jsonObj['receptionDate']);
-      if (jsonObj['readDate'] != null) this.readDate = new Date(jsonObj['readDate']);
-      if (jsonObj['read'] != null) this.read = jsonObj['read'];
-      if (jsonObj['archived'] != null) this.archived = jsonObj['archived'];
-      if (jsonObj['sender'] != null) this.sender.PrepareDTO(jsonObj['sender']);
-      if (jsonObj['receivers'] != null) for (const item of jsonObj['receivers']) { const itemDTO = new UserDTO(); itemDTO.PrepareDTO(item); this.receivers.push(itemDTO); }
-      if (jsonObj['subject'] != null) this.subject = jsonObj['subject'];
-      if (jsonObj['body'] != null) this.body = jsonObj['body'];
-      if (jsonObj['attachments'] != null) for (const item of jsonObj['attachments']) { const itemDTO = new MessageAttachmentDTO(); itemDTO.PrepareDTO(item); this.attachments.push(itemDTO); }
-      if (jsonObj['id'] != null) this.id = jsonObj['id'];
-      if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
+   public PrepareDTO(jsonObj): void {
+      if (jsonObj === null) { return; }
+      if (jsonObj.creationDate != null) { this.creationDate = new Date(jsonObj.creationDate); }
+      if (jsonObj.receptionDate != null) { this.receptionDate = new Date(jsonObj.receptionDate); }
+      if (jsonObj.readDate != null) { this.readDate = new Date(jsonObj.readDate); }
+      if (jsonObj.read != null) { this.read = jsonObj.read; }
+      if (jsonObj.archived != null) { this.archived = jsonObj.archived; }
+      if (jsonObj.sender != null) { this.sender.PrepareDTO(jsonObj.sender); }
+      if (jsonObj.receivers != null) { for (const item of jsonObj.receivers) { const itemDTO = new UserDTO(); itemDTO.PrepareDTO(item); this.receivers.push(itemDTO); } }
+      if (jsonObj.subject != null) { this.subject = jsonObj.subject; }
+      if (jsonObj.body != null) { this.body = jsonObj.body; }
+      if (jsonObj.attachments != null) { for (const item of jsonObj.attachments) { const itemDTO = new MessageAttachmentDTO(); itemDTO.PrepareDTO(item); this.attachments.push(itemDTO); } }
+      if (jsonObj.id != null) { this.id = jsonObj.id; }
+      if (jsonObj.cacheStamp != null) { this.cacheStamp = jsonObj.cacheStamp; }
    }
 
    public isNewEntity(): boolean {

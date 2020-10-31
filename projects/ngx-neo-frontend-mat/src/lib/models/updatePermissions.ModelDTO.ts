@@ -11,14 +11,16 @@ export class UpdatePermissionsModelDTO extends EntityModelDTO<UpdatePermissionsD
    public constructor(protected entityDTO: UpdatePermissionsDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: UpdatePermissionsDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

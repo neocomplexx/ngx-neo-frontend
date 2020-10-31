@@ -9,14 +9,16 @@ export class ImageEntityModelDTO extends EntityModelDTO<ImageEntityDTO> {
    public constructor(protected entityDTO: ImageEntityDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: ImageEntityDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

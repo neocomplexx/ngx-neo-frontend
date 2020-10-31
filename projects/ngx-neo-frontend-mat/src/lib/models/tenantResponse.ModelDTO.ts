@@ -9,10 +9,12 @@ export class TenantResponseModelDTO extends EntityModelDTO<TenantResponseDTO> {
    public constructor(protected entityDTO: TenantResponseDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: TenantResponseDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
+
    public dispose(): void {
    }
 

@@ -7,24 +7,26 @@ import { NotificationModelDTO } from './notification.ModelDTO';
 
 export class NewNotificationModelDTO extends EntityModelDTO<NewNotificationDTO> {
 
-   private _NotificationModel: NotificationModelDTO;
+   private notificationModel: NotificationModelDTO;
    private notificationSubscribe: Subscription;
 
    public constructor(protected entityDTO: NewNotificationDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: NewNotificationDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
-      this._NotificationModel = new NotificationModelDTO(this.entityDTO.notification);
-      this.notificationSubscribe = this._NotificationModel.changed.subscribe((changed) => this.changed.next(changed));
+      if (entityDTO === null) return;
+      this.notificationModel = new NotificationModelDTO(this.entityDTO.notification);
+      this.notificationSubscribe = this.notificationModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
-      this._NotificationModel.dispose();
+      this.notificationModel.dispose();
       this.notificationSubscribe.unsubscribe();
    }
 
@@ -34,9 +36,9 @@ export class NewNotificationModelDTO extends EntityModelDTO<NewNotificationDTO> 
    get RoleIds(): Array<number> { return this.entityDTO.roleIds; }
    set RoleIds(value: Array<number>) { this.notifyChangeDTO('roleIds', value); }
 
-   get NotificationModel(): NotificationModelDTO { return this._NotificationModel; }
-   get Notification(): NotificationDTO { return this._NotificationModel.getEntityDTO(); }
-   set Notification(value: NotificationDTO) { this.notifyChange(() => { this.entityDTO.notification = value; this._NotificationModel.setEntityDTO(value) }); }
+   get NotificationModel(): NotificationModelDTO { return this.notificationModel; }
+   get Notification(): NotificationDTO { return this.notificationModel.getEntityDTO(); }
+   set Notification(value: NotificationDTO) { this.notifyChange(() => { this.entityDTO.notification = value; this.notificationModel.setEntityDTO(value); }); }
 
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }

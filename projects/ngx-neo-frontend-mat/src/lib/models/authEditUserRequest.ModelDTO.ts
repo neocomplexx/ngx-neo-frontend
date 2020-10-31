@@ -10,10 +10,16 @@ export class AuthEditUserRequestModelDTO extends EntityModelDTO<AuthEditUserRequ
    public constructor(protected entityDTO: AuthEditUserRequestDTO) {
       super(entityDTO);
    }
+
+   public static getUserState(): string[] {
+      return EntityModelDTO.getEnumArray(UserState);
+   }
+
    public setEntityDTO(entityDTO: AuthEditUserRequestDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
+
    public dispose(): void {
    }
 
@@ -34,8 +40,4 @@ export class AuthEditUserRequestModelDTO extends EntityModelDTO<AuthEditUserRequ
 
    get State(): string { return UserState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', UserState[value]); }
-
-   public static getUserState(): string[] {
-      return EntityModelDTO.getEnumArray(UserState);
-   }
 }

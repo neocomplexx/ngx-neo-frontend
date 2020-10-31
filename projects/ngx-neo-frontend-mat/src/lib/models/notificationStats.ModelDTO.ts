@@ -10,14 +10,20 @@ export class NotificationStatsModelDTO extends EntityModelDTO<NotificationStatsD
    public constructor(protected entityDTO: NotificationStatsDTO) {
       super(entityDTO);
    }
+
+   public static getNotificationPriority(): string[] {
+      return EntityModelDTO.getEnumArray(NotificationPriority);
+   }
+
    public setEntityDTO(entityDTO: NotificationStatsDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 
@@ -53,8 +59,4 @@ export class NotificationStatsModelDTO extends EntityModelDTO<NotificationStatsD
 
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getNotificationPriority(): string[] {
-      return EntityModelDTO.getEnumArray(NotificationPriority);
-   }
 }

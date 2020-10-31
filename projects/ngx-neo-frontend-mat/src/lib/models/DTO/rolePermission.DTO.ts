@@ -8,19 +8,19 @@ export class RolePermissionDTO implements IEntityDTO {
 
    permission: PermissionDTO;
    state: RolePermissionState;
-   id: number = 0;
-   cacheStamp: number = 0;
+   id = 0;
+   cacheStamp = 0;
 
    constructor() {
       this.permission = new PermissionDTO();
    }
 
-   public PrepareDTO(jsonObj: any): void {
-      if (jsonObj == null) return;
-      if (jsonObj['permission'] != null) this.permission.PrepareDTO(jsonObj['permission']);
-      if (jsonObj['state'] != null) this.state = jsonObj['state'] as RolePermissionState;
-      if (jsonObj['id'] != null) this.id = jsonObj['id'];
-      if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
+   public PrepareDTO(jsonObj): void {
+      if (jsonObj === null) { return; }
+      if (jsonObj.permission != null) { this.permission.PrepareDTO(jsonObj.permission); }
+      if (jsonObj.state != null) { this.state = jsonObj.state as RolePermissionState; }
+      if (jsonObj.id != null) { this.id = jsonObj.id; }
+      if (jsonObj.cacheStamp != null) { this.cacheStamp = jsonObj.cacheStamp; }
    }
 
    public isNewEntity(): boolean {

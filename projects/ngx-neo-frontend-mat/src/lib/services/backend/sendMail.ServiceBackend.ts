@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { NamedBlobDTO } from '../../models';
+import { DataDTO, NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
@@ -17,11 +17,11 @@ export class SendMailServiceBackend {
 
    public async getSendmailIdAuditory(id: number): Promise<Array<AuditLogEntryDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/sendmail/' + id + '/Auditory').toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/sendmail/' + id + '/Auditory').toPromise();
+         const resJson = res.data;
          const resDTO = new Array<AuditLogEntryDTO>();
          for (const item of resJson) {
-            const itemDTO = new AuditLogEntryDTO()
+            const itemDTO = new AuditLogEntryDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }

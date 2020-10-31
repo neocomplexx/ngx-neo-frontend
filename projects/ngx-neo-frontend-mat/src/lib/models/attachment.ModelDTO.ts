@@ -12,30 +12,36 @@ import { FileDBModelDTO } from './fileDB.ModelDTO';
 
 export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
 
-   private _CreatorUserModel: UserModelDTO;
+   private creatorUserModel: UserModelDTO;
    private creatorUserSubscribe: Subscription;
-   private _FileModel: FileDBModelDTO;
+   private fileModel: FileDBModelDTO;
    private fileSubscribe: Subscription;
 
    public constructor(protected entityDTO: AttachmentDTO) {
       super(entityDTO);
    }
+
+   public static getAttachmentType(): string[] {
+      return EntityModelDTO.getEnumArray(AttachmentType);
+   }
+
    public setEntityDTO(entityDTO: AttachmentDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
-      this._CreatorUserModel = new UserModelDTO(this.entityDTO.creatorUser);
-      this.creatorUserSubscribe = this._CreatorUserModel.changed.subscribe((changed) => this.changed.next(changed));
-      this._FileModel = new FileDBModelDTO(this.entityDTO.file);
-      this.fileSubscribe = this._FileModel.changed.subscribe((changed) => this.changed.next(changed));
+      if (entityDTO === null) return;
+      this.creatorUserModel = new UserModelDTO(this.entityDTO.creatorUser);
+      this.creatorUserSubscribe = this.creatorUserModel.changed.subscribe((changed) => this.changed.next(changed));
+      this.fileModel = new FileDBModelDTO(this.entityDTO.file);
+      this.fileSubscribe = this.fileModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
-      this._CreatorUserModel.dispose();
+      this.creatorUserModel.dispose();
       this.creatorUserSubscribe.unsubscribe();
-      this._FileModel.dispose();
+      this.fileModel.dispose();
       this.fileSubscribe.unsubscribe();
    }
 
@@ -45,9 +51,9 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
    get Type(): string { return AttachmentType[this.entityDTO.type]; }
    set Type(value: string) { this.notifyChangeDTO('type', AttachmentType[value]); }
 
-   get CreatorUserModel(): UserModelDTO { return this._CreatorUserModel; }
-   get CreatorUser(): UserDTO { return this._CreatorUserModel.getEntityDTO(); }
-   set CreatorUser(value: UserDTO) { this.notifyChange(() => { this.entityDTO.creatorUser = value; this._CreatorUserModel.setEntityDTO(value) }); }
+   get CreatorUserModel(): UserModelDTO { return this.creatorUserModel; }
+   get CreatorUser(): UserDTO { return this.creatorUserModel.getEntityDTO(); }
+   set CreatorUser(value: UserDTO) { this.notifyChange(() => { this.entityDTO.creatorUser = value; this.creatorUserModel.setEntityDTO(value); }); }
 
    get Name(): string { return this.entityDTO.name; }
    set Name(value: string) { this.notifyChangeDTO('name', value); }
@@ -55,9 +61,9 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
    get PublicUrl(): string { return this.entityDTO.publicUrl; }
    set PublicUrl(value: string) { this.notifyChangeDTO('publicUrl', value); }
 
-   get FileModel(): FileDBModelDTO { return this._FileModel; }
-   get File(): FileDBDTO { return this._FileModel.getEntityDTO(); }
-   set File(value: FileDBDTO) { this.notifyChange(() => { this.entityDTO.file = value; this._FileModel.setEntityDTO(value) }); }
+   get FileModel(): FileDBModelDTO { return this.fileModel; }
+   get File(): FileDBDTO { return this.fileModel.getEntityDTO(); }
+   set File(value: FileDBDTO) { this.notifyChange(() => { this.entityDTO.file = value; this.fileModel.setEntityDTO(value); }); }
 
    get AllowsDigitalSignature(): boolean { return this.entityDTO.allowsDigitalSignature; }
    set AllowsDigitalSignature(value: boolean) { this.notifyChangeDTO('allowsDigitalSignature', value); }
@@ -67,8 +73,4 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
 
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getAttachmentType(): string[] {
-      return EntityModelDTO.getEnumArray(AttachmentType);
-   }
 }

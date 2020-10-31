@@ -11,14 +11,16 @@ export class AuthTenantsResponseModelDTO extends EntityModelDTO<AuthTenantsRespo
    public constructor(protected entityDTO: AuthTenantsResponseDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: AuthTenantsResponseDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

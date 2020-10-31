@@ -11,12 +11,12 @@ export class AttachmentDTO implements IEntityDTO {
    signatures: Array<AttachmentSignatureDTO>;
    type: AttachmentType;
    creatorUser: UserDTO;
-   name: string = '';
-   publicUrl: string = '';
+   name = '';
+   publicUrl = '';
    file: FileDBDTO;
    allowsDigitalSignature: boolean;
-   id: number = 0;
-   cacheStamp: number = 0;
+   id = 0;
+   cacheStamp = 0;
 
    constructor() {
       this.signatures = new Array<AttachmentSignatureDTO>();
@@ -24,17 +24,17 @@ export class AttachmentDTO implements IEntityDTO {
       this.file = new FileDBDTO();
    }
 
-   public PrepareDTO(jsonObj: any): void {
-      if (jsonObj == null) return;
-      if (jsonObj['signatures'] != null) for (const item of jsonObj['signatures']) { const itemDTO = new AttachmentSignatureDTO(); itemDTO.PrepareDTO(item); this.signatures.push(itemDTO); }
-      if (jsonObj['type'] != null) this.type = jsonObj['type'] as AttachmentType;
-      if (jsonObj['creatorUser'] != null) this.creatorUser.PrepareDTO(jsonObj['creatorUser']);
-      if (jsonObj['name'] != null) this.name = jsonObj['name'];
-      if (jsonObj['publicUrl'] != null) this.publicUrl = jsonObj['publicUrl'];
-      if (jsonObj['file'] != null) this.file.PrepareDTO(jsonObj['file']);
-      if (jsonObj['allowsDigitalSignature'] != null) this.allowsDigitalSignature = jsonObj['allowsDigitalSignature'];
-      if (jsonObj['id'] != null) this.id = jsonObj['id'];
-      if (jsonObj['cacheStamp'] != null) this.cacheStamp = jsonObj['cacheStamp'];
+   public PrepareDTO(jsonObj): void {
+      if (jsonObj === null) { return; }
+      if (jsonObj.signatures != null) { for (const item of jsonObj.signatures) { const itemDTO = new AttachmentSignatureDTO(); itemDTO.PrepareDTO(item); this.signatures.push(itemDTO); } }
+      if (jsonObj.type != null) { this.type = jsonObj.type as AttachmentType; }
+      if (jsonObj.creatorUser != null) { this.creatorUser.PrepareDTO(jsonObj.creatorUser); }
+      if (jsonObj.name != null) { this.name = jsonObj.name; }
+      if (jsonObj.publicUrl != null) { this.publicUrl = jsonObj.publicUrl; }
+      if (jsonObj.file != null) { this.file.PrepareDTO(jsonObj.file); }
+      if (jsonObj.allowsDigitalSignature != null) { this.allowsDigitalSignature = jsonObj.allowsDigitalSignature; }
+      if (jsonObj.id != null) { this.id = jsonObj.id; }
+      if (jsonObj.cacheStamp != null) { this.cacheStamp = jsonObj.cacheStamp; }
    }
 
    public isNewEntity(): boolean {

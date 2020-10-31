@@ -9,30 +9,64 @@ import { UserTypes } from './DTO/userTypes.ENUM';
 
 export class UserModelDTO extends EntityModelDTO<UserDTO> {
 
-   private _RoleModel: RoleModelDTO;
+   private roleModel: RoleModelDTO;
    private roleSubscribe: Subscription;
 
    public constructor(protected entityDTO: UserDTO) {
       super(entityDTO);
    }
+
+   public static getUserState(): string[] {
+      return EntityModelDTO.getEnumArray(UserState);
+   }
+
+   public static getUserTypes(): string[] {
+      return EntityModelDTO.getEnumArray(UserTypes);
+   }
+
+    protected getStringFromUserTypes(Enum: UserTypes) : Array<string> {
+        if (Enum) {
+            const arrays = new Array<string>();
+            for (let i = 0; i <= 31; i = i++) {
+                const pow = Math.pow(2, i);
+                if ((Enum & pow) !== 0) {
+                    arrays.push(UserTypes[pow]);
+                }
+            }
+            return arrays;
+        } else {
+            return undefined;
+        }
+    }
+
+    protected getFlagFromUserTypesString(strings: Array<string>) : UserTypes {
+        let flags: UserTypes;
+        strings.forEach(element => {
+            const enumVal: UserTypes = UserTypes[element];
+            flags |= enumVal;
+        });
+        return flags;
+    }
+
    public setEntityDTO(entityDTO: UserDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
-      this._RoleModel = new RoleModelDTO(this.entityDTO.role);
-      this.roleSubscribe = this._RoleModel.changed.subscribe((changed) => this.changed.next(changed));
+      if (entityDTO === null) return;
+      this.roleModel = new RoleModelDTO(this.entityDTO.role);
+      this.roleSubscribe = this.roleModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
-      this._RoleModel.dispose();
+      this.roleModel.dispose();
       this.roleSubscribe.unsubscribe();
    }
 
-   get RoleModel(): RoleModelDTO { return this._RoleModel; }
-   get Role(): RoleDTO { return this._RoleModel.getEntityDTO(); }
-   set Role(value: RoleDTO) { this.notifyChange(() => { this.entityDTO.role = value; this._RoleModel.setEntityDTO(value) }); }
+   get RoleModel(): RoleModelDTO { return this.roleModel; }
+   get Role(): RoleDTO { return this.roleModel.getEntityDTO(); }
+   set Role(value: RoleDTO) { this.notifyChange(() => { this.entityDTO.role = value; this.roleModel.setEntityDTO(value); }); }
 
    get IdUserOwner(): number { return this.entityDTO.idUserOwner; }
    set IdUserOwner(value: number) { this.notifyChangeDTO('idUserOwner', value); }
@@ -75,35 +109,4 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
 
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getUserState(): string[] {
-      return EntityModelDTO.getEnumArray(UserState);
-   }
-
-   public static getUserTypes(): string[] {
-      return EntityModelDTO.getEnumArray(UserTypes);
-   }
- protected getStringFromUserTypes(Enum: UserTypes) : Array<string>  {
-        if (Enum)
-        {
-            var arrays = new Array<string>();
-            for (var i: number = 1; i <= 2097151; i = i << 1) {
-                if ((Enum & i) !== 0)
-                {
-                    arrays.push(UserTypes[i]);
-                }
-            }
-            return arrays;
-        }
-        else
-            return undefined;
-    }
-    protected getFlagFromUserTypesString(strings: Array<string>) : UserTypes  {
-        let flags : UserTypes;
-        strings.forEach(element => {
-            var enumVal: UserTypes = UserTypes[element];
-            flags |= enumVal;
-        });
-        return flags;
-    }
 }

@@ -11,10 +11,12 @@ export class NotificationDataModelDTO extends EntityModelDTO<NotificationDataDTO
    public constructor(protected entityDTO: NotificationDataDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: NotificationDataDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
+
    public dispose(): void {
    }
 

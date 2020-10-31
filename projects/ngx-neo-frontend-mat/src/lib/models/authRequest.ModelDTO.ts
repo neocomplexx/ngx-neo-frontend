@@ -10,10 +10,16 @@ export class AuthRequestModelDTO extends EntityModelDTO<AuthRequestDTO> {
    public constructor(protected entityDTO: AuthRequestDTO) {
       super(entityDTO);
    }
+
+   public static getTypeSocial(): string[] {
+      return EntityModelDTO.getEnumArray(TypeSocial);
+   }
+
    public setEntityDTO(entityDTO: AuthRequestDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
+
    public dispose(): void {
    }
 
@@ -31,8 +37,4 @@ export class AuthRequestModelDTO extends EntityModelDTO<AuthRequestDTO> {
 
    get TokenId(): string { return this.entityDTO.tokenId; }
    set TokenId(value: string) { this.notifyChangeDTO('tokenId', value); }
-
-   public static getTypeSocial(): string[] {
-      return EntityModelDTO.getEnumArray(TypeSocial);
-   }
 }

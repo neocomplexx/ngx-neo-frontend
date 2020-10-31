@@ -9,14 +9,16 @@ export class NameDetailModelDTO extends EntityModelDTO<NameDetailDTO> {
    public constructor(protected entityDTO: NameDetailDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: NameDetailDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

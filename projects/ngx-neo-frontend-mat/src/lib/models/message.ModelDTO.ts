@@ -9,24 +9,26 @@ import { MessageAttachmentModelDTO } from './messageAttachment.ModelDTO';
 
 export class MessageModelDTO extends EntityModelDTO<MessageDTO> {
 
-   private _SenderModel: UserModelDTO;
+   private senderModel: UserModelDTO;
    private senderSubscribe: Subscription;
 
    public constructor(protected entityDTO: MessageDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: MessageDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
-      this._SenderModel = new UserModelDTO(this.entityDTO.sender);
-      this.senderSubscribe = this._SenderModel.changed.subscribe((changed) => this.changed.next(changed));
+      if (entityDTO === null) return;
+      this.senderModel = new UserModelDTO(this.entityDTO.sender);
+      this.senderSubscribe = this.senderModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
-      this._SenderModel.dispose();
+      this.senderModel.dispose();
       this.senderSubscribe.unsubscribe();
    }
 
@@ -45,9 +47,9 @@ export class MessageModelDTO extends EntityModelDTO<MessageDTO> {
    get Archived(): boolean { return this.entityDTO.archived; }
    set Archived(value: boolean) { this.notifyChangeDTO('archived', value); }
 
-   get SenderModel(): UserModelDTO { return this._SenderModel; }
-   get Sender(): UserDTO { return this._SenderModel.getEntityDTO(); }
-   set Sender(value: UserDTO) { this.notifyChange(() => { this.entityDTO.sender = value; this._SenderModel.setEntityDTO(value) }); }
+   get SenderModel(): UserModelDTO { return this.senderModel; }
+   get Sender(): UserDTO { return this.senderModel.getEntityDTO(); }
+   set Sender(value: UserDTO) { this.notifyChange(() => { this.entityDTO.sender = value; this.senderModel.setEntityDTO(value); }); }
 
    get Receivers(): Array<UserDTO> { return this.entityDTO.receivers; }
    set Receivers(value: Array<UserDTO>) { this.notifyChangeDTO('receivers', value); }

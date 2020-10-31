@@ -5,6 +5,7 @@ export * from './ownImage.ServiceBackend';
 export * from './newCompany.ServiceBackend';
 export * from './notification.ServiceBackend';
 export * from './permission.ServiceBackend';
+export * from './publicFiles.ServiceBackend';
 export * from './role.ServiceBackend';
 export * from './sendMail.ServiceBackend';
 export * from './statisticsBackend.ServiceBackend';

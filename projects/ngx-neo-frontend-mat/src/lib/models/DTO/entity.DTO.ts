@@ -1,3 +1,3 @@
 export interface IEntityDTO {
-   PrepareDTO(jsonObj: any): void;
+   PrepareDTO(jsonObj): void;
 }

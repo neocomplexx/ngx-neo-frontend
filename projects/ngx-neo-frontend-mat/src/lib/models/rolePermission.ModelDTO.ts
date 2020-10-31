@@ -8,30 +8,36 @@ import { RolePermissionState } from './DTO/rolePermissionState.ENUM';
 
 export class RolePermissionModelDTO extends EntityModelDTO<RolePermissionDTO> {
 
-   private _PermissionModel: PermissionModelDTO;
+   private permissionModel: PermissionModelDTO;
    private permissionSubscribe: Subscription;
 
    public constructor(protected entityDTO: RolePermissionDTO) {
       super(entityDTO);
    }
+
+   public static getRolePermissionState(): string[] {
+      return EntityModelDTO.getEnumArray(RolePermissionState);
+   }
+
    public setEntityDTO(entityDTO: RolePermissionDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
-      this._PermissionModel = new PermissionModelDTO(this.entityDTO.permission);
-      this.permissionSubscribe = this._PermissionModel.changed.subscribe((changed) => this.changed.next(changed));
+      if (entityDTO === null) return;
+      this.permissionModel = new PermissionModelDTO(this.entityDTO.permission);
+      this.permissionSubscribe = this.permissionModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
-      this._PermissionModel.dispose();
+      this.permissionModel.dispose();
       this.permissionSubscribe.unsubscribe();
    }
 
-   get PermissionModel(): PermissionModelDTO { return this._PermissionModel; }
-   get Permission(): PermissionDTO { return this._PermissionModel.getEntityDTO(); }
-   set Permission(value: PermissionDTO) { this.notifyChange(() => { this.entityDTO.permission = value; this._PermissionModel.setEntityDTO(value) }); }
+   get PermissionModel(): PermissionModelDTO { return this.permissionModel; }
+   get Permission(): PermissionDTO { return this.permissionModel.getEntityDTO(); }
+   set Permission(value: PermissionDTO) { this.notifyChange(() => { this.entityDTO.permission = value; this.permissionModel.setEntityDTO(value); }); }
 
    get State(): string { return RolePermissionState[this.entityDTO.state]; }
    set State(value: string) { this.notifyChangeDTO('state', RolePermissionState[value]); }
@@ -41,8 +47,4 @@ export class RolePermissionModelDTO extends EntityModelDTO<RolePermissionDTO> {
 
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getRolePermissionState(): string[] {
-      return EntityModelDTO.getEnumArray(RolePermissionState);
-   }
 }

@@ -20,6 +20,7 @@ export abstract class EntityModelDTO<TDTO extends IEntityDTO> implements IEntity
         this.entityDTO[property] = value;
         this.changed.next(true);
     }
+
     protected notifyChange(property: () => void): void {
         property();
         this.changed.next(true);
@@ -34,6 +35,7 @@ export abstract class EntityModelDTO<TDTO extends IEntityDTO> implements IEntity
         this.entityDTO = entityDTO;
         this.changed.next(false);
     }
+
     public abstract dispose(): void;
 
     protected static getEnumArray(e: any): string[] {

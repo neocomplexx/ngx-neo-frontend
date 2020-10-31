@@ -9,14 +9,16 @@ export class ChatMessageModelDTO extends EntityModelDTO<ChatMessageDTO> {
    public constructor(protected entityDTO: ChatMessageDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: ChatMessageDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

@@ -5,21 +5,21 @@ import { TypeSocial } from './typeSocial.ENUM';
 
 export class AuthRequestDTO implements IEntityDTO {
 
-   userName: string = '';
-   password: string = '';
+   userName = '';
+   password = '';
    typeSocial: TypeSocial;
-   token: string = '';
-   tokenId: string = '';
+   token = '';
+   tokenId = '';
 
    constructor() {
    }
 
-   public PrepareDTO(jsonObj: any): void {
-      if (jsonObj == null) return;
-      if (jsonObj['userName'] != null) this.userName = jsonObj['userName'];
-      if (jsonObj['password'] != null) this.password = jsonObj['password'];
-      if (jsonObj['typeSocial'] != null) this.typeSocial = jsonObj['typeSocial'] as TypeSocial;
-      if (jsonObj['token'] != null) this.token = jsonObj['token'];
-      if (jsonObj['tokenId'] != null) this.tokenId = jsonObj['tokenId'];
+   public PrepareDTO(jsonObj): void {
+      if (jsonObj === null) { return; }
+      if (jsonObj.userName != null) { this.userName = jsonObj.userName; }
+      if (jsonObj.password != null) { this.password = jsonObj.password; }
+      if (jsonObj.typeSocial != null) { this.typeSocial = jsonObj.typeSocial as TypeSocial; }
+      if (jsonObj.token != null) { this.token = jsonObj.token; }
+      if (jsonObj.tokenId != null) { this.tokenId = jsonObj.tokenId; }
    }
 }

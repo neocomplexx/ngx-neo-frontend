@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { NamedBlobDTO } from '../../models';
+import { DataDTO, NamedBlobDTO } from '../../models';
 import { ExceptionManagerService } from '../exception-manager/exception-manager.service';
 import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
@@ -23,11 +23,11 @@ export class NotificationServiceBackend {
 
    public async getUserNotificationsIdAuditory(id: number): Promise<Array<AuditLogEntryDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + id + '/Auditory').toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/user/notifications/' + id + '/Auditory').toPromise();
+         const resJson = res.data;
          const resDTO = new Array<AuditLogEntryDTO>();
          for (const item of resJson) {
-            const itemDTO = new AuditLogEntryDTO()
+            const itemDTO = new AuditLogEntryDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }
@@ -37,7 +37,9 @@ export class NotificationServiceBackend {
 
    public async getUserNotifications(archived: boolean, pageNumber: number, pageSize: number): Promise<NotificationDataDTO> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + '?archived=' + archived + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize).toPromise();
+         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + '?archived=' + archived +
+            '&pageNumber=' + pageNumber +
+            '&pageSize=' + pageSize).toPromise();
          if (!res) { return null; }
          const resDTO = new NotificationDataDTO();
          resDTO.PrepareDTO(res);
@@ -47,7 +49,10 @@ export class NotificationServiceBackend {
 
    public async getUserNotificationsTipo(archived: boolean, pageNumber: number, pageSize: number, tipo: number = -1): Promise<NotificationDataDTO> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/tipo' + '?archived=' + archived + '&pageNumber=' + pageNumber + '&pageSize=' + pageSize + '&tipo=' + tipo).toPromise();
+         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/tipo' + '?archived=' + archived +
+            '&pageNumber=' + pageNumber +
+            '&pageSize=' + pageSize +
+            '&tipo=' + tipo).toPromise();
          if (!res) { return null; }
          const resDTO = new NotificationDataDTO();
          resDTO.PrepareDTO(res);
@@ -57,11 +62,11 @@ export class NotificationServiceBackend {
 
    public async getUserNotificationsStaticsByType(type: number = -1): Promise<Array<NotificationStatsDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/staticsByType' + '?type=' + type).toPromise();
-         const resJson = res['data'];
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/user/notifications/staticsByType' + '?type=' + type).toPromise();
+         const resJson = res.data;
          const resDTO = new Array<NotificationStatsDTO>();
          for (const item of resJson) {
-            const itemDTO = new NotificationStatsDTO()
+            const itemDTO = new NotificationStatsDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }

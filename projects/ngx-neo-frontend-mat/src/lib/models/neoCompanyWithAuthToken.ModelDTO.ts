@@ -9,14 +9,16 @@ export class NeoCompanyWithAuthTokenModelDTO extends EntityModelDTO<NeoCompanyWi
    public constructor(protected entityDTO: NeoCompanyWithAuthTokenDTO) {
       super(entityDTO);
    }
+
    public setEntityDTO(entityDTO: NeoCompanyWithAuthTokenDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 

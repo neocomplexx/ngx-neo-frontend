@@ -10,14 +10,20 @@ export class RoleBasicModelDTO extends EntityModelDTO<RoleBasicDTO> {
    public constructor(protected entityDTO: RoleBasicDTO) {
       super(entityDTO);
    }
+
+   public static getRoleState(): string[] {
+      return EntityModelDTO.getEnumArray(RoleState);
+   }
+
    public setEntityDTO(entityDTO: RoleBasicDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO == null) return;
+      if (entityDTO === null) return;
    }
 
    public isNewEntity(): boolean {
       return this.entityDTO.id === 0;
    }
+
    public dispose(): void {
    }
 
@@ -41,8 +47,4 @@ export class RoleBasicModelDTO extends EntityModelDTO<RoleBasicDTO> {
 
    get CacheStamp(): number { return this.entityDTO.cacheStamp; }
    set CacheStamp(value: number) { this.notifyChangeDTO('cacheStamp', value); }
-
-   public static getRoleState(): string[] {
-      return EntityModelDTO.getEnumArray(RoleState);
-   }
 }

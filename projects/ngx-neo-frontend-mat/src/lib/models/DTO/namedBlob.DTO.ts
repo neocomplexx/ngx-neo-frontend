@@ -2,14 +2,8 @@ import { HttpResponse } from '@angular/common/http';
 
 export class NamedBlobDTO {
 
-    private _blob: Blob;
-    private _name: string;
-
-    set blob(value: Blob) { this._blob = value; }
-    get blob(){ return this._blob; }
-
-    set name(value: string) { this._name = value; }
-    get name() { return this._name; }
+    public blob: Blob;
+    public name: string;
 
     get mimeType() { return this.cordovaMimeType(); }
 
@@ -28,8 +22,8 @@ export class NamedBlobDTO {
     }
 
     private getExtension(): string {
-        if (this._name) {
-            return  this._name.split('.').pop();
+        if (this.name) {
+            return  this.name.split('.').pop();
         } else {
             return null;
         }
@@ -38,6 +32,6 @@ export class NamedBlobDTO {
     public setBlobNameFromHttpResponse(httpResponse: HttpResponse<Blob>): void {
       const contentDispositionHeader = httpResponse.headers.get('Content-Disposition');
       const result = contentDispositionHeader.split(';')[1].trim().split('=')[1];
-      this._name = result.replace(/"/g, '');
+      this.name = result.replace(/"/g, '');
   }
 }
