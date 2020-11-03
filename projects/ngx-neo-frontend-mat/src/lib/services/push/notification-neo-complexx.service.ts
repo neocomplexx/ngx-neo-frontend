@@ -16,6 +16,9 @@ import { UsersServiceBackend } from '../backend';
 })
 export class NotificationNeoComplexxService extends NotificationService {
 
+    private pageNumber = 0;
+    protected _getMoreNotificationsEvent = new Subject<Array<NotificationDTO>>();
+
     public notifications: NotificationDTO[] = new Array<NotificationDTO>();
 
     public usersAdministrative: Array<UserDTO>;
@@ -48,6 +51,7 @@ export class NotificationNeoComplexxService extends NotificationService {
             }
         });
     }
+
     private async getAllNotification(): Promise<void> {
         const notificationsData = await this.notificationServiceBackend.getUserNotifications(true, 0, 20);
         this.notificationsNotSeen = notificationsData.notificationsNotSeen;
@@ -58,6 +62,16 @@ export class NotificationNeoComplexxService extends NotificationService {
         // this.usersAdministrative = await this.usersServiceBackend.getUsers(true);
 
         this._getAllNotificationsEvent.next();
+    }
+
+    public async getMoreNotification(): Promise<void> {
+        const notificationsData = await this.notificationServiceBackend.getUserNotifications(true, ++this.pageNumber, 20);
+        notificationsData.data.forEach(notification => {
+            if (this.notifications.find(x => x.id == notification.id) == null) {
+                this.notifications.push(notification);
+            }
+        });
+        this._getMoreNotificationsEvent.next(notificationsData.data);
     }
 
     private notificationPriorityAnalyzer(): void {
@@ -78,6 +92,9 @@ export class NotificationNeoComplexxService extends NotificationService {
 
     public onGetAllNotifications(newMethod: () => void): void {
         this._getAllNotificationsEvent.asObservable().subscribe(newMethod);
+    }
+    public onGetMoreNotifications(newMethod: (getMoreNotifications) => void): void {
+        this._getMoreNotificationsEvent.asObservable().subscribe(newMethod);
     }
     public onNewNotification(newMethod: (dto: NotificationDTO) => void): void {
         this._newNotificationEvent.asObservable().subscribe(newMethod);
