@@ -12,7 +12,7 @@ export class NameNumberDetailModelDTO extends EntityModelDTO<NameNumberDetailDTO
 
    public setEntityDTO(entityDTO: NameNumberDetailDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

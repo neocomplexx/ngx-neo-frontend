@@ -14,7 +14,7 @@ export class NotificationDataModelDTO extends EntityModelDTO<NotificationDataDTO
 
    public setEntityDTO(entityDTO: NotificationDataDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public dispose(): void {

@@ -4,15 +4,15 @@ import { AttachmentDTO } from './DTO/attachment.DTO';
 import { AttachmentSignatureDTO } from './DTO/attachmentSignature.DTO';
 import { AttachmentSignatureModelDTO } from './attachmentSignature.ModelDTO';
 import { AttachmentType } from './DTO/attachmentType.ENUM';
-import { UserDTO } from './DTO/user.DTO';
-import { UserModelDTO } from './user.ModelDTO';
+import { UserBasicDTO } from './DTO/userBasic.DTO';
+import { UserBasicModelDTO } from './userBasic.ModelDTO';
 import { FileDBDTO } from './DTO/fileDB.DTO';
 import { FileDBModelDTO } from './fileDB.ModelDTO';
 
 
 export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
 
-   private creatorUserModel: UserModelDTO;
+   private creatorUserModel: UserBasicModelDTO;
    private creatorUserSubscribe: Subscription;
    private fileModel: FileDBModelDTO;
    private fileSubscribe: Subscription;
@@ -27,8 +27,8 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
 
    public setEntityDTO(entityDTO: AttachmentDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
-      this.creatorUserModel = new UserModelDTO(this.entityDTO.creatorUser);
+      if (entityDTO === null) { return; }
+      this.creatorUserModel = new UserBasicModelDTO(this.entityDTO.creatorUser);
       this.creatorUserSubscribe = this.creatorUserModel.changed.subscribe((changed) => this.changed.next(changed));
       this.fileModel = new FileDBModelDTO(this.entityDTO.file);
       this.fileSubscribe = this.fileModel.changed.subscribe((changed) => this.changed.next(changed));
@@ -51,9 +51,9 @@ export class AttachmentModelDTO extends EntityModelDTO<AttachmentDTO> {
    get Type(): string { return AttachmentType[this.entityDTO.type]; }
    set Type(value: string) { this.notifyChangeDTO('type', AttachmentType[value]); }
 
-   get CreatorUserModel(): UserModelDTO { return this.creatorUserModel; }
-   get CreatorUser(): UserDTO { return this.creatorUserModel.getEntityDTO(); }
-   set CreatorUser(value: UserDTO) { this.notifyChange(() => { this.entityDTO.creatorUser = value; this.creatorUserModel.setEntityDTO(value); }); }
+   get CreatorUserModel(): UserBasicModelDTO { return this.creatorUserModel; }
+   get CreatorUser(): UserBasicDTO { return this.creatorUserModel.getEntityDTO(); }
+   set CreatorUser(value: UserBasicDTO) { this.notifyChange(() => { this.entityDTO.creatorUser = value; this.creatorUserModel.setEntityDTO(value); }); }
 
    get Name(): string { return this.entityDTO.name; }
    set Name(value: string) { this.notifyChangeDTO('name', value); }

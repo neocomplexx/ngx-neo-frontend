@@ -12,7 +12,7 @@ export class BackendConfigurationModelDTO extends EntityModelDTO<BackendConfigur
 
    public setEntityDTO(entityDTO: BackendConfigurationDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

@@ -17,7 +17,7 @@ export class AuthChangePasswordRequestModelDTO extends EntityModelDTO<AuthChange
 
    public setEntityDTO(entityDTO: AuthChangePasswordRequestDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public dispose(): void {

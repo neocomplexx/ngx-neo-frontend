@@ -12,7 +12,7 @@ export class MetricSnapshotModelDTO extends EntityModelDTO<MetricSnapshotDTO> {
 
    public setEntityDTO(entityDTO: MetricSnapshotDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

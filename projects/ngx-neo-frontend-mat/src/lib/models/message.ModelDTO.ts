@@ -18,7 +18,7 @@ export class MessageModelDTO extends EntityModelDTO<MessageDTO> {
 
    public setEntityDTO(entityDTO: MessageDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
       this.senderModel = new UserModelDTO(this.entityDTO.sender);
       this.senderSubscribe = this.senderModel.changed.subscribe((changed) => this.changed.next(changed));
    }

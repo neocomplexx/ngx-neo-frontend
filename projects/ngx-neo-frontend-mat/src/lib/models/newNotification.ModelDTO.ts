@@ -16,7 +16,7 @@ export class NewNotificationModelDTO extends EntityModelDTO<NewNotificationDTO> 
 
    public setEntityDTO(entityDTO: NewNotificationDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
       this.notificationModel = new NotificationModelDTO(this.entityDTO.notification);
       this.notificationSubscribe = this.notificationModel.changed.subscribe((changed) => this.changed.next(changed));
    }

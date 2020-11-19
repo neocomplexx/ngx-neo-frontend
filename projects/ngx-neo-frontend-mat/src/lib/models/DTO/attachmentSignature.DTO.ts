@@ -2,13 +2,13 @@ import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
 import { SignatureStatusType } from './signatureStatusType.ENUM';
 import { SignatureType } from './signatureType.ENUM';
-import { UserDTO } from './user.DTO';
+import { UserBasicDTO } from './userBasic.DTO';
 
 
 export class AttachmentSignatureDTO implements IEntityDTO {
 
-   ownerUser: UserDTO;
-   requesterUser: UserDTO;
+   ownerUser: UserBasicDTO;
+   requesterUser: UserBasicDTO;
    status: SignatureStatusType;
    type: SignatureType;
    isCreator: boolean;
@@ -18,8 +18,8 @@ export class AttachmentSignatureDTO implements IEntityDTO {
    cacheStamp = 0;
 
    constructor() {
-      this.ownerUser = new UserDTO();
-      this.requesterUser = new UserDTO();
+      this.ownerUser = new UserBasicDTO();
+      this.requesterUser = new UserBasicDTO();
    }
 
    public PrepareDTO(jsonObj): void {

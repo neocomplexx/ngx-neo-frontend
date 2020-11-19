@@ -17,7 +17,7 @@ export class RoleBasicModelDTO extends EntityModelDTO<RoleBasicDTO> {
 
    public setEntityDTO(entityDTO: RoleBasicDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

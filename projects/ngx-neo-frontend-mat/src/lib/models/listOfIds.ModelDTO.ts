@@ -12,7 +12,7 @@ export class ListOfIdsModelDTO extends EntityModelDTO<ListOfIdsDTO> {
 
    public setEntityDTO(entityDTO: ListOfIdsDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

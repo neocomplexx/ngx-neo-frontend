@@ -12,7 +12,7 @@ export class ImageEntityModelDTO extends EntityModelDTO<ImageEntityDTO> {
 
    public setEntityDTO(entityDTO: ImageEntityDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

@@ -12,7 +12,7 @@ export class PermissionModelDTO extends EntityModelDTO<PermissionDTO> {
 
    public setEntityDTO(entityDTO: PermissionDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

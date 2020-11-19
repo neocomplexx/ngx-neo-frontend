@@ -17,7 +17,7 @@ export class AuthRequestModelDTO extends EntityModelDTO<AuthRequestDTO> {
 
    public setEntityDTO(entityDTO: AuthRequestDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public dispose(): void {

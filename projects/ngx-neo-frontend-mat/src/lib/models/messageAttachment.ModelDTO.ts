@@ -12,7 +12,7 @@ export class MessageAttachmentModelDTO extends EntityModelDTO<MessageAttachmentD
 
    public setEntityDTO(entityDTO: MessageAttachmentDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

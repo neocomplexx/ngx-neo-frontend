@@ -12,7 +12,7 @@ export class AuthResponseModelDTO extends EntityModelDTO<AuthResponseDTO> {
 
    public setEntityDTO(entityDTO: AuthResponseDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

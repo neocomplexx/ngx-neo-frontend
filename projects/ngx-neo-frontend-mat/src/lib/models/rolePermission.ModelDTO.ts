@@ -21,7 +21,7 @@ export class RolePermissionModelDTO extends EntityModelDTO<RolePermissionDTO> {
 
    public setEntityDTO(entityDTO: RolePermissionDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
       this.permissionModel = new PermissionModelDTO(this.entityDTO.permission);
       this.permissionSubscribe = this.permissionModel.changed.subscribe((changed) => this.changed.next(changed));
    }

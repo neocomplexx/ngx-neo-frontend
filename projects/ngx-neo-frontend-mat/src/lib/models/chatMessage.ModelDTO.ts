@@ -12,7 +12,7 @@ export class ChatMessageModelDTO extends EntityModelDTO<ChatMessageDTO> {
 
    public setEntityDTO(entityDTO: ChatMessageDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

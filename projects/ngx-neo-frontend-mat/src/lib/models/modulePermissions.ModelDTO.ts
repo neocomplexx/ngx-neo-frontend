@@ -14,7 +14,7 @@ export class ModulePermissionsModelDTO extends EntityModelDTO<ModulePermissionsD
 
    public setEntityDTO(entityDTO: ModulePermissionsDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

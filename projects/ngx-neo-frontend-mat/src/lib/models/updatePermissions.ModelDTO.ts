@@ -14,7 +14,7 @@ export class UpdatePermissionsModelDTO extends EntityModelDTO<UpdatePermissionsD
 
    public setEntityDTO(entityDTO: UpdatePermissionsDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

@@ -24,7 +24,7 @@ export class NotificationAttachmentsModelDTO extends EntityModelDTO<Notification
 
    public setEntityDTO(entityDTO: NotificationAttachmentsDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {
@@ -57,6 +57,9 @@ export class NotificationAttachmentsModelDTO extends EntityModelDTO<Notification
 
    get ReadDateTime(): Date { return this.entityDTO.readDateTime; }
    set ReadDateTime(value: Date) { this.notifyChangeDTO('readDateTime', value); }
+
+   get DisableUnderstanding(): boolean { return this.entityDTO.disableUnderstanding; }
+   set DisableUnderstanding(value: boolean) { this.notifyChangeDTO('disableUnderstanding', value); }
 
    get UnderstoodDateTime(): Date { return this.entityDTO.understoodDateTime; }
    set UnderstoodDateTime(value: Date) { this.notifyChangeDTO('understoodDateTime', value); }

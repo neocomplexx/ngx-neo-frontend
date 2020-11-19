@@ -12,7 +12,7 @@ export class FileDBModelDTO extends EntityModelDTO<FileDBDTO> {
 
    public setEntityDTO(entityDTO: FileDBDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

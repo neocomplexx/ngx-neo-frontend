@@ -24,12 +24,12 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
       return EntityModelDTO.getEnumArray(UserTypes);
    }
 
-    protected getStringFromUserTypes(Enum: UserTypes) : Array<string> {
-        if (Enum) {
+    protected getStringFromUserTypes(enums: UserTypes): Array<string> {
+        if (enums) {
             const arrays = new Array<string>();
             for (let i = 0; i <= 31; i = i++) {
                 const pow = Math.pow(2, i);
-                if ((Enum & pow) !== 0) {
+                if ((enums & pow) !== 0) {
                     arrays.push(UserTypes[pow]);
                 }
             }
@@ -39,7 +39,7 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
         }
     }
 
-    protected getFlagFromUserTypesString(strings: Array<string>) : UserTypes {
+    protected getFlagFromUserTypesString(strings: Array<string>): UserTypes {
         let flags: UserTypes;
         strings.forEach(element => {
             const enumVal: UserTypes = UserTypes[element];
@@ -50,7 +50,7 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
 
    public setEntityDTO(entityDTO: UserDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
       this.roleModel = new RoleModelDTO(this.entityDTO.role);
       this.roleSubscribe = this.roleModel.changed.subscribe((changed) => this.changed.next(changed));
    }

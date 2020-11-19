@@ -2,7 +2,7 @@ import { IEntityDTO } from './entity.DTO';
 import { NamedBlobDTO } from './namedBlob.DTO';
 import { AttachmentType } from './attachmentType.ENUM';
 import { AttachmentSignatureDTO } from './attachmentSignature.DTO';
-import { UserDTO } from './user.DTO';
+import { UserBasicDTO } from './userBasic.DTO';
 import { FileDBDTO } from './fileDB.DTO';
 
 
@@ -10,7 +10,7 @@ export class AttachmentDTO implements IEntityDTO {
 
    signatures: Array<AttachmentSignatureDTO>;
    type: AttachmentType;
-   creatorUser: UserDTO;
+   creatorUser: UserBasicDTO;
    name = '';
    publicUrl = '';
    file: FileDBDTO;
@@ -20,7 +20,7 @@ export class AttachmentDTO implements IEntityDTO {
 
    constructor() {
       this.signatures = new Array<AttachmentSignatureDTO>();
-      this.creatorUser = new UserDTO();
+      this.creatorUser = new UserBasicDTO();
       this.file = new FileDBDTO();
    }
 

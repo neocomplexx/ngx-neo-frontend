@@ -12,7 +12,7 @@ export class PublicLinkModelDTO extends EntityModelDTO<PublicLinkDTO> {
 
    public setEntityDTO(entityDTO: PublicLinkDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

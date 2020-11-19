@@ -12,7 +12,7 @@ export class QuoteFilesModelDTO extends EntityModelDTO<QuoteFilesDTO> {
 
    public setEntityDTO(entityDTO: QuoteFilesDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {

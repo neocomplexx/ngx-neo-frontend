@@ -1,17 +1,17 @@
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { EntityModelDTO } from './entity.ModelDTO';
 import { AttachmentSignatureDTO } from './DTO/attachmentSignature.DTO';
-import { UserDTO } from './DTO/user.DTO';
-import { UserModelDTO } from './user.ModelDTO';
+import { UserBasicDTO } from './DTO/userBasic.DTO';
+import { UserBasicModelDTO } from './userBasic.ModelDTO';
 import { SignatureStatusType } from './DTO/signatureStatusType.ENUM';
 import { SignatureType } from './DTO/signatureType.ENUM';
 
 
 export class AttachmentSignatureModelDTO extends EntityModelDTO<AttachmentSignatureDTO> {
 
-   private ownerUserModel: UserModelDTO;
+   private ownerUserModel: UserBasicModelDTO;
    private ownerUserSubscribe: Subscription;
-   private requesterUserModel: UserModelDTO;
+   private requesterUserModel: UserBasicModelDTO;
    private requesterUserSubscribe: Subscription;
 
    public constructor(protected entityDTO: AttachmentSignatureDTO) {
@@ -28,10 +28,10 @@ export class AttachmentSignatureModelDTO extends EntityModelDTO<AttachmentSignat
 
    public setEntityDTO(entityDTO: AttachmentSignatureDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
-      this.ownerUserModel = new UserModelDTO(this.entityDTO.ownerUser);
+      if (entityDTO === null) { return; }
+      this.ownerUserModel = new UserBasicModelDTO(this.entityDTO.ownerUser);
       this.ownerUserSubscribe = this.ownerUserModel.changed.subscribe((changed) => this.changed.next(changed));
-      this.requesterUserModel = new UserModelDTO(this.entityDTO.requesterUser);
+      this.requesterUserModel = new UserBasicModelDTO(this.entityDTO.requesterUser);
       this.requesterUserSubscribe = this.requesterUserModel.changed.subscribe((changed) => this.changed.next(changed));
    }
 
@@ -46,13 +46,13 @@ export class AttachmentSignatureModelDTO extends EntityModelDTO<AttachmentSignat
       this.requesterUserSubscribe.unsubscribe();
    }
 
-   get OwnerUserModel(): UserModelDTO { return this.ownerUserModel; }
-   get OwnerUser(): UserDTO { return this.ownerUserModel.getEntityDTO(); }
-   set OwnerUser(value: UserDTO) { this.notifyChange(() => { this.entityDTO.ownerUser = value; this.ownerUserModel.setEntityDTO(value); }); }
+   get OwnerUserModel(): UserBasicModelDTO { return this.ownerUserModel; }
+   get OwnerUser(): UserBasicDTO { return this.ownerUserModel.getEntityDTO(); }
+   set OwnerUser(value: UserBasicDTO) { this.notifyChange(() => { this.entityDTO.ownerUser = value; this.ownerUserModel.setEntityDTO(value); }); }
 
-   get RequesterUserModel(): UserModelDTO { return this.requesterUserModel; }
-   get RequesterUser(): UserDTO { return this.requesterUserModel.getEntityDTO(); }
-   set RequesterUser(value: UserDTO) { this.notifyChange(() => { this.entityDTO.requesterUser = value; this.requesterUserModel.setEntityDTO(value); }); }
+   get RequesterUserModel(): UserBasicModelDTO { return this.requesterUserModel; }
+   get RequesterUser(): UserBasicDTO { return this.requesterUserModel.getEntityDTO(); }
+   set RequesterUser(value: UserBasicDTO) { this.notifyChange(() => { this.entityDTO.requesterUser = value; this.requesterUserModel.setEntityDTO(value); }); }
 
    get Status(): string { return SignatureStatusType[this.entityDTO.status]; }
    set Status(value: string) { this.notifyChangeDTO('status', SignatureStatusType[value]); }

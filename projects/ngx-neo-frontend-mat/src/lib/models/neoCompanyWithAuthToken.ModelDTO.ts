@@ -12,7 +12,7 @@ export class NeoCompanyWithAuthTokenModelDTO extends EntityModelDTO<NeoCompanyWi
 
    public setEntityDTO(entityDTO: NeoCompanyWithAuthTokenDTO) {
       super.setEntityDTO(entityDTO);
-      if (entityDTO === null) return;
+      if (entityDTO === null) { return; }
    }
 
    public isNewEntity(): boolean {
