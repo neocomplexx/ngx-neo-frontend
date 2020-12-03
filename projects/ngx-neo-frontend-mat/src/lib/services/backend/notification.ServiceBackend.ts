@@ -166,6 +166,12 @@ export class NotificationServiceBackend {
       });
    }
 
+   public async deleteUserNotificationsStatsId(id: number, iD: string): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+         await this.http.delete(this.Constants.apiURL + '/user/notifications/stats/' + id).toPromise();
+      });
+   }
+
    public async getUserNotificationsId(id: number): Promise<NotificationAttachmentsDTO> {
       return this.exceptionManager.executeAsync(async () => {
          const res = await this.http.get(this.Constants.apiURL + '/user/notifications/' + id).toPromise();
