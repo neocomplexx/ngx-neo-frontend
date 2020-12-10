@@ -60,9 +60,10 @@ export class NotificationServiceBackend {
       });
    }
 
-   public async getUserNotificationsStaticsByType(type: number = -1): Promise<Array<NotificationStatsDTO>> {
+   public async getUserNotificationsStaticsByType(type: number = -1, archived: boolean = true): Promise<Array<NotificationStatsDTO>> {
       return this.exceptionManager.executeAsync(async () => {
-         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/user/notifications/staticsByType' + '?type=' + type).toPromise();
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/user/notifications/staticsByType' + '?type=' + type +
+            '&archived=' + archived).toPromise();
          const resJson = res.data;
          const resDTO = new Array<NotificationStatsDTO>();
          for (const item of resJson) {
@@ -166,7 +167,7 @@ export class NotificationServiceBackend {
       });
    }
 
-   public async deleteUserNotificationsStatsId(id: number, iD: string): Promise<void> {
+   public async deleteUserNotificationsStatsId(id: number): Promise<void> {
       return this.exceptionManager.executeAsync(async () => {
          await this.http.delete(this.Constants.apiURL + '/user/notifications/stats/' + id).toPromise();
       });

@@ -45,6 +45,9 @@ export class NotificationStatsModelDTO extends EntityModelDTO<NotificationStatsD
    get Unread(): number { return this.entityDTO.unread; }
    set Unread(value: number) { this.notifyChangeDTO('unread', value); }
 
+   get Archived(): boolean { return this.entityDTO.archived; }
+   set Archived(value: boolean) { this.notifyChangeDTO('archived', value); }
+
    get Date(): Date { return this.entityDTO.date; }
    set Date(value: Date) { this.notifyChangeDTO('date', value); }
 
