@@ -30,13 +30,15 @@ export class NotificationNeoComplexxService extends NotificationService {
         super();
 
         this.pushService.registerPushFrom<NotificationDTO>('NewNotification', (notification) => {
-            const notificationDTO = new NotificationDTO();
+            let notificationDTO = this.notifications.find(x => x.id == notification.id);
+            if (!notificationDTO) { notificationDTO = new NotificationDTO(); }
             notificationDTO.PrepareDTO(notification);
-            this.notifications.unshift(notificationDTO);
-            this.notificationsNotSeen++;
-
-            this.notificationPriorityAnalyzer();
-            this._newNotificationEvent.next(notificationDTO);
+            if (notificationDTO.id == 0) {
+                this.notifications.unshift(notificationDTO);
+                this.notificationsNotSeen++;
+                this.notificationPriorityAnalyzer();
+                this._newNotificationEvent.next(notificationDTO);
+            }
         });
 
         this.pushService.registerPushFrom<ServiceChangeDTO>('ServiceChange', (serviceChange) => {

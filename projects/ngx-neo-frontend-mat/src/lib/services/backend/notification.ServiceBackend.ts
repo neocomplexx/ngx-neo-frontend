@@ -128,6 +128,15 @@ export class NotificationServiceBackend {
       });
    }
 
+   public async updateUserNotificationsStatsId(id: number): Promise<NotificationDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.put(this.Constants.apiURL + '/user/notifications/stats/' + id, null).toPromise();
+         const resDTO = new NotificationDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
    public async updateUserNotificationsIdOpened(id: number, notificationDTO: NotificationDTO, unArchive: boolean = false): Promise<NotificationDTO> {
       return this.exceptionManager.executeAsync(async () => {
          const res = await this.http.put(this.Constants.apiURL + '/user/notifications/' + id + '/opened' + '?unArchive=' + unArchive, notificationDTO).toPromise();
