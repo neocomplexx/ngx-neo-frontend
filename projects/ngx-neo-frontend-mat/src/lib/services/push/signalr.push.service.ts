@@ -42,6 +42,8 @@ export class PushService {
         });
     }
 
+    public get ConnectionIdAsync(): Promise<string> { return this.sendMessageToServer('GetMyConnectionId', null);}
+    
     public start(user: AuthResponseDTO): void {
         this.user = user;
         this.isStoped = false;
@@ -103,7 +105,7 @@ export class PushService {
         this.hubConnection.off(methodName);
     }
 
-    public sendMessageToServer(methodName: string, message: any) {
-        this.hubConnection.invoke(methodName, message);
+    public async sendMessageToServer(methodName: string, message: any = null): Promise<any> {
+        return await this.hubConnection.invoke(methodName, message);
     }
 }

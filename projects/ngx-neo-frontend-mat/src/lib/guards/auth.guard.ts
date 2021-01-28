@@ -12,7 +12,7 @@ import { CordovaService } from '../services/cordova';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private headerService: HeaderNeoComplexxService, private router: Router, private cordovaService: CordovaService) { }
+  constructor(protected headerService: HeaderNeoComplexxService, protected router: Router, protected cordovaService: CordovaService) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot, ) {
     if (this.headerService.IsLogged()) {
