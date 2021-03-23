@@ -11,6 +11,7 @@ import { AuthResponseDTO } from '../../models';
 import { AuditLogEntryDTO } from '../../models';
 import { UserBasicDTO } from '../../models';
 import { UserDTO } from '../../models';
+import { UserPasswordInseguroDTO } from '../../models';
 
 @Injectable({
    providedIn: 'root'
@@ -101,6 +102,30 @@ export class UsersServiceBackend {
          const resDTO = new Array<UserBasicDTO>();
          for (const item of resJson) {
             const itemDTO = new UserBasicDTO();
+            itemDTO.PrepareDTO(item);
+            resDTO.push(itemDTO);
+         }
+         return resDTO;
+      });
+   }
+
+   public async getUsersIdPasswordInseguro(id: number): Promise<UserPasswordInseguroDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/users/' + id + '/passwordInseguro').toPromise();
+         if (!res) { return null; }
+         const resDTO = new UserPasswordInseguroDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
+   public async getUsersPasswordInseguro(): Promise<Array<UserPasswordInseguroDTO>> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get<DataDTO>(this.Constants.apiURL + '/users/passwordInseguro').toPromise();
+         const resJson = res.data;
+         const resDTO = new Array<UserPasswordInseguroDTO>();
+         for (const item of resJson) {
+            const itemDTO = new UserPasswordInseguroDTO();
             itemDTO.PrepareDTO(item);
             resDTO.push(itemDTO);
          }
