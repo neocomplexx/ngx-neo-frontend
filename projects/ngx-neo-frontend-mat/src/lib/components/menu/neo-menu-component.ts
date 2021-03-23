@@ -54,6 +54,8 @@ export class NeoMenuComponent {
         opcionModel.nombre = opcion.nombreOpcion;
         opcionModel.comando = comandoOpcion;
         opcionModel.id = opcion.nombreOpcion;
+        opcionModel.descripcion = opcion.descripcionOpcion;
+        opcionModel.featureName = opcion.featureName;
         grupoModel.agregarOpcion(opcionModel);
       }
       if (!this.menus[grupo.col]) {

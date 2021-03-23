@@ -64,6 +64,7 @@ export class PushService {
             .stop()
             .then(() => console.log('Connection stoped!'))
             .catch(error => console.log('Connection can not stoped!'));
+        this._onConnectedEvent.next(false);
     }
 
     private connection(): void {
@@ -93,7 +94,7 @@ export class PushService {
     }
 
     public onConectedToServer(onConnectedMethod: (connection: boolean) => void): Subscription {
-        return this._onConnectedEvent.asObservable().subscribe(data => onConnectedMethod(data));
+        return this._onConnectedEvent.asObservable().subscribe(data => { if (data) { onConnectedMethod(data); } });
     }
 
     public registerPushFrom<TDTO extends IEntityDTO | null>(methodName: string, newMethod: (dto: TDTO | null) => void): void {
