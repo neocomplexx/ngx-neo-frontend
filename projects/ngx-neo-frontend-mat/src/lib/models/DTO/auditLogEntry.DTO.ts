@@ -14,6 +14,7 @@ export class AuditLogEntryDTO implements IEntityDTO {
    valorViejo = '';
    valorNuevo = '';
    estampilla: Date;
+   description = '';
    id = 0;
    cacheStamp = 0;
 
@@ -33,6 +34,7 @@ export class AuditLogEntryDTO implements IEntityDTO {
       if (jsonObj.valorViejo != null) { this.valorViejo = jsonObj.valorViejo; }
       if (jsonObj.valorNuevo != null) { this.valorNuevo = jsonObj.valorNuevo; }
       if (jsonObj.estampilla != null) { this.estampilla = new Date(jsonObj.estampilla); }
+      if (jsonObj.description != null) { this.description = jsonObj.description; }
       if (jsonObj.id != null) { this.id = jsonObj.id; }
       if (jsonObj.cacheStamp != null) { this.cacheStamp = jsonObj.cacheStamp; }
    }
