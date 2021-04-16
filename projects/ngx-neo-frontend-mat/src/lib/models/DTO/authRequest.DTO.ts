@@ -7,6 +7,7 @@ export class AuthRequestDTO implements IEntityDTO {
 
    userName = '';
    password = '';
+   ownCode = '';
    typeSocial: TypeSocial;
    token = '';
    tokenId = '';
@@ -18,6 +19,7 @@ export class AuthRequestDTO implements IEntityDTO {
       if (jsonObj === null) { return; }
       if (jsonObj.userName != null) { this.userName = jsonObj.userName; }
       if (jsonObj.password != null) { this.password = jsonObj.password; }
+      if (jsonObj.ownCode != null) { this.ownCode = jsonObj.ownCode; }
       if (jsonObj.typeSocial != null) { this.typeSocial = jsonObj.typeSocial as TypeSocial; }
       if (jsonObj.token != null) { this.token = jsonObj.token; }
       if (jsonObj.tokenId != null) { this.tokenId = jsonObj.tokenId; }

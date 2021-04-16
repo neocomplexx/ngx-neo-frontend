@@ -8,6 +8,7 @@ export class AuthChangePasswordRequestDTO implements IEntityDTO {
    oldPassword = '';
    userName = '';
    password = '';
+   ownCode = '';
    typeSocial: TypeSocial;
    token = '';
    tokenId = '';
@@ -20,6 +21,7 @@ export class AuthChangePasswordRequestDTO implements IEntityDTO {
       if (jsonObj.oldPassword != null) { this.oldPassword = jsonObj.oldPassword; }
       if (jsonObj.userName != null) { this.userName = jsonObj.userName; }
       if (jsonObj.password != null) { this.password = jsonObj.password; }
+      if (jsonObj.ownCode != null) { this.ownCode = jsonObj.ownCode; }
       if (jsonObj.typeSocial != null) { this.typeSocial = jsonObj.typeSocial as TypeSocial; }
       if (jsonObj.token != null) { this.token = jsonObj.token; }
       if (jsonObj.tokenId != null) { this.tokenId = jsonObj.tokenId; }

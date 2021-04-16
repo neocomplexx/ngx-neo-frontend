@@ -172,4 +172,10 @@ export class UsersServiceBackend {
       });
    }
 
+   public async insertUsersGenerateOwnCodes(): Promise<void> {
+      return this.exceptionManager.executeAsync(async () => {
+         await this.http.post(this.Constants.apiURL + '/users/generateOwnCodes', null).toPromise();
+      });
+   }
+
 }
