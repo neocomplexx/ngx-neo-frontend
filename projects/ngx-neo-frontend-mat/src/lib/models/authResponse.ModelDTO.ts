@@ -69,4 +69,10 @@ export class AuthResponseModelDTO extends EntityModelDTO<AuthResponseDTO> {
 
    get ValidEmail(): boolean { return this.entityDTO.validEmail; }
    set ValidEmail(value: boolean) { this.notifyChangeDTO('validEmail', value); }
+
+   get OwnCode(): string { return this.entityDTO.ownCode; }
+   set OwnCode(value: string) { this.notifyChangeDTO('ownCode', value); }
+
+   get HasMoreAccounts(): boolean { return this.entityDTO.hasMoreAccounts; }
+   set HasMoreAccounts(value: boolean) { this.notifyChangeDTO('hasMoreAccounts', value); }
 }

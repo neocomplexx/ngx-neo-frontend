@@ -19,6 +19,8 @@ export class AuthResponseDTO implements IEntityDTO {
    isViewUser: boolean;
    termsAccepted: boolean;
    validEmail: boolean;
+   ownCode = '';
+   hasMoreAccounts: boolean;
 
    constructor() {
    }
@@ -41,6 +43,8 @@ export class AuthResponseDTO implements IEntityDTO {
       if (jsonObj.isViewUser != null) { this.isViewUser = jsonObj.isViewUser; }
       if (jsonObj.termsAccepted != null) { this.termsAccepted = jsonObj.termsAccepted; }
       if (jsonObj.validEmail != null) { this.validEmail = jsonObj.validEmail; }
+      if (jsonObj.ownCode != null) { this.ownCode = jsonObj.ownCode; }
+      if (jsonObj.hasMoreAccounts != null) { this.hasMoreAccounts = jsonObj.hasMoreAccounts; }
    }
 
    public isNewEntity(): boolean {

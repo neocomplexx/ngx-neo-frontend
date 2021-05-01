@@ -5,6 +5,7 @@ import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { AuthRequestDTO } from '../../models';
+import { AuthTenantsResponseDTO } from '../../models';
 import { AuditLogEntryDTO } from '../../models';
 
 @Injectable({
@@ -32,6 +33,16 @@ export class UserServiceBackend {
    public async insertUserDeviceID(authRequestDTO: AuthRequestDTO): Promise<void> {
       return this.exceptionManager.executeAsync(async () => {
          await this.http.post(this.Constants.apiURL + '/user/deviceID', authRequestDTO).toPromise();
+      });
+   }
+
+   public async getUserAllTenants(): Promise<AuthTenantsResponseDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/user/allTenants').toPromise();
+         if (!res) { return null; }
+         const resDTO = new AuthTenantsResponseDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
       });
    }
 

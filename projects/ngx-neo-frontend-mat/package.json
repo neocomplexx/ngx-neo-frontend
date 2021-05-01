@@ -1,6 +1,6 @@
 {
   "name": "@neocomplexx/ngx-neo-frontend-mat",
-  "version": "9.0.24",
+  "version": "9.0.27",
   "scripts": {
     "build": "cd ../../node_modules/.bin/ && tsc -p ../../projects/ngx-neo-frontend-mat/tsconfig.schematics.json && cd ../../projects/ngx-neo-frontend-mat",
     "copy:schemas": "rsync -R schematics/*/schema.json ../../dist/ngx-neo-frontend-mat/",

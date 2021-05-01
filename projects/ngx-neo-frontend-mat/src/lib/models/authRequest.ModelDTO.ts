@@ -29,9 +29,6 @@ export class AuthRequestModelDTO extends EntityModelDTO<AuthRequestDTO> {
    get Password(): string { return this.entityDTO.password; }
    set Password(value: string) { this.notifyChangeDTO('password', value); }
 
-   get OwnCode(): string { return this.entityDTO.ownCode; }
-   set OwnCode(value: string) { this.notifyChangeDTO('ownCode', value); }
-
    get TypeSocial(): string { return TypeSocial[this.entityDTO.typeSocial]; }
    set TypeSocial(value: string) { this.notifyChangeDTO('typeSocial', TypeSocial[value]); }
 

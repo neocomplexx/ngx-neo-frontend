@@ -10,6 +10,8 @@ export class UserDTO implements IEntityDTO {
    role: RoleDTO;
    idUserOwner = 0;
    userTypeId = 0;
+   ownCode = '';
+   hasMoreAccounts: boolean;
    userName = '';
    firstName = '';
    lastName = '';
@@ -31,6 +33,8 @@ export class UserDTO implements IEntityDTO {
       if (jsonObj.role != null) { this.role.PrepareDTO(jsonObj.role); }
       if (jsonObj.idUserOwner != null) { this.idUserOwner = jsonObj.idUserOwner; }
       if (jsonObj.userTypeId != null) { this.userTypeId = jsonObj.userTypeId; }
+      if (jsonObj.ownCode != null) { this.ownCode = jsonObj.ownCode; }
+      if (jsonObj.hasMoreAccounts != null) { this.hasMoreAccounts = jsonObj.hasMoreAccounts; }
       if (jsonObj.userName != null) { this.userName = jsonObj.userName; }
       if (jsonObj.firstName != null) { this.firstName = jsonObj.firstName; }
       if (jsonObj.lastName != null) { this.lastName = jsonObj.lastName; }

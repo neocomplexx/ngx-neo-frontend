@@ -74,6 +74,12 @@ export class UserModelDTO extends EntityModelDTO<UserDTO> {
    get UserTypeId(): number { return this.entityDTO.userTypeId; }
    set UserTypeId(value: number) { this.notifyChangeDTO('userTypeId', value); }
 
+   get OwnCode(): string { return this.entityDTO.ownCode; }
+   set OwnCode(value: string) { this.notifyChangeDTO('ownCode', value); }
+
+   get HasMoreAccounts(): boolean { return this.entityDTO.hasMoreAccounts; }
+   set HasMoreAccounts(value: boolean) { this.notifyChangeDTO('hasMoreAccounts', value); }
+
    get UserName(): string { return this.entityDTO.userName; }
    set UserName(value: string) { this.notifyChangeDTO('userName', value); }
 
