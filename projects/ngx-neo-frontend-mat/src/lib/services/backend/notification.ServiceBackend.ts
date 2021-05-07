@@ -202,4 +202,14 @@ export class NotificationServiceBackend {
       });
    }
 
+   public async getUserNotificationsNotificationId(id: number): Promise<NotificationAttachmentsDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/user/notifications/notification/' + id).toPromise();
+         if (!res) { return null; }
+         const resDTO = new NotificationAttachmentsDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
 }
