@@ -257,7 +257,7 @@ const addPackageJsonDependencies = (): Rule => {
       { type: NodeDependencyType.Default, version: '^7.0.0', name: '@neocomplexx/ngx-neo-loader' },
       { type: NodeDependencyType.Default, version: '^7.0.2', name: '@neocomplexx/ngx-neo-pipes' },
       { type: NodeDependencyType.Default, version: '^7.0.0', name: '@neocomplexx/ngx-neo-completer' },
-      { type: NodeDependencyType.Default, version: '1.1.2', name: '@aspnet/signalr' }
+      { type: NodeDependencyType.Default, version: '^5.0.6', name: '@microsoft/signalr' }
     ];
 
     dependencies.forEach(dependency => {
