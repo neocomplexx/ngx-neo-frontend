@@ -69,6 +69,9 @@ export class AttachmentSignatureModelDTO extends EntityModelDTO<AttachmentSignat
    get SignDate(): Date { return this.entityDTO.signDate; }
    set SignDate(value: Date) { this.notifyChangeDTO('signDate', value); }
 
+   get AsBussiness(): boolean { return this.entityDTO.asBussiness; }
+   set AsBussiness(value: boolean) { this.notifyChangeDTO('asBussiness', value); }
+
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }
 
