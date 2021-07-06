@@ -1,4 +1,4 @@
-import { HubConnectionBuilder, HubConnection, IHttpConnectionOptions } from '@microsoft/signalr';
+import { HubConnectionBuilder, HubConnection, IHttpConnectionOptions } from '@aspnet/signalr';
 import { Injectable, Inject } from '@angular/core';
 import { Subscription, Subject, timer } from 'rxjs';
 import { AppError } from '../exception-manager/app-error';

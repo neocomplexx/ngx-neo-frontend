@@ -9,7 +9,7 @@
       "@neocomplexx/ngx-neo-loader": "ngx-neo-loader",
       "@neocomplexx/ngx-neo-modal-mat": "ngx-neo-modal-mat",
       "@neocomplexx/ngx-neo-directives-mat": "ngx-neo-directives-mat",
-      "@microsoft/signalr": "signalr"
+      "@aspnet/signalr": "signalr"
     }
   }
 }

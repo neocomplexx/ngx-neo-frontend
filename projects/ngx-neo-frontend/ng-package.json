@@ -10,7 +10,7 @@
       "@neocomplexx/ngx-neo-modal": "ngx-neo-modal",
       "@neocomplexx/ngx-neo-directives": "ngx-neo-directives",
       "@ng-bootstrap/ng-bootstrap": "ng-bootstrap",
-      "@microsoft/signalr": "signalr"
+      "@aspnet/signalr": "signalr"
     }
   }
 }

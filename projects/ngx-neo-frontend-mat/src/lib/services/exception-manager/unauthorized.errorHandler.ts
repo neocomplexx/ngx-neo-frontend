@@ -41,12 +41,17 @@ export class UnauthorizedErrorHandler implements ErrorHandler {
       if (!this.authenticationService) { this.authenticationService = this.injector.get(AuthenticationService); }
       if (!this.router) { this.router = this.injector.get(Router); }
       if (!this.cordovaService) { this.cordovaService = this.injector.get(CordovaService); }
-      if (!this.router.url.startsWith('/login') && !this.router.url.startsWith('/ios-landing')) {
+      if (!this.router.url.startsWith('/login') && !this.router.url.startsWith('/demo') && !this.router.url.startsWith('/ios-landing')) {
+        const authResponseDTO = this.authenticationService?.authResponseDTO;
         this.headerService.dispose();
         if (this.cordovaService.isIOSApp) {
           this.zone.run(async () => await this.router.navigate(['/ios-landing']));
         } else {
-          this.zone.run(async () => await this.router.navigate(['/login']));
+          if (authResponseDTO?.userName == 'demo@uaaloo.com') {
+            this.zone.run(async () => await this.router.navigate(['/demo']));
+          } else {
+            this.zone.run(async () => await this.router.navigate(['/login']));
+          }
         }
       }
     } else if (error.headers) {

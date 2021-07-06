@@ -18,6 +18,16 @@ export class AuthServiceBackend {
    constructor(@Inject(FrontEndConfigService) protected Constants: FrontEndConfig,
       protected http: HttpClient, protected exceptionManager: ExceptionManagerService) { }
 
+   public async getAuthDemo(recaptchaToken: string): Promise<AuthResponseDTO> {
+      return this.exceptionManager.executeAsync(async () => {
+         const res = await this.http.get(this.Constants.apiURL + '/auth/demo' + '?recaptchaToken=' + recaptchaToken).toPromise();
+         if (!res) { return null; }
+         const resDTO = new AuthResponseDTO();
+         resDTO.PrepareDTO(res);
+         return resDTO;
+      });
+   }
+
    public async insertAuth(authRequestDTO: AuthRequestDTO): Promise<AuthResponseDTO> {
       return this.exceptionManager.executeAsync(async () => {
          const res = await this.http.post(this.Constants.apiURL + '/auth/', authRequestDTO).toPromise();
