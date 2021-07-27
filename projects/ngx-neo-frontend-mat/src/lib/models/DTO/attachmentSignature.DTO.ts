@@ -15,6 +15,7 @@ export class AttachmentSignatureDTO implements IEntityDTO {
    requestDate: Date;
    signDate: Date;
    asBussiness: boolean;
+   notify: boolean;
    id = 0;
    cacheStamp = 0;
 
@@ -33,6 +34,7 @@ export class AttachmentSignatureDTO implements IEntityDTO {
       if (jsonObj.requestDate != null) { this.requestDate = new Date(jsonObj.requestDate); }
       if (jsonObj.signDate != null) { this.signDate = new Date(jsonObj.signDate); }
       if (jsonObj.asBussiness != null) { this.asBussiness = jsonObj.asBussiness; }
+      if (jsonObj.notify != null) { this.notify = jsonObj.notify; }
       if (jsonObj.id != null) { this.id = jsonObj.id; }
       if (jsonObj.cacheStamp != null) { this.cacheStamp = jsonObj.cacheStamp; }
    }

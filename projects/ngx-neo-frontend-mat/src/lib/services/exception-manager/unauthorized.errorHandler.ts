@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Injector, ErrorHandler, NgZone, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxNeoLoaderService } from '@neocomplexx/ngx-neo-loader';
 import { NgxNeoModalMatService } from '@neocomplexx/ngx-neo-modal-mat';
 import { AuthenticationService } from '../../helpers/auth/authentication.service';
 import { CordovaService } from '../cordova/cordova.service';
@@ -30,6 +32,13 @@ export class UnauthorizedErrorHandler implements ErrorHandler {
 
     if (error.status === 0 || error.status === 404) {
       this.zone.run(() => this.headerService.notifyWithoutConnection());
+      var http = this.injector.get(HttpClient);
+      try { 
+        http.get("https://www.google.com"); 
+        if (!this.router) { this.router = this.injector.get(Router); }
+        this.injector.get(NgxNeoLoaderService).hide();
+        this.zone.run(async () => await this.router.navigate(['/maintenance']));
+      } catch {}
       return;
     }
 

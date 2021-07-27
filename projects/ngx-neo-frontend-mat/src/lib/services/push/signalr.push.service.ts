@@ -12,7 +12,7 @@ import { FrontEndConfigService, FrontEndConfig } from '../../FrontendConfig';
 export class PushService {
 
     private hubConnection: HubConnection;
-    private DELAY_TIME = 5000;
+    private DELAY_TIME = 30000;
     private timerSubscription: Subscription;
     private isStoped = false;
 
@@ -54,6 +54,7 @@ export class PushService {
                 this._onConnectedEvent.next(true);
             })
             .catch(error => {
+                this._onConnectedEvent.next(false);
                 if (!this.isStoped) { this.connection(); }
             });
     }
@@ -84,6 +85,7 @@ export class PushService {
                 this._onConnectedEvent.next(true);
             })
             .catch(err => {
+                this._onConnectedEvent.next(false);
                 if (err && err.message.includes('Unauthorized')) {
                     if (this.timerSubscription) { this.timerSubscription.unsubscribe(); }
                     throw new AppError('Unauthorized', 401);

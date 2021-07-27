@@ -72,6 +72,9 @@ export class AttachmentSignatureModelDTO extends EntityModelDTO<AttachmentSignat
    get AsBussiness(): boolean { return this.entityDTO.asBussiness; }
    set AsBussiness(value: boolean) { this.notifyChangeDTO('asBussiness', value); }
 
+   get Notify(): boolean { return this.entityDTO.notify; }
+   set Notify(value: boolean) { this.notifyChangeDTO('notify', value); }
+
    get Id(): number { return this.entityDTO.id; }
    set Id(value: number) { this.notifyChangeDTO('id', value); }
 
